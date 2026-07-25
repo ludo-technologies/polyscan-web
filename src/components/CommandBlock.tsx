@@ -28,8 +28,10 @@ export default function CommandBlock({ command, label }: Props) {
 					{label}
 				</p>
 			)}
-			<div className="flex items-center gap-2 rounded-md border border-[var(--border-light)] bg-[var(--bg-ink)] px-4 py-3">
-				<code className="flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm text-white">
+			<div className="flex items-start gap-2 rounded-md border border-[var(--border-light)] bg-[var(--bg-ink)] px-4 py-3">
+				{/* Wrap rather than scroll: a command clipped mid-word reads as broken
+				    even though the copy button still yields the whole string. */}
+				<code className="flex-1 break-words font-mono text-sm leading-6 text-white">
 					<span className="mr-2 select-none text-[var(--text-dimmed)]">$</span>
 					{command}
 				</code>
