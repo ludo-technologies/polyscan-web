@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme inline {
 	--font-sans: var(--font-jakarta);
@@ -50,132 +51,54 @@ body {
 	position: relative;
 }
 
-.scan-demo-stage {
-	animation-duration: 7.5s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-	inset: 1rem;
-	opacity: 0;
-	position: absolute;
-	transform: translateY(12px);
+/* Article body: bind the typography plugin to the site's design tokens so posts
+   inherit the same palette as the rest of the page. */
+.post-body {
+	--tw-prose-body: var(--text-light);
+	--tw-prose-headings: var(--text-primary);
+	--tw-prose-lead: var(--text-secondary);
+	--tw-prose-links: var(--brand-blue);
+	--tw-prose-bold: var(--text-primary);
+	--tw-prose-counters: var(--text-muted);
+	--tw-prose-bullets: var(--border-light);
+	--tw-prose-hr: var(--border-subtle);
+	--tw-prose-quotes: var(--text-secondary);
+	--tw-prose-quote-borders: var(--brand-blue);
+	--tw-prose-captions: var(--text-muted);
+	--tw-prose-code: var(--text-primary);
+	--tw-prose-th-borders: var(--border-light);
+	--tw-prose-td-borders: var(--border-subtle);
 }
 
-.scan-demo-stage-input {
-	animation-name: scan-stage-input;
+.post-body :where(a):hover {
+	color: var(--brand-blue-hover);
 }
 
-.scan-demo-stage-running {
-	animation-name: scan-stage-running;
+.post-body :where(pre) {
+	background: var(--bg-ink);
+	border: 1px solid var(--border-light);
+	color: #e6edf3;
+	font-size: 0.875rem;
+	overflow-x: auto;
 }
 
-.scan-demo-stage-report {
-	animation-name: scan-stage-report;
+/* rehype-pretty-code inlines github-dark token colors; the surface below is ours. */
+.post-body :where(pre) code {
+	background: transparent;
+	font-family: var(--font-mono), monospace;
 }
 
-.scan-demo-dot {
-	animation: scan-dot-pulse 1s ease-in-out infinite;
-	background: var(--brand-blue);
-	border-radius: 999px;
-	display: inline-flex;
-	height: 0.65rem;
-	width: 0.65rem;
+.post-body :where(code):not(pre code) {
+	background: var(--bg-subtle);
+	border: 1px solid var(--border-subtle);
+	border-radius: 0.25rem;
+	font-family: var(--font-mono), monospace;
+	font-size: 0.875em;
+	font-weight: 500;
+	padding: 0.125rem 0.35rem;
 }
 
-.scan-demo-progress {
-	animation: scan-progress 2.5s ease-in-out infinite;
-	transform-origin: left center;
-}
-
-@keyframes scan-stage-input {
-	0%,
-	26% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	34%,
-	100% {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-}
-
-@keyframes scan-stage-running {
-	0%,
-	28% {
-		opacity: 0;
-		transform: translateY(12px);
-	}
-
-	36%,
-	62% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	70%,
-	100% {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-}
-
-@keyframes scan-stage-report {
-	0%,
-	64% {
-		opacity: 0;
-		transform: translateY(12px);
-	}
-
-	72%,
-	94% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-}
-
-@keyframes scan-dot-pulse {
-	0%,
-	100% {
-		opacity: 0.35;
-		transform: scale(0.9);
-	}
-
-	50% {
-		opacity: 1;
-		transform: scale(1.1);
-	}
-}
-
-@keyframes scan-progress {
-	0% {
-		transform: scaleX(0.12);
-	}
-
-	100% {
-		transform: scaleX(1);
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.scan-demo-stage,
-	.scan-demo-dot,
-	.scan-demo-progress {
-		animation: none;
-	}
-
-	.scan-demo-stage-input,
-	.scan-demo-stage-running {
-		display: none;
-	}
-
-	.scan-demo-stage-report {
-		opacity: 1;
-		transform: none;
-	}
+.post-body :where(code):not(pre code)::before,
+.post-body :where(code):not(pre code)::after {
+	content: none;
 }

@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
-import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -23,21 +23,22 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
 	metadataBase: new URL(getSiteUrl()),
-	title: "codescan.dev — Simple security checks for GitHub repos",
+	title: "polyscan — Code quality analyzers for AI agents",
 	description:
-		"Free security checks for GitHub repositories. Find risky code, exposed keys, and outdated packages, then get a shareable letter-grade report. Sign in to scan private repos.",
+		"Open source code quality analyzers for Python and JavaScript/TypeScript. One command scores your codebase and shows what to fix first: dead code, duplicate code, complexity, dependency cycles, and class coupling.",
 	keywords: [
-		"GitHub security scanner",
-		"repository security checker",
-		"code security checker",
-		"exposed API keys",
-		"outdated packages",
-		"open source security",
+		"code quality analyzer",
+		"Python static analysis",
+		"TypeScript code quality",
+		"duplicate code detection",
+		"cyclomatic complexity",
+		"dead code detection",
+		"AI coding agent tools",
 	],
 	openGraph: {
-		title: "codescan.dev — Simple security checks for GitHub repos",
+		title: "polyscan — Code quality analyzers for AI agents",
 		description:
-			"Scan any GitHub repo — public or private — for risky code, exposed keys, and outdated packages. Get a letter-grade security report you can share.",
+			"One command scores your whole codebase and shows what to fix first. pyscn for Python, jscan for JavaScript/TypeScript — open source, built with Go and tree-sitter.",
 		type: "website",
 	},
 };
@@ -71,9 +72,7 @@ export default function RootLayout({
 				</>
 			)}
 			<body className={`${jakarta.variable} ${jetbrains.variable} antialiased`}>
-				<header className="relative z-20 flex items-center justify-end px-4 pt-4 sm:px-6">
-					<AuthButton />
-				</header>
+				<Header />
 				{children}
 				<Footer />
 			</body>
