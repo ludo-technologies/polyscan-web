@@ -1,5 +1,5 @@
 {
-	"name": "codescan",
+	"name": "polyscan-web",
 	"version": "0.1.0",
 	"private": true,
 	"license": "MIT",
@@ -9,18 +9,18 @@
 		"start": "next start",
 		"lint": "biome check .",
 		"format": "biome format --write .",
-		"test": "vitest run",
+		"test": "vitest run --passWithNoTests",
 		"test:watch": "vitest",
 		"test:ui": "vitest --ui"
 	},
 	"dependencies": {
-		"@vercel/og": "^0.8.6",
-		"jsonwebtoken": "^9.0.3",
+		"gray-matter": "^4.0.3",
 		"next": "16.2.7",
+		"next-mdx-remote": "^6.0.0",
 		"react": "19.2.3",
 		"react-dom": "19.2.3",
-		"swr": "^2.4.0",
-		"zod": "^4.4.3"
+		"rehype-pretty-code": "^0.14.4",
+		"shiki": "^4.3.1"
 	},
 	"overrides": {
 		"postcss": "8.5.15"
@@ -28,10 +28,10 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.2",
 		"@tailwindcss/postcss": "^4.3.0",
+		"@tailwindcss/typography": "^0.5.20",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
 		"@testing-library/user-event": "^14.6.1",
-		"@types/jsonwebtoken": "^9.0.10",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",

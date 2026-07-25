@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LINKS } from "@/lib/links";
 
 export const metadata: Metadata = {
-	title: "Terms of Service — codescan.dev",
+	title: "Terms of Service — polyscan",
 	description:
-		"Terms of service for using codescan.dev to run security scans against GitHub repositories, including private repositories you sign in to access.",
+		"Terms for using the polyscan website. The analyzers themselves are open source and governed by the MIT License in their repositories.",
 	alternates: { canonical: "/terms" },
 };
 
-const LAST_UPDATED = "2026-05-28";
-const CONTACT_EMAIL = "contact@ludo-tech.org";
+const LAST_UPDATED = "2026-07-26";
 
 export default function TermsPage() {
 	return (
@@ -30,178 +30,93 @@ export default function TermsPage() {
 						1. Acceptance of these terms
 					</h2>
 					<p>
-						These Terms of Service (&quot;Terms&quot;) govern your use of
-						codescan.dev (&quot;the Service&quot;), operated by Ludo
-						Technologies Inc. (&quot;we&quot;, &quot;us&quot;). By accessing the
-						Service or submitting a repository for scanning, you agree to these
-						Terms. If you do not agree, do not use the Service.
+						These Terms of Service (&quot;Terms&quot;) govern your use of this
+						website (&quot;the Site&quot;), operated by Ludo Technologies Inc.
+						(&quot;we&quot;, &quot;us&quot;). By accessing the Site you agree to
+						these Terms. If you do not agree, do not use the Site.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						2. What the Service does
+						2. What the Site is
 					</h2>
 					<p>
-						The Service accepts the URL of a GitHub repository, runs a set of
-						automated security checks (such as static analysis, secret
-						detection, and dependency vulnerability lookup), and presents the
-						findings as a report identified by a unique URL. Scanning a public
-						repository requires no account; to scan a private repository you
-						sign in with GitHub so the Service can access it on your behalf. The
-						Service is currently provided free of charge.
+						The Site is an informational website about polyscan and its
+						analyzers. It documents what the software does, how to install it,
+						and how to use it with AI coding agents. It does not process your
+						code: the analyzers run locally on your own machine or CI runner.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						3. Eligibility
+						3. The software is licensed separately
 					</h2>
 					<p>
-						You must be at least the age of majority in your jurisdiction (or
-						have permission from a parent or guardian) and legally able to enter
-						into these Terms to use the Service. If you are using the Service on
-						behalf of an organization, you represent that you have authority to
-						bind that organization to these Terms.
+						These Terms cover the Site only. The polyscan analyzers, the shared
+						core module, and the Agent Skills are open source and are licensed
+						under the MIT License found in their respective repositories. Your
+						rights to use, modify, and redistribute that software come from
+						those licenses, not from these Terms, and nothing here restricts
+						them.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						4. Acceptable use
-					</h2>
-					<p className="mb-3">You agree that you will not:</p>
-					<ul className="list-disc space-y-2 pl-5">
-						<li>
-							Submit repositories that you do not own or otherwise have the
-							right to submit for scanning;
-						</li>
-						<li>
-							Use the Service to attack, overload, probe, or test systems for
-							which you do not have explicit permission;
-						</li>
-						<li>
-							Submit volumes of scan requests that are abusive or that interfere
-							with the Service&apos;s availability for other users, including
-							via automated scripts that bypass on-page rate limiting;
-						</li>
-						<li>
-							Attempt to reverse-engineer, exploit, or otherwise compromise the
-							Service or its infrastructure, except through good-faith security
-							research disclosed to us privately;
-						</li>
-						<li>
-							Use the Service to violate any applicable law or third-party
-							right, including intellectual property, privacy, or anti-spam
-							laws.
-						</li>
-					</ul>
-					<p className="mt-3">
-						We may rate-limit, suspend, or block requests that we reasonably
-						believe violate these rules.
-					</p>
-				</section>
-
-				<section>
-					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						5. Scan reports
+						4. Site content and intellectual property
 					</h2>
 					<p>
-						When a scan completes, we generate a report page at a unique URL (
-						<code className="font-mono text-sm">/scan/&lt;id&gt;</code>) so it
-						can be revisited and shared. For a public repository, anyone with
-						the URL can view the report; we mark scan pages as <em>noindex</em>{" "}
-						to keep them out of search engines, but they are not otherwise
-						access-controlled, so by submitting a public repository you
-						acknowledge that the resulting report may be viewed by anyone you
-						share the URL with. For a private repository, the report is
-						restricted to the signed-in GitHub account that started the scan and
-						is not served to other visitors.
-					</p>
-					<p className="mt-3">
-						If you would like a particular scan report removed, contact us using
-						the address below. See the{" "}
-						<Link
-							href="/privacy"
-							className="font-medium text-[var(--brand-blue)] hover:underline"
-						>
-							Privacy Policy
-						</Link>{" "}
-						for details on how scan data is handled.
+						The text, layout, and graphics of the Site are owned by us or our
+						licensors. You may quote and link to the Site with attribution. You
+						may not copy it wholesale to present it as your own, or use our
+						names and logos in a way that implies endorsement or affiliation
+						that does not exist.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						6. Intellectual property
+						5. Acceptable use
 					</h2>
 					<p>
-						The repositories you submit remain owned by their original authors
-						under their existing licenses. We do not claim ownership of that
-						code. Scan findings reproduce small portions of source code for the
-						sole purpose of pointing at the issue; for public repositories this
-						is intended to be a fair, descriptive use of publicly available
-						material, and for private repositories these snippets are shown only
-						to the signed-in owner who submitted the scan.
-					</p>
-					<p className="mt-3">
-						The Service itself — including the site, branding, design, and the
-						text of reports outside the reproduced code — is owned by Ludo
-						Technologies Inc. and protected by applicable laws. You may share
-						scan report URLs and link to the Service freely. Other uses require
-						our prior permission.
+						Do not attempt to disrupt or gain unauthorized access to the Site or
+						its infrastructure, scrape it in a way that degrades service for
+						others, or use it to distribute malware or unlawful content.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						7. Third-party content and services
+						6. No warranty
 					</h2>
 					<p>
-						The Service depends on third parties — including GitHub, open source
-						security scanners, vulnerability databases, and cloud infrastructure
-						providers. Their availability, accuracy, and licensing terms are
-						outside our control. We are not responsible for the content of any
-						repository scanned through the Service.
+						The Site is provided &quot;as is&quot; and &quot;as available&quot;,
+						without warranties of any kind, express or implied, including
+						merchantability, fitness for a particular purpose, and
+						non-infringement. Documentation, benchmarks, and examples on the
+						Site may be incomplete or out of date, and analysis results produced
+						by the software are engineering signals rather than guarantees about
+						the correctness, security, or quality of your code.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						8. No warranty
+						7. Limitation of liability
 					</h2>
 					<p>
-						The Service is provided <strong>&quot;as is&quot;</strong> and{" "}
-						<strong>&quot;as available&quot;</strong>, without warranties of any
-						kind, whether express, implied, or statutory, including warranties
-						of merchantability, fitness for a particular purpose,
-						non-infringement, accuracy, or uninterrupted availability.
-					</p>
-					<p className="mt-3">
-						Scan results are best-effort summaries produced by automated tools.
-						They may include false positives, miss real issues, or become
-						outdated as new vulnerabilities are disclosed. Scan reports are{" "}
-						<strong>not</strong> a substitute for a professional security audit.
-						You are responsible for independently evaluating the safety of any
-						code before relying on it.
-					</p>
-				</section>
-
-				<section>
-					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						9. Limitation of liability
-					</h2>
-					<p>
-						To the maximum extent permitted by applicable law, Ludo Technologies
-						Inc. and its officers, employees, and contractors will not be liable
-						for any indirect, incidental, special, consequential, or punitive
-						damages, or for any loss of profits, revenue, data, or goodwill,
-						arising out of or in connection with your use of the Service.
+						To the maximum extent permitted by law, we are not liable for any
+						indirect, incidental, special, consequential, or punitive damages,
+						or for lost profits, lost data, or business interruption, arising
+						out of your use of the Site or of decisions made on the basis of its
+						content.
 					</p>
 					<p className="mt-3">
 						To the extent we are found liable despite the above, our total
-						aggregate liability for any claim related to the Service is limited
-						to JPY 1,000. Some jurisdictions do not allow certain limitations of
+						aggregate liability for any claim related to the Site is limited to
+						JPY 1,000. Some jurisdictions do not allow certain limitations of
 						liability, in which case the limitations apply only to the extent
 						permitted by law.
 					</p>
@@ -209,51 +124,36 @@ export default function TermsPage() {
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						10. Indemnification
+						8. Third-party links
 					</h2>
 					<p>
-						You agree to defend, indemnify, and hold us harmless from any
-						claims, damages, or expenses (including reasonable legal fees)
-						arising out of your misuse of the Service, your violation of these
-						Terms, or your violation of any law or third-party right.
+						The Site links to third-party destinations such as GitHub, PyPI, and
+						npm. We do not control them and are not responsible for their
+						content or practices. Their own terms apply once you follow a link.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						11. Suspension and termination
+						9. Changes to the Site or these Terms
 					</h2>
 					<p>
-						We may suspend, throttle, or terminate access to the Service for any
-						user at any time, with or without notice, if we reasonably believe
-						these Terms have been violated or if continued use would harm the
-						Service or other users. We may also discontinue the Service, in
-						whole or in part, at any time.
+						We may change, suspend, or discontinue any part of the Site at any
+						time. We may also update these Terms as the Site evolves or as the
+						law requires; when we make material changes we will update the
+						&quot;last updated&quot; date above. Continued use of the Site after
+						a change indicates acceptance of the revised Terms.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						12. Changes to the Service or these Terms
-					</h2>
-					<p>
-						We may update the Service&apos;s features, scanners, and report
-						format over time. We may also update these Terms when the Service
-						evolves or as the law requires; when we make material changes we
-						will update the &quot;Last updated&quot; date above. Continued use
-						of the Service after a change indicates acceptance of the revised
-						Terms.
-					</p>
-				</section>
-
-				<section>
-					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						13. Governing law and venue
+						10. Governing law and venue
 					</h2>
 					<p>
 						These Terms are governed by the laws of Japan, without regard to its
 						conflict-of-laws rules. Any dispute arising out of or relating to
-						these Terms or the Service will be submitted to the exclusive
+						these Terms or the Site will be submitted to the exclusive
 						jurisdiction of the Yokohama District Court, Japan, as the court of
 						first instance, except where applicable consumer protection law
 						gives you a different non-waivable right.
@@ -262,33 +162,41 @@ export default function TermsPage() {
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						14. Miscellaneous
+						11. Miscellaneous
 					</h2>
 					<p>
 						If any provision of these Terms is held to be unenforceable, the
-						remaining provisions will remain in full force and effect. Our
-						failure to enforce a provision is not a waiver of our right to do so
-						later. You may not assign these Terms without our consent. We may
-						assign these Terms in connection with a reorganization or sale of
-						our business.
+						remaining provisions remain in full force and effect. Our failure to
+						enforce a provision is not a waiver of our right to do so later. You
+						may not assign these Terms without our consent. We may assign these
+						Terms in connection with a reorganization or sale of our business.
 					</p>
 				</section>
 
 				<section>
 					<h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">
-						15. Contact
+						12. Contact
 					</h2>
 					<p>
-						Questions about these Terms can be sent to{" "}
+						Questions about these Terms:{" "}
 						<a
-							href={`mailto:${CONTACT_EMAIL}`}
+							href={`mailto:${LINKS.contactEmail}`}
 							className="font-medium text-[var(--brand-blue)] hover:underline"
 						>
-							{CONTACT_EMAIL}
+							{LINKS.contactEmail}
 						</a>
 						.
 					</p>
 				</section>
+			</div>
+
+			<div className="mt-16 border-t border-[var(--border-subtle)] pt-6">
+				<Link
+					href="/"
+					className="text-sm font-medium text-[var(--brand-blue)] transition-colors hover:text-[var(--brand-blue-hover)]"
+				>
+					← Back to home
+				</Link>
 			</div>
 		</main>
 	);

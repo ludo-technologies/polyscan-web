@@ -8,16 +8,19 @@ const securityHeaders = [
 		key: "Permissions-Policy",
 		value: "camera=(), microphone=(), geolocation=()",
 	},
-	{
-		key: "Strict-Transport-Security",
-		value: "max-age=63072000; includeSubDomains; preload",
-	},
+	// Only in production: HSTS applies per host, so sending it in dev pins
+	// localhost to https and makes the dev server unreachable in the browser.
+	...(process.env.NODE_ENV === "production"
+		? [
+				{
+					key: "Strict-Transport-Security",
+					value: "max-age=63072000; includeSubDomains; preload",
+				},
+			]
+		: []),
 ];
 
 const nextConfig: NextConfig = {
-	// Emit a self-contained server bundle so the Docker image (docker-compose) can
-	// run the frontend without the full node_modules tree. Ignored by Vercel.
-	output: "standalone",
 	async headers() {
 		return [{ source: "/(.*)", headers: securityHeaders }];
 	},

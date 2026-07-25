@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import ScanFlowDemo from "@/components/ScanFlowDemo";
-import ScanForm from "@/components/ScanForm";
-import { CATEGORY_LABELS } from "@/lib/categories";
+import CommandBlock from "@/components/CommandBlock";
+import { LINKS } from "@/lib/links";
 
 export const metadata: Metadata = {
 	alternates: {
@@ -10,82 +8,91 @@ export const metadata: Metadata = {
 	},
 };
 
-const scanners = [
+const checks = [
 	{
-		title: CATEGORY_LABELS.sast,
-		body: "Finds patterns that can lead to security bugs, including unsafe input handling and other common mistakes.",
+		icon: "🧹",
+		title: "Dead code",
+		body: "Unreachable code you can safely delete, found by walking the control flow graph rather than guessing.",
 	},
 	{
-		title: CATEGORY_LABELS.secrets,
-		body: "Checks whether API keys, tokens, private keys, or credentials were accidentally committed.",
+		icon: "📋",
+		title: "Duplicate code",
+		body: "Copy-pasted and structurally similar code worth merging — Type 1-4 clone detection via tree edit distance.",
 	},
 	{
-		title: CATEGORY_LABELS.deps,
-		body: "Looks for packages with known security problems so you can update the risky ones first.",
-	},
-];
-
-const proofPoints = [
-	...scanners.map((s) => s.title),
-	"Public scans no sign-up",
-];
-
-const steps = [
-	{
-		title: "Paste a GitHub URL",
-		body: "Drop the URL of any public repository into the scan box at the top of the page, or sign in with GitHub to scan a private repo.",
+		icon: "🌀",
+		title: "Complexity",
+		body: "Functions that are hard to read and hard to test, ranked by cyclomatic complexity so you know where to start.",
 	},
 	{
-		title: "Run the checks",
-		body: "codescan.dev looks for risky code, exposed keys, and packages that should be updated.",
+		icon: "🏗️",
+		title: "Dependencies",
+		body: "Circular imports and unstable module dependencies, plus the module communities your codebase actually forms.",
 	},
 	{
-		title: "Read the report card",
-		body: "See a letter grade, a severity breakdown, and per-finding file, line, and rule details you can share.",
+		icon: "🧩",
+		title: "Class design",
+		body: "Classes that do too much or depend on too much, measured with CBO coupling and LCOM cohesion.",
 	},
 ];
 
-const exampleCounts: [string, string][] = [
-	[CATEGORY_LABELS.sast, "4"],
-	[CATEGORY_LABELS.secrets, "0"],
-	[CATEGORY_LABELS.deps, "7"],
+const analyzers = [
+	{
+		name: "pyscn",
+		language: "Python",
+		body: "The original analyzer. Ships a CLI, an MCP server, and Agent Skills, and powers pyscn-bot.",
+		command: "uvx pyscn@latest analyze .",
+		links: [
+			{ label: "GitHub", href: LINKS.pyscn },
+			{ label: "PyPI", href: LINKS.pypi },
+			{ label: "Docs", href: LINKS.docs },
+		],
+	},
+	{
+		name: "jscan",
+		language: "JavaScript / TypeScript",
+		body: "The same analysis for JS and TS, distributed on npm with prebuilt binaries — no toolchain to install.",
+		command: "npx jscan analyze src/",
+		links: [
+			{ label: "GitHub", href: LINKS.jscan },
+			{ label: "npm", href: LINKS.npm },
+		],
+	},
+	{
+		name: "core",
+		language: "Go module",
+		body: "The language-agnostic engine behind both: APTED tree edit distance, LSH/MinHash clone indexing, CFG analysis, coupling and cohesion metrics.",
+		command: "go get github.com/ludo-technologies/polyscan/core",
+		links: [{ label: "GitHub", href: LINKS.core }],
+	},
 ];
 
-const audience = [
-	{
-		title: "Maintainers of open source repos",
-		body: "Get a quick security baseline before publishing a release or accepting a large pull request.",
-	},
-	{
-		title: "Developers evaluating dependencies",
-		body: "Check a third-party repository for exposed credentials and risky packages before adopting it.",
-	},
-	{
-		title: "Engineering teams and reviewers",
-		body: "Share a letter-grade report card alongside a PR or audit instead of pasting raw tool output.",
-	},
+const agentSteps = [
+	"Analyze the code quality of the src/ directory",
+	"Find duplicate code and help me refactor it",
+	"Show me complex code and help me simplify it",
 ];
 
 const faqs = [
 	{
-		q: "Is codescan.dev free?",
-		a: "Yes. Public repository scans are free and require no sign-up. Sign in with GitHub to scan private repositories — also free.",
+		q: "What does polyscan actually measure?",
+		a: "Structure, not style. Dead code, duplicate code, cyclomatic complexity, module dependency cycles, and class coupling and cohesion — the things that make a codebase expensive to change. It is not a linter or a formatter, and it complements rather than replaces them.",
 	},
 	{
-		q: "Which repositories can I scan?",
-		a: "Any public GitHub repository. Sign in with GitHub to scan private repositories too.",
+		q: "Why does this matter for AI-generated code?",
+		a: "Coding agents produce working code quickly, but they tend to duplicate logic and grow functions rather than refactor. Those problems compound silently. polyscan gives you and your agent a measurement to work against, so cleanup becomes a concrete task instead of a vague feeling.",
 	},
 	{
-		q: "What does the letter grade mean?",
-		a: "The grade summarizes how many issues were found and how serious they are, so you can compare repositories at a glance.",
+		q: "Do I need to install anything?",
+		a: "No. uvx and npx run the analyzers directly. Both ship as single Go binaries built with tree-sitter, so a full analysis is fast enough to run on every commit.",
 	},
 	{
-		q: "What does codescan.dev look for?",
-		a: "It checks for risky code patterns, exposed keys, and packages with known security problems. Each finding links back to the affected file and line.",
+		q: "Which languages are supported?",
+		a: "Python via pyscn and JavaScript/TypeScript via jscan today. Because the analysis lives in a language-agnostic Go core, adding a language mostly means implementing parsing and classification — C++, Go, and Rust are planned.",
 	},
 	{
-		q: "Do you store my code?",
-		a: "No. codescan.dev clones the repository to run the scanners and only persists the resulting findings needed to render the report card.",
+		q: "Is it open source?",
+		a: "Yes, MIT licensed. The analyzers, the shared core, and the Agent Skills are all public on GitHub.",
 	},
 ];
 
@@ -102,11 +109,12 @@ const FAQ_JSON_LD = JSON.stringify({
 const SOFTWARE_JSON_LD = JSON.stringify({
 	"@context": "https://schema.org",
 	"@type": "SoftwareApplication",
-	name: "codescan.dev",
-	applicationCategory: "SecurityApplication",
-	operatingSystem: "Web",
+	name: "polyscan",
+	applicationCategory: "DeveloperApplication",
+	operatingSystem: "macOS, Linux, Windows",
 	description:
-		"Security scanner for GitHub repositories, public or private. Checks for risky code, exposed keys, and outdated packages, then presents the findings as a shareable letter-grade report.",
+		"Open source code quality analyzers for Python and JavaScript/TypeScript. Detects dead code, duplicate code, complexity, dependency cycles, and class coupling, then scores the codebase and reports what to fix first.",
+	license: "https://opensource.org/licenses/MIT",
 	offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 });
 
@@ -126,88 +134,69 @@ export default function Home() {
 
 			<section
 				id="top"
-				className="relative z-10 grid w-full max-w-6xl gap-8 px-4 pt-8 pb-6 sm:gap-10 sm:px-6 sm:pt-20 sm:pb-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-20"
+				className="relative z-10 w-full max-w-6xl px-4 pt-12 pb-8 sm:px-6 sm:pt-20 sm:pb-14"
 			>
-				<div className="animate-in fade-in slide-in-from-bottom-12 duration-1000 ease-out">
-					<p className="mb-3 hidden rounded-md border border-[var(--brand-blue-light)] bg-[var(--brand-blue-light)] px-3 py-1 text-xs font-semibold uppercase text-[var(--brand-blue)] sm:mb-5 sm:inline-flex">
-						GitHub security scanner
+				<div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 ease-out">
+					<p className="mb-4 inline-flex rounded-md border border-[var(--brand-blue-light)] bg-[var(--brand-blue-light)] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--brand-blue)]">
+						Open source · Go + tree-sitter
 					</p>
-					<h1 className="mb-4 text-4xl font-black tracking-tight text-[var(--text-primary)] sm:mb-6 sm:text-7xl lg:text-8xl">
-						<span>codescan</span>
-						<span className="text-[var(--brand-blue)]">.dev</span>
+					<h1 className="mb-4 text-5xl font-black tracking-tight text-[var(--text-primary)] sm:mb-6 sm:text-7xl lg:text-8xl">
+						<span>poly</span>
+						<span className="text-[var(--brand-blue)]">scan</span>
 					</h1>
-					<p className="mb-5 max-w-2xl text-lg font-semibold leading-relaxed text-[var(--text-primary)] sm:mb-6 sm:text-2xl">
-						Scan any GitHub repo for security issues — get one shareable grade.
+					<p className="mb-4 max-w-2xl text-lg font-semibold leading-relaxed text-[var(--text-primary)] sm:text-2xl">
+						Code quality analyzers for AI agents.
+					</p>
+					<p className="mb-8 max-w-2xl leading-relaxed text-[var(--text-secondary)]">
+						Building with Claude, Cursor, or Codex? Your agent writes code
+						faster than anyone can review it. polyscan runs structural analysis
+						over the whole codebase — one command scores it and shows what to
+						fix first.
 					</p>
 
-					<ul className="hidden max-w-2xl flex-wrap gap-2 text-sm text-[var(--text-secondary)] sm:flex">
-						{proofPoints.map((point) => (
-							<li
-								key={point}
-								className="rounded-md border border-[var(--border-subtle)] bg-white px-3 py-1.5 font-medium"
-							>
-								{point}
-							</li>
-						))}
-					</ul>
-				</div>
-
-				<div className="hidden lg:block">
-					<ScanFlowDemo />
-				</div>
-			</section>
-
-			<section
-				aria-labelledby="scan-section-title"
-				className="relative z-10 w-full border-y-2 border-[var(--brand-blue)] bg-[var(--brand-blue-light)]/60"
-				id="scan"
-			>
-				<div className="mx-auto w-full max-w-3xl px-4 py-8 text-center sm:px-6 sm:py-16">
-					<p className="mb-3 hidden text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand-blue)] sm:block">
-						Start a scan
-					</p>
-					<h2
-						id="scan-section-title"
-						className="mb-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
-					>
-						Paste a GitHub repo URL
-					</h2>
-					<p className="mx-auto mb-6 max-w-xl text-sm text-[var(--text-secondary)] sm:mb-8 sm:text-base">
-						Public scans need no sign-up. Sign in with GitHub for private repos.
-					</p>
-					<div className="mx-auto w-full max-w-2xl text-left animate-in fade-in zoom-in-95 fill-mode-both duration-1000 delay-300 ease-out">
-						<ScanForm />
+					<div className="grid max-w-3xl gap-4 sm:grid-cols-2">
+						<CommandBlock label="Python" command="uvx pyscn@latest analyze ." />
+						<CommandBlock
+							label="JavaScript / TypeScript"
+							command="npx jscan analyze src/"
+						/>
 					</div>
+					<p className="mt-3 text-sm text-[var(--text-muted)]">
+						No installation, no sign-up, no code leaves your machine.
+					</p>
 				</div>
 			</section>
 
 			<div className="relative z-10 w-full max-w-6xl px-4 pb-20 sm:px-6">
 				<section
-					aria-labelledby="what-it-does-title"
+					aria-labelledby="what-you-get-title"
 					className="scroll-mt-24 border-t border-[var(--border-subtle)] pt-16"
-					id="what-it-does"
+					id="what-you-get"
 				>
 					<h2
-						id="what-it-does-title"
+						id="what-you-get-title"
 						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
 					>
-						What codescan.dev checks
+						What you get
 					</h2>
 					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						Every scan checks for common security risks and rolls the findings
-						into a single report.
+						Every analyzer scores your codebase from 0-100 with an A-F grade and
+						generates an HTML report, looking at your code from five angles.
 					</p>
-					<div className="grid gap-4 sm:grid-cols-3">
-						{scanners.map((s) => (
+					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{checks.map((c) => (
 							<article
-								key={s.title}
+								key={c.title}
 								className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm"
 							>
+								<div className="mb-2 text-2xl" aria-hidden="true">
+									{c.icon}
+								</div>
 								<h3 className="mb-1 text-lg font-semibold text-[var(--text-primary)]">
-									{s.title}
+									{c.title}
 								</h3>
 								<p className="text-sm leading-relaxed text-[var(--text-light)]">
-									{s.body}
+									{c.body}
 								</p>
 							</article>
 						))}
@@ -215,117 +204,151 @@ export default function Home() {
 				</section>
 
 				<section
-					aria-labelledby="who-its-for-title"
+					aria-labelledby="analyzers-title"
 					className="mt-20 scroll-mt-24"
-					id="who-its-for"
+					id="analyzers"
 				>
 					<h2
-						id="who-its-for-title"
+						id="analyzers-title"
 						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
 					>
-						Who it's for
+						One engine, one analyzer per language
 					</h2>
 					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						codescan.dev is built for anyone who needs a quick, shareable
-						security read on a GitHub repository.
+						The analysis algorithms live in a shared, language-agnostic Go
+						module. Each analyzer only implements parsing and classification, so
+						Python and TypeScript are graded by the same rules.
 					</p>
-					<ul className="grid gap-4 sm:grid-cols-3">
-						{audience.map((a) => (
-							<li
-								key={a.title}
-								className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm"
+					<div className="grid gap-4 lg:grid-cols-3">
+						{analyzers.map((a) => (
+							<article
+								key={a.name}
+								className="flex flex-col rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm"
 							>
-								<h3 className="mb-2 text-lg font-semibold text-[var(--text-primary)]">
-									{a.title}
-								</h3>
-								<p className="text-sm leading-relaxed text-[var(--text-light)]">
+								<div className="mb-1 flex items-baseline gap-2">
+									<h3 className="text-xl font-bold text-[var(--text-primary)]">
+										{a.name}
+									</h3>
+									<span className="text-xs font-medium text-[var(--text-muted)]">
+										{a.language}
+									</span>
+								</div>
+								<p className="mb-4 flex-1 text-sm leading-relaxed text-[var(--text-light)]">
 									{a.body}
 								</p>
-							</li>
-						))}
-					</ul>
-				</section>
-
-				<section
-					aria-labelledby="how-it-works-title"
-					className="mt-20 scroll-mt-24"
-					id="how-it-works"
-				>
-					<h2
-						id="how-it-works-title"
-						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
-					>
-						How it works
-					</h2>
-					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						No installation or GitHub app. Public scans need no sign-up.
-					</p>
-					<ol className="grid gap-4 sm:grid-cols-3">
-						{steps.map((s, i) => (
-							<li
-								key={s.title}
-								className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm"
-							>
-								<div className="mb-2 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--brand-blue)]">
-									Step {i + 1}
+								<div className="mb-4 overflow-x-auto rounded border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-3 py-2 font-mono text-xs text-[var(--text-primary)]">
+									{a.command}
 								</div>
-								<h3 className="mb-2 text-lg font-semibold text-[var(--text-primary)]">
-									{s.title}
-								</h3>
-								<p className="text-sm leading-relaxed text-[var(--text-light)]">
-									{s.body}
-								</p>
-							</li>
+								<ul className="flex flex-wrap gap-3 text-sm">
+									{a.links.map((l) => (
+										<li key={l.href}>
+											<a
+												href={l.href}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="font-medium text-[var(--brand-blue)] transition-colors hover:text-[var(--brand-blue-hover)]"
+											>
+												{l.label} →
+											</a>
+										</li>
+									))}
+								</ul>
+							</article>
 						))}
-					</ol>
+					</div>
+					<p className="mt-6 text-sm text-[var(--text-muted)]">
+						C++, Go, and Rust analyzers are planned.
+					</p>
 				</section>
 
 				<section
-					aria-labelledby="result-example-title"
+					aria-labelledby="agents-title"
 					className="mt-20 scroll-mt-24"
-					id="result-example"
+					id="agents"
 				>
 					<h2
-						id="result-example-title"
+						id="agents-title"
 						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
 					>
-						What a result looks like
+						Built for coding agents
 					</h2>
 					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						Each scan produces a single page with a letter grade, severity
-						breakdown, and a list of findings linked back to the source.
+						The analyzers ship Agent Skills that teach an AI agent when and how
+						to run each analysis — health checks, refactoring, architecture
+						review, and CI-friendly reports. They work with Claude Code, Cursor,
+						Codex, Gemini CLI, and others.
 					</p>
-					<div className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-6 shadow-sm">
-						<div className="flex flex-wrap items-center gap-6">
-							<div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-[var(--brand-blue)] text-4xl font-black text-[var(--brand-blue)]">
-								B
-							</div>
-							<div className="flex-1 space-y-2 text-sm text-[var(--text-light)]">
-								{exampleCounts.map(([label, value]) => (
-									<div key={label} className="flex justify-between gap-4">
-										<span>{label}</span>
-										<span className="font-mono">{value}</span>
-									</div>
+					<div className="grid gap-6 lg:grid-cols-2">
+						<div className="space-y-4">
+							<CommandBlock
+								label="pyscn Skills"
+								command="uvx add-skills ludo-technologies/pyscn"
+							/>
+							<CommandBlock
+								label="jscan Skills"
+								command="npx skills add ludo-technologies/polyscan"
+							/>
+							<CommandBlock
+								label="Claude Code plugin"
+								command="claude plugin marketplace add ludo-technologies/polyscan"
+							/>
+						</div>
+						<div className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm">
+							<h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">
+								Then just ask
+							</h3>
+							<ul className="space-y-3">
+								{agentSteps.map((s) => (
+									<li
+										key={s}
+										className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-4 py-3 text-sm text-[var(--text-light)]"
+									>
+										&ldquo;{s}&rdquo;
+									</li>
 								))}
-								<div className="flex justify-between gap-4 border-t border-[var(--border-subtle)] pt-2 text-xs text-[var(--text-muted)]">
-									<span>Example output — your scan may differ.</span>
-								</div>
-							</div>
+							</ul>
 						</div>
 					</div>
-					<div className="mt-5 flex flex-wrap gap-3">
-						<Link
-							href="/examples"
-							className="inline-flex rounded-md border border-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-[var(--brand-blue)] transition-colors hover:bg-[var(--brand-blue-light)]"
+				</section>
+
+				<section
+					aria-labelledby="bot-title"
+					className="mt-20 scroll-mt-24 rounded-lg border border-[var(--brand-blue)] bg-[var(--brand-blue-light)]/40 p-6 sm:p-8"
+					id="bot"
+				>
+					<p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand-blue)]">
+						Also from polyscan
+					</p>
+					<h2
+						id="bot-title"
+						className="mb-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+					>
+						Pyscn Bot — code review that reads the architecture
+					</h2>
+					<p className="mb-6 max-w-3xl text-[var(--text-secondary)]">
+						A GitHub App that reviews every pull request with pyscn in hand and
+						files a weekly audit of the whole repository. Because it reviews
+						with a static analyzer rather than the diff alone, it catches the
+						structural problems a line-by-line reviewer never sees. Weekly
+						audits are free for every repository.
+					</p>
+					<div className="flex flex-wrap gap-3">
+						<a
+							href={LINKS.pyscnBot}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex rounded-md border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
 						>
-							View example report
-						</Link>
-						<Link
-							href="/methodology"
-							className="inline-flex rounded-md border border-[var(--border-light)] px-5 py-2.5 text-sm font-semibold text-[var(--text-secondary)] transition-colors hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)]"
+							Install Pyscn Bot →
+						</a>
+						<a
+							href={LINKS.pyscnBotRepo}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex rounded-md border border-[var(--brand-blue)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-blue)] transition-colors hover:bg-white/60"
 						>
-							Read methodology
-						</Link>
+							Source on GitHub
+						</a>
 					</div>
 				</section>
 
@@ -360,17 +383,16 @@ export default function Home() {
 
 				<section className="mt-24 rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-8 text-center shadow-sm">
 					<h2 className="mb-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
-						Ready to scan a repository?
+						Score your codebase in one command
 					</h2>
 					<p className="mx-auto mb-6 max-w-xl text-[var(--text-secondary)]">
-						Paste a GitHub URL into the scan box to get a shareable grade.
+						Run it on the repository you are working in right now — it takes
+						seconds and installs nothing.
 					</p>
-					<Link
-						href="#scan"
-						className="inline-flex items-center gap-2 rounded-md border border-[var(--brand-blue)] px-6 py-2.5 text-sm font-semibold text-[var(--brand-blue)] transition-colors hover:bg-[var(--brand-blue)] hover:text-white"
-					>
-						Start a scan
-					</Link>
+					<div className="mx-auto grid max-w-2xl gap-3 text-left sm:grid-cols-2">
+						<CommandBlock command="uvx pyscn@latest analyze ." />
+						<CommandBlock command="npx jscan analyze src/" />
+					</div>
 				</section>
 			</div>
 		</main>

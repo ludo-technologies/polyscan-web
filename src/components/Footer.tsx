@@ -1,25 +1,21 @@
 import Link from "next/link";
+import { LINKS } from "@/lib/links";
 
 const productLinks = [
-	{ label: "Start a scan", href: "/#scan" },
-	{ label: "What it checks", href: "/#what-it-does" },
-	{ label: "How it works", href: "/#how-it-works" },
-	{ label: "Examples", href: "/examples" },
-	{ label: "Methodology", href: "/methodology" },
+	{ label: "What you get", href: "/#what-you-get" },
+	{ label: "Analyzers", href: "/#analyzers" },
+	{ label: "AI agents", href: "/#agents" },
+	{ label: "Pyscn Bot", href: "/#bot" },
+	{ label: "Blog", href: "/blog" },
 	{ label: "FAQ", href: "/#faq" },
 ];
 
 const resourceLinks = [
-	{
-		label: "GitHub",
-		href: "https://github.com/ludo-technologies/codescan",
-		external: true,
-	},
-	{
-		label: "Ludo Technologies",
-		href: "https://ludo-tech.org",
-		external: true,
-	},
+	{ label: "Documentation", href: LINKS.docs },
+	{ label: "Pyscn Bot", href: LINKS.pyscnBot },
+	{ label: "polyscan on GitHub", href: LINKS.monorepo },
+	{ label: "pyscn on GitHub", href: LINKS.pyscn },
+	{ label: "Ludo Technologies", href: LINKS.org },
 ];
 
 const legalLinks = [
@@ -34,15 +30,15 @@ export default function Footer() {
 				<div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-center">
 					<Link href="/" className="inline-flex items-baseline">
 						<span className="text-xl font-black tracking-tight text-[var(--text-primary)]">
-							codescan
+							poly
 						</span>
 						<span className="text-xl font-black tracking-tight text-[var(--brand-blue)]">
-							.dev
+							scan
 						</span>
 					</Link>
 					<span className="hidden text-[var(--border-light)] sm:block">|</span>
 					<p className="text-sm text-[var(--text-secondary)]">
-						Security checks for GitHub repos.
+						Code quality analyzers for AI agents.
 					</p>
 				</div>
 
@@ -74,8 +70,8 @@ export default function Footer() {
 								<li key={link.href}>
 									<a
 										href={link.href}
-										target={link.external ? "_blank" : undefined}
-										rel={link.external ? "noopener noreferrer" : undefined}
+										target="_blank"
+										rel="noopener noreferrer"
 										className="text-[var(--text-secondary)] transition-colors hover:text-[var(--brand-blue)]"
 									>
 										{link.label}
@@ -93,10 +89,10 @@ export default function Footer() {
 							<li>Kanagawa, Japan</li>
 							<li>
 								<a
-									href="mailto:contact@ludo-tech.org"
+									href={`mailto:${LINKS.contactEmail}`}
 									className="transition-colors hover:text-[var(--brand-blue)]"
 								>
-									contact@ludo-tech.org
+									{LINKS.contactEmail}
 								</a>
 							</li>
 						</ul>

@@ -1,0 +1,77 @@
+---
+title: "pyscn: The Code Quality Analyzer for Vibe Coders"
+description: "Introducing pyscn, a high-speed code quality analyzer for Python, designed for the age of AI-assisted coding."
+date: "2025-10-12"
+tags: ["python", "static-analysis", "ai"]
+lang: "en"
+draft: true
+---
+
+Are you riding the wave of "Vibe Coding" with AI assistants, churning out code faster than ever? It's a great feeling, but how do you ensure the quality and maintainability of your codebase don't suffer?
+
+I've created `pyscn`, a high-speed code quality analyzer for Python, built with Go. It's designed specifically for modern developers who leverage AI tools like Claude, ChatGPT, or GitHub Copilot.
+
+## Why I built it
+
+AI coding assistants are powerful allies. However, as projects grow in scale and complexity, relying solely on AI-generated code can lead to a tangled mess. Many of us have experienced this: the codebase becomes difficult to navigate, and what started as rapid development slows to a crawl.
+
+I noticed a few common pitfalls in this new era of vibe-driven development:
+
+- **Code duplication** — subtle variations of the same logic creeping into different parts of the codebase.
+- **Complex dependencies** — modules becoming tightly coupled without a clear architectural vision.
+- **Deeply nested functions** — logic that is hard to read, test, and debug.
+
+`pyscn` was born out of the need to address these issues. It analyzes your code for these specific problems, helping you catch the technical debt introduced by AI-assisted coding before it becomes a major headache.
+
+## Getting started
+
+The easiest way to try `pyscn` is to run it without installation, directly in your project directory.
+
+```bash
+# If you use pipx
+pipx run pyscn analyze .
+
+# Or if you use uv
+uvx pyscn analyze .
+```
+
+`pyscn` has two main commands to fit your workflow.
+
+### `pyscn analyze` — the code health check
+
+This command performs a comprehensive analysis and generates an interactive HTML report. It gives you a bird's-eye view of your project's health, highlighting dead code, overly complex functions, and code clones.
+
+### `pyscn check` — the CI gatekeeper
+
+This command is designed for automation. It acts like a linter, scanning your code for issues and reporting them directly in the terminal. If it finds code that exceeds your configured thresholds — say, a cyclomatic complexity greater than 15 — it exits with an error code, failing the check. That makes it a good fit for pre-commit hooks and CI pipelines.
+
+```bash
+uvx pyscn@latest check testdata
+```
+
+```
+testdata/python/simple/dead_code_simple.py:12:1: unreachable_after_return(critical)
+testdata/python/edge_cases/python310_features.py:116:1: clone of
+testdata/python/simple/control_flow.py:133:1 (similarity: 99.3%)
+testdata/python/edge_cases/python310_features.py:49:1: clone of
+testdata/python/edge_cases/python310_features.py:143:1 (similarity: 99.2%)
+```
+
+As you can see, it pinpoints the exact location of issues like unreachable code and potential code clones.
+
+## The reaction from Hacker News
+
+I released version 1.0.0 and posted it on Hacker News. The response was far greater than I had imagined.
+
+The post sparked a lively discussion around vibe coding and the challenges of maintaining code quality in the age of AI. It was valuable to hear from core developers. Comments about reviewing AI-generated code and maintaining architectural sanity affirmed that `pyscn` is solving a real problem.
+
+## What's next
+
+This is just the beginning for `pyscn`. Two of the most requested features are:
+
+1. **Expanding support to JavaScript and TypeScript.**
+2. **Integration with AI agentic workflows** — letting AI agents use `pyscn`'s analysis to review and refactor code autonomously.
+
+I'd love to hear your ideas. Feel free to open an issue or start a discussion on [GitHub](https://github.com/ludo-technologies/pyscn).
+
+Happy coding!
