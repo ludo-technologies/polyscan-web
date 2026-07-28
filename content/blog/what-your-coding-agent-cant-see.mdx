@@ -1,0 +1,227 @@
+---
+title: "What Your Coding Agent Can't See"
+description: "AI agents score perfectly on the code quality metrics they can perceive, and badly on the ones they can't. The fix isn't better prompting — it's giving them a structural feedback loop."
+date: "2026-07-29"
+tags: ["ai-agents", "python", "static-analysis", "code-quality"]
+lang: "en"
+draft: false
+---
+
+Here is a function an AI agent wrote for me. It is good code.
+
+```python
+# policies/subsidies.py
+@staticmethod
+def create_investment_subsidy_scenario(
+    subsidy_rate: float = 0.01,
+    shock_type: ShockType = ShockType.TEMPORARY,
+    periods: int = 40,
+    name: str | None = None,
+) -> PolicyScenario:
+    if name is None:
+        name = f"投資補助金{int(subsidy_rate * 100)}%"
+
+    return PolicyScenario(
+        name=name,
+        description=f"GDP比{subsidy_rate * 100:.1f}%の投資補助金を実施",
+        policy_type=PolicyType.SUBSIDY,
+        shock_type=shock_type,
+        shock_size=subsidy_rate,
+        periods=periods,
+    )
+```
+
+Typed, documented, sensible defaults, single responsibility. I reviewed it and merged it without a second thought.
+
+It is the fourth one.
+
+```python
+# policies/social_security.py
+@staticmethod
+def create_transfer_increase_scenario(
+    increase_rate: float = 0.01,
+    shock_type: ShockType = ShockType.TEMPORARY,
+    periods: int = 40,
+    name: str | None = None,
+) -> PolicyScenario:
+    if name is None:
+        name = f"社会保障給付{int(increase_rate * 100)}%増額"
+
+    return PolicyScenario(
+        name=name,
+        description=f"移転支払いをGDP比{increase_rate * 100:.1f}%増加させる政策",
+        policy_type=PolicyType.TRANSFER,
+        shock_type=shock_type,
+        shock_size=increase_rate,
+        periods=periods,
+    )
+```
+
+Same shape. Same parameters, same defaults, same guard, same constructor call. Only the identifiers and the strings differ. There are two more like it in `consumption_tax.py`.
+
+I want to be clear that the agent did nothing wrong here. Asked to add a scenario builder for investment subsidies, working from the files it had been given, writing this function was the correct move. It would be the correct move again next week. The problem is not the agent's judgment. The problem is what the agent was able to see when it exercised that judgment.
+
+## The signal an agent never receives
+
+An agent works from a slice of your repository. Code quality, past a certain point, is a property of the whole.
+
+That mismatch is the entire story, and it is worth being precise about why prompting doesn't fix it. It isn't that the agent is careless about duplication. It is that the agent has no way to know `create_transfer_increase_scenario` exists three modules away. "Don't duplicate existing logic" is an instruction it cannot act on, because acting on it would require having already read every file — which is the thing that doesn't fit.
+
+And then consider what feedback the agent actually gets back after it writes:
+
+- The tests pass.
+- `ruff check` passes. I ran it on both files above: `All checks passed!`
+- `mypy` passes.
+- The diff is small and reads cleanly in review.
+
+Every one of those signals is local, and every one of them says *good job*. The agent is not ignoring structural feedback. It is never receiving any. You cannot prompt your way out of a missing sense.
+
+There is a second-order effect too. Once four near-identical scenario builders exist in the codebase, they are what retrieval surfaces as context next time. The pattern gets reproduced because it has become the dominant pattern in the repo. The blind spot is self-reinforcing.
+
+## The metrics split exactly along the line of what fits in a context window
+
+This is the part I did not expect to be so clean.
+
+I ran a full structural analysis on that project — 83 Python files, 55 modules, mostly agent-assisted:
+
+```bash
+uvx pyscn@latest analyze .
+```
+
+```
+Health Score: 73/100 (Grade: C)
+Total time: 798ms
+
+  Complexity:     100/100 ✅  (avg: 1.9, high-risk: 16 functions)
+  Dead Code:      100/100 ✅  (0 issues, 0 critical)
+  Duplication:     50/100 ❌  (15.1% fragments cloned, 16 groups)
+  Coupling (CBO):  80/100 👍  (avg: 2.5, 2/70 high-coupling)
+  Cohesion (LCOM): 90/100 ✅  (avg: 1.3, 0/124 high-lcom)
+  Dependencies:    80/100 👍  (no cycles, depth: 8)
+  Architecture:    76/100 👍  (76% compliant)
+```
+
+The JSON report adds one more the terminal summary omits: **module communities, 52/100.**
+
+Now sort those by scope rather than by score.
+
+**Metrics computable from a single function or file** — complexity, dead code, cohesion: 100, 100, 90.
+
+**Metrics that require comparing things across the repo** — duplication, architecture, communities: 50, 76, 52.
+
+The code is excellent everywhere an agent can see, and mediocre everywhere it can't. That is not a coincidence and it is not a statement about model capability. Average cyclomatic complexity of 1.9 is genuinely flat, near-zero dead code is genuinely clean — the agent nailed every axis that fits inside its window. It scored badly on precisely the three that don't.
+
+Here's what those three actually contain.
+
+### Layer violations: 25 of them, all the same shape
+
+Architecture compliance came out at 76.4% — 25 violations against 174 rules. Every single violation is the same rule:
+
+```
+core.nk_model      -> parameters.defaults    domain !> application
+core.simulation    -> parameters.constants   domain !> application
+core.solver        -> parameters.constants   domain !> application
+core.steady_state  -> parameters.constants   domain !> application
+...
+```
+
+The domain layer reaching into the application layer, over and over. No individual import is wrong-looking. `from ..parameters.constants import BETA` inside a solver is an entirely reasonable line to write, and I'd have approved every one of them in isolation. The violation only exists relative to a layering rule that lives nowhere in the source — it's a property of the import graph, not of any line in it.
+
+### The module structure I have is not the one I designed
+
+Community detection runs Leiden over the import graph to find the clusters that are actually there, independent of directory layout. It found **12 communities at modularity 0.455**, with a package alignment score of **0.5**.
+
+That last number is the interesting one: only half of my module clustering agrees with my package structure. The directories say one thing about how this code is organized; the imports say another.
+
+It also surfaces bridge modules — the ones straddling clusters:
+
+```
+core.nk_model      8 cross-community edges  -> community_1, community_4
+core.exceptions    7 cross-community edges  -> community_2, community_4, community_6
+cli.commands       6 cross-community edges  -> community_1, community_2
+```
+
+`core.nk_model` shows up at the top of the bridge list *and* at the top of the layer-violation list. Two independent analyses converging on the same module is a strong signal that it's doing too much. Nothing about reading `nk_model.py` tells you that. It's a fine file.
+
+### And yes, the duplication
+
+15.1% of fragments are clones, in 16 groups. The scenario builders are three of them. The one that stung:
+
+```
+cli/commands.py:81:1: clone of mcp/tools.py:65:1 (similarity: 85.0%)
+```
+
+My CLI layer and my MCP layer had independently grown the same request handler. Different directories, months apart, both perfectly good code, written in separate sessions where neither had the other in context. Exactly the failure mode described above, at module scale rather than function scale.
+
+## Giving the agent the missing sense
+
+If the diagnosis is "the agent lacks a structural signal," the fix is to produce one and hand it over. That imposes three requirements, and they're what shaped how `pyscn` is built.
+
+**It has to be fast enough to sit inside the loop.** An analysis that takes four minutes is a nightly CI job; the agent will never run it mid-task. That run above took 798ms for 83 files. `pyscn` is Go and tree-sitter and sustains 100,000+ lines/sec.
+
+**It has to be machine-readable and prioritized.** Not a wall of warnings — a ranked decomposition an agent can plan against. `--json` emits the full structure; the seven category scores tell it where to spend effort.
+
+**It has to measure things text can't.** This is where most of the engineering went.
+
+The two functions at the top of this post share almost no lines verbatim. Every identifier differs. Any text-based approach — grep, diff, hashing — sees two unrelated blocks. What they share is *tree structure*. So each file is parsed with tree-sitter into an AST, then converted into an ordered labeled tree where names and literals become node labels and the branching becomes shape. Now they're near-identical objects wearing different labels.
+
+Comparing every fragment against every other is O(n²) pairs, and each comparison isn't cheap either: pairs are verified with **APTED** (Pawlik & Augsten's tree edit distance), which finds the minimum-cost edit sequence transforming one tree into the other at O(n² log n) per pair. Running that across all pairs in a real repo is hopeless.
+
+So there's a cheap filter in front. Each fragment gets a **MinHash signature** — 128 hash functions over its structural features, approximating Jaccard similarity in fixed space. Signatures are split into 32 bands of 4 rows and hashed into buckets; fragments colliding in any band become candidates. Anything under 0.50 estimated similarity is dropped, and only survivors reach APTED. The LSH stage engages automatically past 500 fragments. Cheap filter, expensive verifier — that's why it fits in under a second.
+
+Surviving pairs are classified against the standard clone taxonomy (Roy & Cordy; Bellon et al.), highest threshold first:
+
+- **Type-1 (≥0.85)** — identical but for whitespace and comments
+- **Type-2 (≥0.75)** — identical but for identifiers, literals, types
+- **Type-3 (≥0.70)** — near-miss: statements added, changed, removed
+- **Type-4 (≥0.65)** — semantic: different syntax, same computation
+
+My scenario builders scored 85.0%, landing in Type-2 — same tree, different labels, which is exactly right.
+
+The same structural representation feeds everything else. Complexity comes from a real control flow graph per function rather than counting `if` tokens, deriving McCabe from CFG decision points (equivalent to `E - N + 2P`, but robust to synthetic entry/exit nodes). Coupling (CBO), cohesion (LCOM4), import cycles, layer compliance, and Leiden community detection all run off the same parse.
+
+## Closing the loop
+
+Here is the part that changed how I work, and the reason I stopped thinking of this as a linter.
+
+The agent that wrote four copies of that scenario builder is entirely capable of merging them. It was never incapable — it was uninformed. So inform it:
+
+```bash
+uvx add-skills ludo-technologies/pyscn
+```
+
+That installs Agent Skills teaching coding agents when and how to run each analysis. They work with Claude Code, Cursor, Codex, Gemini CLI, and others. There's also a bundled MCP server (`uvx pyscn-mcp`, or a Claude Code plugin) exposing the same analyses as tools.
+
+The request then becomes:
+
+> "Find duplicate code in policies/ and refactor it."
+
+and the agent runs the analysis itself, reads the clone groups, and works from measured structure instead of from whatever landed in its context window. Same for `"check for layer violations"` — it gets the 25 `domain !> application` edges as data, not as something it has to infer by reading 55 modules.
+
+This is a different thing from putting a linter in CI. CI tells you after the fact, in a place the agent isn't looking. This gives the agent the perception it was missing, at the moment it's making the decision. The tool that measures the mess and the tool that made it become the same agent, and the loop closes.
+
+For the gate that still belongs in CI:
+
+```bash
+pyscn check --max-complexity 15 --max-cycles 0 .
+```
+
+## What the number is and isn't
+
+I should be honest about that 73, because a single score pointed at a codebase invites more authority than it has earned.
+
+It's a penalty budget. Everything starts at 100 and each category subtracts up to a fixed maximum — complexity 20, dead code 20, duplication 20, coupling 20, dependencies 16, architecture 12, communities 10. Penalties ramp continuously rather than in steps: duplication starts costing at 1% and hits its full 20 points at 8%, so my 15.1% is pinned at maximum with room to spare. Grades are deliberately strict — A ≥90, B ≥75, C ≥60, D ≥45.
+
+Those weights are a judgment call that I made. You can reasonably disagree. A monorepo of generated API clients will score worse than it deserves; so will a project with legitimate domain-driven repetition. Disabling a category (`--skip-clones`) zeroes its penalty rather than punishing the absence, so it can be tuned to your codebase.
+
+And the number is not the deliverable — the decomposition is. "73, Grade C" told me nothing actionable. "100 on everything local, 50 and 76 and 52 on everything global" told me both where to spend the afternoon and *why* the codebase drifted that way. I would have guessed complexity was my problem. It wasn't, and I'd have lost a day to it.
+
+## Where this stands
+
+`pyscn` is at 1.29 and MIT-licensed. It's part of [polyscan](https://github.com/ludo-technologies/polyscan), which brings the same structural analysis to JavaScript and TypeScript as [jscan](https://github.com/ludo-technologies/jscan) (`npx jscan analyze src/`).
+
+The broader point outlives any of those tools. We spend enormous effort on what we feed *into* agents — context, retrieval, prompts, instructions files. We spend far less on what agents get back after they act, and right now what they get back is almost entirely local: this file parses, these types check, these tests pass. Nothing in that loop describes the shape of the system being built.
+
+Agents will keep writing locally excellent, globally redundant code until that changes. Not because they can't do better — my complexity scores say they can — but because nobody has told them what the whole thing looks like.
+
+Issues and ideas: [github.com/ludo-technologies/pyscn](https://github.com/ludo-technologies/pyscn).
