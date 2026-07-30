@@ -1,0 +1,197 @@
+---
+title: "13 of 14 Models Write Messier Code Than the Human Who Fixed the Same Bug"
+description: "SWE-bench ships the commit that actually closed each issue, and the leaderboard throws it away. We scored 14 submissions against it across all 500 instances."
+date: "2026-07-31"
+tags: ["ai-agents", "benchmarks", "swe-bench", "code-quality", "python"]
+lang: "en"
+draft: false
+---
+
+SWE-bench ships 500 real GitHub issues. Each one comes with `patch`: the commit
+that actually closed it, written by whoever fixed the bug at the time. The
+leaderboard uses that commit to derive tests, then discards it.
+
+That's a control group sitting unused. Same issue, same base commit, same files.
+One patch written by a model, one by the human who got there first.
+
+We scored 14 SWE-bench submissions against it across all 500 instances and
+twelve repositories. Thirteen of the fourteen raised a function's complexity or
+added dead code more often than the human did. The fourteenth tied. None did
+better.
+
+## The measurement
+
+For each (issue, patch) pair:
+
+```
+git checkout base_commit
+analyze the files the patch touches      -> before
+git apply the patch
+analyze the same files                   -> after
+delta = after - before
+```
+
+The analyzer is [pyscn](https://github.com/ludo-technologies/pyscn), restricted
+to cyclomatic complexity and dead code. Both come from the control-flow graph of
+one function in one file, so they stay exact when you analyze part of a
+repository. Coupling and clone detection don't. On a subset they undercount
+whatever the missing files would have contributed, and the score ends up
+depending on which files the patch happened to touch.
+
+A patch regresses if it raised some function's complexity, added a function pyscn
+rates high-risk, or added dead code. One extra branch in one function trips it.
+The human patch is measured identically and trips it on 24% of instances.
+
+Two rules keep it honest.
+
+Only files present on both sides get measured. Agents leave scratch files behind,
+and a file with no before-state inflates every delta it lands in. Deletion is the
+same bug with the sign flipped: remove a file and its entire complexity books as
+an improvement.
+
+Only patches that passed their tests count. More on that below.
+
+## The result
+
+| model | n | model worse | human worse | difference | p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| devstral-small | 211 | 79 | 44 | +16.6pt | &lt;0.001 |
+| gpt-5 | 303 | 115 | 76 | +12.9pt | &lt;0.001 |
+| glm-4.6 | 331 | 118 | 79 | +11.8pt | &lt;0.001 |
+| deepseek-v3 | 209 | 69 | 46 | +11.0pt | 0.001 |
+| Nemotron-CORTEXA | 339 | 113 | 79 | +10.0pt | &lt;0.001 |
+| kimi-k2 | 301 | 106 | 76 | +10.0pt | &lt;0.001 |
+| o4-mini | 220 | 68 | 51 | +7.7pt | 0.009 |
+| o3 | 288 | 87 | 66 | +7.3pt | 0.008 |
+| claude-4-opus | 325 | 98 | 77 | +6.5pt | 0.011 |
+| qwen3-coder-480b | 264 | 79 | 62 | +6.4pt | 0.033 |
+| claude-sonnet-4 | 311 | 93 | 75 | +5.8pt | 0.027 |
+| claude-opus-4.5 | 334 | 106 | 89 | +5.1pt | 0.019 |
+| gemini-2.5-pro | 260 | 67 | 59 | +3.1pt | 0.312 |
+| qwen2.5-coder-32b | 42 | 4 | 4 | +0.0pt | 1.000 |
+
+Thirteen worse, one tied, none better. A model no different from the human would
+land on either side by coin flip, so thirteen in a row is p = 0.00024.
+
+Twelve of the fourteen clear p < 0.05 individually. Six survive Bonferroni
+correction across fourteen comparisons. On django alone it was three and two;
+most of what the other eleven repositories bought was statistical power, not a
+different answer.
+
+Isolate the instances where the two sides disagreed, one regressing and the other
+not. There are 741. The model is the one that regressed in 530.
+
+The ordering isn't capability. The largest gap belongs to `devstral-small`, near
+the bottom of the leaderboard. Second is `gpt-5`, near the top. Both run on
+OpenHands. Within the seven-model controlled group there is no trend at all: `o3`
+and `o4-mini` sit above `claude-sonnet-4` and `qwen3-coder-480b`.
+
+## Why only passing patches count
+
+Drop the test filter and the effect sizes roughly double. Better headline, wrong
+number.
+
+A patch that fails its tests often fails because it broke something, and broken
+code measures cleaner than working code. Delete half a module and the complexity
+goes with it. Introduce a syntax error and the file yields no functions at all:
+no complexity, no dead code, a perfect score.
+
+One submission corrupted `django/db/models/sql/query.py` with `return 0 objs`.
+The file went from 105 functions and 425 total complexity to zero and zero, and
+ranked as the largest quality improvement in the run until we caught it. Across
+all twelve repositories, 145 of 7,353 records broke a file they touched.
+`o4-mini` accounts for 66 of them.
+
+Syntax errors are at least detectable. The same submission, different instance,
+deleted 2,124 of that file's 2,671 lines and produced valid Python. Nothing
+static catches that. The test suite did.
+
+## Scratch files
+
+A separate column, nothing to do with complexity: files the patch creates that
+the human patch doesn't. `check_url_parts.py`. `reproduce_bug.py`.
+`final_verification.py`. An agent's working notes, committed.
+
+The human patch leaves 0.00 per solved issue. Models go up to 5.00.
+
+Seven of these submissions run the same scaffold. Same harness
+(`mini-swe-agent-v1.0.0`), same retry policy, same prompt. The model is the only
+variable:
+
+| model (identical scaffold) | scratch files per solved issue |
+| --- | ---: |
+| claude-sonnet-4 | 3.53 |
+| claude-4-opus | 3.50 |
+| qwen3-coder-480b | 3.28 |
+| qwen2.5-coder-32b | 0.67 |
+| gemini-2.5-pro | 0.65 |
+| o3 | 0.23 |
+| o4-mini | 0.19 |
+
+Eighteen-fold spread with the harness fixed. It repeats under OpenHands:
+`gpt-5` leaves 0.07 and `claude-opus-4.5` leaves 0.00, while `kimi-k2` leaves
+3.84.
+
+None of it shows up on the leaderboard. None of it affects whether the tests
+pass.
+
+## Limits
+
+The human side isn't one person and isn't one-shot. Each `patch` is whatever
+landed on that issue, sometimes from a core maintainer and often from an outside
+contributor. It landed through a pull request, which means review, revision and
+CI before anyone merged it. The model patch is a single attempt with none of
+that.
+Comparing them says something about what ends up in a repository, not about what
+a person types on the first try.
+
+"Worse" is narrow: cyclomatic complexity, high-risk functions, dead code. Not
+naming, not whether the fix sits in the right layer.
+
+The 530-to-211 count is descriptive. Every model is scored against the same human
+baseline over overlapping instances, so those pairs aren't independent. The sign
+test across models, and the per-model McNemar tests, are the claims.
+
+Difficulty isn't controlled. A model that solves more instances is being scored on
+harder ones, and harder issues take bigger patches. Which is why every comparison
+here is paired against the human on the same instances rather than compared
+across models.
+
+One more, and it's why these aren't the numbers we published first. pyscn's
+`--min-complexity` defaults to 5, and it filters the reported function list, not
+the display. At the default, `query.py` reports 29 functions out of 105. Worse, a
+function simplified from 6 to 4 drops out of the report and reads as a *deleted
+function*, while one that grows from 3 to 8 appears from nowhere with no before
+value to compare against. Filed as
+[pyscn#696](https://github.com/ludo-technologies/pyscn/issues/696). If you ever
+subtract two static-analysis reports, check what the analyzer left out of them
+first.
+
+## Running it yourself
+
+The benchmark lives in
+[polyscan/benchmarks/patch-quality](https://github.com/ludo-technologies/polyscan/tree/main/benchmarks/patch-quality).
+No model APIs are called. Every patch is an already-published leaderboard
+submission, so a full run costs nothing but disk and time. Zero dependencies,
+stdlib only.
+
+All twelve result sets are committed, so the tables above come back without
+running anything:
+
+```bash
+python3 report.py results/*.jsonl.gz --resolved-only
+```
+
+`analyzer.py` exposes a single `run()`. Pointing this at
+[jscan](https://github.com/ludo-technologies/jscan) and SWE-bench Multilingual is
+a matter of implementing it; nothing in the harness is Python-specific.
+
+I went in expecting capability to predict cleanliness: better models, tidier
+patches. It doesn't. The two largest gaps belong to models at opposite ends of
+the leaderboard, and the seven-model controlled group shows no trend at all.
+What's there instead is flatter and more uniform: on the issues they solve,
+measured against whoever solved the same issue first, every one of them leaves a
+little more behind.
+
+Issues and ideas:
+[github.com/ludo-technologies/polyscan](https://github.com/ludo-technologies/polyscan).
