@@ -7,21 +7,27 @@ lang: "en"
 draft: false
 ---
 
-SWE-bench ships 500 real GitHub issues. Each one comes with `patch`: the commit
-that actually closed it, written by whoever fixed the bug at the time. The
-leaderboard uses that commit to derive tests, then discards it.
+SWE-bench is a set of 500 real bugs from open-source Python projects. Each entry
+stores the repository as it was before the fix, and the commit a human wrote to
+fix it at the time.
 
-That's a control group sitting unused. Same issue, same base commit, same files.
-One patch written by a model, one by the human who got there first.
+Fourteen AI models have public attempts at those same 500 bugs, submitted to the
+SWE-bench leaderboard. We downloaded them. No model was run for this.
 
-We scored 14 published SWE-bench submissions against it across all 500 instances
-and twelve Python repositories. Thirteen of the fourteen raised a function's
-complexity or added dead code more often than the human did. The fourteenth
-tied. None did better.
+Then, for every bug and every patch, we measured the code before the patch went
+in, applied it, and measured again. The measurement is cyclomatic complexity and
+dead code.
+
+On its own that number says nothing. "This patch added 3 complexity" is neither
+good nor bad until you know what the alternative cost. So we ran the same
+measurement on the human's commit for the same bug, and compared the two.
+
+Across all 500 bugs, 13 of the 14 models raised a function's complexity or added
+dead code more often than the human did. One tied. None did better.
 
 ## The measurement
 
-For each (issue, patch) pair:
+In full, for each (issue, patch) pair:
 
 ```
 git checkout base_commit
@@ -34,9 +40,9 @@ delta = after - before
 The analyzer is [pyscn](https://github.com/ludo-technologies/pyscn), restricted
 to cyclomatic complexity and dead code. Both come from the control-flow graph of
 one function in one file, so they stay exact when you analyze part of a
-repository. Coupling and clone detection don't. On a subset they undercount
-whatever the missing files would have contributed, and the score ends up
-depending on which files the patch happened to touch.
+repository. Coupling and clone detection are not exact on a subset: they
+undercount whatever the missing files would have contributed, so the score ends
+up depending on which files the patch happened to touch.
 
 A patch regresses if it raised some function's complexity, added a function pyscn
 rates high-risk, or added dead code. One extra branch in one function trips it.
@@ -185,8 +191,7 @@ python3 report.py results/*.jsonl.gz --resolved-only
 [jscan](https://github.com/ludo-technologies/jscan) and SWE-bench Multilingual is
 a matter of implementing it; nothing in the harness is Python-specific.
 
-I went in expecting capability to predict cleanliness: better models, tidier
-patches. It doesn't. The two largest gaps belong to models at opposite ends of
+I went in expecting better models to write tidier patches. They don't. The two largest gaps belong to models at opposite ends of
 the leaderboard, and the seven-model controlled group shows no trend at all.
 What's there instead is flatter and more uniform: on the issues they solve,
 measured against whoever solved the same issue first, every one of them leaves a
