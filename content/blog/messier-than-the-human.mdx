@@ -49,7 +49,12 @@ and a file with no before-state inflates every delta it lands in. Deletion is th
 same bug with the sign flipped: remove a file and its entire complexity books as
 an improvement.
 
-Only patches that passed their tests count. More on that below.
+Only patches that passed their tests count. That isn't a filter chosen to
+flatter the result: without it the case against the models is stronger, not
+weaker, because the sample roughly doubles and eleven models clear Bonferroni
+instead of six. It's that scoring a patch which didn't fix anything answers a
+question nobody asked, and broken code measures cleaner than working code, so
+the ungated numbers aren't trustworthy in either direction.
 
 ## The result
 
@@ -85,26 +90,6 @@ The ordering isn't capability. The largest gap belongs to `devstral-small`, near
 the bottom of the leaderboard. Second is `gpt-5`, near the top. Both run on
 OpenHands. Within the seven-model controlled group there is no trend at all: `o3`
 and `o4-mini` sit above `claude-sonnet-4` and `qwen3-coder-480b`.
-
-## Why only passing patches count
-
-Drop the test filter and the effect sizes roughly double. Better headline, wrong
-number.
-
-A patch that fails its tests often fails because it broke something, and broken
-code measures cleaner than working code. Delete half a module and the complexity
-goes with it. Introduce a syntax error and the file yields no functions at all:
-no complexity, no dead code, a perfect score.
-
-One submission corrupted `django/db/models/sql/query.py` with `return 0 objs`.
-The file went from 105 functions and 425 total complexity to zero and zero, and
-ranked as the largest quality improvement in the run until we caught it. Across
-all twelve repositories, 145 of 7,353 records broke a file they touched.
-`o4-mini` accounts for 66 of them.
-
-Syntax errors are at least detectable. The same submission, different instance,
-deleted 2,124 of that file's 2,671 lines and produced valid Python. Nothing
-static catches that. The test suite did.
 
 ## Scratch files
 
