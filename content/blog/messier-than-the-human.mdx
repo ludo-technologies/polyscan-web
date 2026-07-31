@@ -14,10 +14,10 @@ leaderboard uses that commit to derive tests, then discards it.
 That's a control group sitting unused. Same issue, same base commit, same files.
 One patch written by a model, one by the human who got there first.
 
-We scored 14 SWE-bench submissions against it across all 500 instances and
-twelve repositories. Thirteen of the fourteen raised a function's complexity or
-added dead code more often than the human did. The fourteenth tied. None did
-better.
+We scored 14 published SWE-bench submissions against it across all 500 instances
+and twelve Python repositories. Thirteen of the fourteen raised a function's
+complexity or added dead code more often than the human did. The fourteenth
+tied. None did better.
 
 ## The measurement
 
@@ -136,6 +136,20 @@ None of it shows up on the leaderboard. None of it affects whether the tests
 pass.
 
 ## Limits
+
+**Python only.** Every SWE-bench Verified instance is Python, all twelve
+repositories are Python, and pyscn is a Python analyzer. Nothing here says
+anything about how these models write Go, TypeScript or Rust. Whether the
+finding survives a language with a different idiom for control flow is an open
+question, and the reason SWE-bench Multilingual is the obvious next target.
+
+**The submissions are old.** These are leaderboard entries, scored when they
+landed. The newest, `claude-opus-4.5`, is from November 2025; `gpt-5` and
+`deepseek-v3` are from August 2025, and `Nemotron-CORTEXA` from May. Eight to
+fourteen months, in a field that does not stand still. No model released this
+year is in here, and nothing in this data forecasts one. Rerunning it needs
+either new leaderboard submissions or an agent harness of our own, which is a
+different and much more expensive project.
 
 The human side isn't one person and isn't one-shot. Each `patch` is whatever
 landed on that issue, sometimes from a core maintainer and often from an outside
