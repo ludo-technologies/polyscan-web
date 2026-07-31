@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 
 /**
  * Anchors are rewritten so internal links stay client-side and external ones
@@ -25,6 +26,10 @@ export default function PostBody({ source }: { source: string }) {
 				components={components}
 				options={{
 					mdxOptions: {
+						// Tables, strikethrough and autolinks. Without this, a markdown
+						// table renders as one paragraph of literal pipe characters,
+						// which is how the first post to use one shipped.
+						remarkPlugins: [remarkGfm],
 						rehypePlugins: [
 							// Dark theme to match the dark code surfaces used elsewhere on
 							// the site; keepBackground: false lets our own CSS own the block.
