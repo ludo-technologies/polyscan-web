@@ -1,29 +1,34 @@
 ---
 title: "13 of 14 Models Write Messier Code Than the Human Who Fixed the Same Bug"
-description: "SWE-bench ships the commit that actually closed each issue, and the leaderboard throws it away. We scored 14 submissions against it across all 500 instances."
+description: "We scored 14 SWE-bench submissions for maintainability against the commit a human wrote to fix the same bug. Thirteen of the fourteen left the code messier."
 date: "2026-07-31"
 tags: ["ai-agents", "benchmarks", "swe-bench", "code-quality", "python"]
 lang: "en"
 draft: false
 ---
 
-SWE-bench is a set of 500 real bugs from open-source Python projects. Each entry
-stores the repository as it was before the fix, and the commit a human wrote to
-fix it at the time.
+We measured whether AI-written code is messier than human-written code, across
+500 real bugs where a human fix already exists.
 
-Fourteen AI models have public attempts at those same 500 bugs, submitted to the
-SWE-bench leaderboard. We downloaded them. No model was run for this.
+Thirteen of the fourteen models we tested raised a function's complexity or
+added dead code more often than the person who fixed the same bug. One tied.
+None did better.
 
-Then, for every bug and every patch, we measured the code before the patch went
-in, applied it, and measured again. The measurement is cyclomatic complexity and
-dead code.
+We measured with [pyscn](https://github.com/ludo-technologies/pyscn), our own
+Python analyzer. It reports cyclomatic complexity, dead code, duplicate code,
+class coupling and cohesion, and module dependencies. This used two of them,
+complexity and dead code, for reasons in the next section. Every result set is
+committed, so the numbers can be checked.
 
-On its own that number says nothing. "This patch added 3 complexity" is neither
-good nor bad until you know what the alternative cost. So we ran the same
-measurement on the human's commit for the same bug, and compared the two.
+The bugs and the human fixes come from SWE-bench: 500 closed issues from
+open-source Python projects, each keeping the repository as it was before the
+fix along with the commit that closed it. The model patches are public
+leaderboard submissions, which we downloaded. No model was run for this.
 
-Across all 500 bugs, 13 of the 14 models raised a function's complexity or added
-dead code more often than the human did. One tied. None did better.
+For every bug and every patch we measured the touched files, applied the patch,
+measured again, and took the difference. Then we did the same with the human's
+commit for that bug. "+3 complexity" means nothing without something to compare
+it against.
 
 ## The measurement
 
@@ -37,12 +42,11 @@ analyze the same files                   -> after
 delta = after - before
 ```
 
-The analyzer is [pyscn](https://github.com/ludo-technologies/pyscn), restricted
-to cyclomatic complexity and dead code. Both come from the control-flow graph of
+Only complexity and dead code count. Both come from the control-flow graph of
 one function in one file, so they stay exact when you analyze part of a
-repository. Coupling and clone detection are not exact on a subset: they
-undercount whatever the missing files would have contributed, so the score ends
-up depending on which files the patch happened to touch.
+repository. Coupling, cohesion and clone detection are not exact on a subset:
+they undercount whatever the missing files would have contributed, so the score
+would end up depending on which files the patch happened to touch.
 
 A patch regresses if it raised some function's complexity, added a function pyscn
 rates high-risk, or added dead code. One extra branch in one function trips it.
@@ -94,22 +98,25 @@ not. There are 741. The model is the one that regressed in 530.
 
 The ordering isn't capability. The largest gap belongs to `devstral-small`, near
 the bottom of the leaderboard. Second is `gpt-5`, near the top. Both run on
-OpenHands. Within the seven-model controlled group there is no trend at all: `o3`
+OpenHands. Among the seven models that ran through an identical framework there is no trend at all: `o3`
 and `o4-mini` sit above `claude-sonnet-4` and `qwen3-coder-480b`.
 
 ## Scratch files
 
-A separate column, nothing to do with complexity: files the patch creates that
-the human patch doesn't. `check_url_parts.py`. `reproduce_bug.py`.
-`final_verification.py`. An agent's working notes, committed.
+While an agent works on a bug it writes throwaway scripts: one to reproduce the
+bug, one to check the fix took. `reproduce_bug.py`. `check_url_parts.py`.
+`final_verification.py`. The final patch is a `git diff`, so any of those still
+sitting in the working tree ship with the fix. The human commits only the fix.
 
-The human patch leaves 0.00 per solved issue. Models go up to 5.00.
+We counted, for each solved bug, how many files the model's patch creates that
+the human's does not. The human averages 0.00. Models go as high as 5.00.
 
-Seven of these submissions run the same scaffold. Same harness
-(`mini-swe-agent-v1.0.0`), same retry policy, same prompt. The model is the only
-variable:
+The obvious objection is that this belongs to the agent framework wrapped around
+the model rather than to the model itself. It doesn't. Seven of these
+submissions ran through an identical framework, prompt and retry policy, with
+the model as the only thing that differed:
 
-| model (identical scaffold) | scratch files per solved issue |
+| model (identical framework) | scratch files per solved bug |
 | --- | ---: |
 | claude-sonnet-4 | 3.53 |
 | claude-4-opus | 3.50 |
@@ -119,12 +126,13 @@ variable:
 | o3 | 0.23 |
 | o4-mini | 0.19 |
 
-Eighteen-fold spread with the harness fixed. It repeats under OpenHands:
-`gpt-5` leaves 0.07 and `claude-opus-4.5` leaves 0.00, while `kimi-k2` leaves
-3.84.
+Eighteen-fold, with everything but the model held fixed. The same split shows up
+under a different framework: `gpt-5` leaves 0.07 and `claude-opus-4.5` leaves
+0.00, while `kimi-k2` leaves 3.84.
 
-None of it shows up on the leaderboard. None of it affects whether the tests
-pass.
+SWE-bench scores whether the tests pass. Three spare files per bug fail no test,
+so none of this costs a submission anything on the leaderboard. It still lands
+in the repository.
 
 ## Limits
 
@@ -139,7 +147,7 @@ landed. The newest, `claude-opus-4.5`, is from November 2025; `gpt-5` and
 `deepseek-v3` are from August 2025, and `Nemotron-CORTEXA` from May. Eight to
 fourteen months, in a field that does not stand still. No model released this
 year is in here, and nothing in this data forecasts one. Rerunning it needs
-either new leaderboard submissions or an agent harness of our own, which is a
+either new leaderboard submissions or running the models ourselves, which is a
 different and much more expensive project.
 
 The human side isn't one person and isn't one-shot. Each `patch` is whatever
@@ -189,7 +197,8 @@ python3 report.py results/*.jsonl.gz --resolved-only
 
 `analyzer.py` exposes a single `run()`. Pointing this at
 [jscan](https://github.com/ludo-technologies/jscan) and SWE-bench Multilingual is
-a matter of implementing it; nothing in the harness is Python-specific.
+a matter of implementing it; nothing in the benchmark's own code is
+Python-specific.
 
 I went in expecting better models to write tidier patches. They don't. The two largest gaps belong to models at opposite ends of
 the leaderboard, and the seven-model controlled group shows no trend at all.
