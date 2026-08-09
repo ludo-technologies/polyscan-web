@@ -27,7 +27,7 @@ export async function generateMetadata({
 		"/pyscn-bot/how-it-works",
 	);
 	return {
-		title: `${t("tech.title")} - Pyscn Bot`,
+		title: `${t("tech.title")} - polyscan Bot`,
 		description: t("tech.subtitle"),
 		alternates: { canonical, languages },
 	};
@@ -125,13 +125,13 @@ export default async function HowItWorksPage() {
 					</div>
 				</section>
 
-				{/* Built for Python */}
+				{/* Dedicated analyzers per language */}
 				<section className="mb-24">
 					<h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-						{t("tech.python.title")}
+						{t("tech.languages.title")}
 					</h2>
 					<p className="text-lg text-gray-600 leading-relaxed mb-10">
-						{t.rich("tech.python.p1", rich)}
+						{t.rich("tech.languages.p1", rich)}
 					</p>
 
 					<div className="grid md:grid-cols-3 gap-6">
@@ -141,10 +141,10 @@ export default async function HowItWorksPage() {
 								className="bg-gray-50 p-6 rounded-xl border border-gray-200"
 							>
 								<h4 className="font-bold text-gray-900 mb-3">
-									{t(`tech.python.${item}.title`)}
+									{t(`tech.languages.${item}.title`)}
 								</h4>
 								<p className="text-gray-600 text-sm">
-									{t(`tech.python.${item}.desc`)}
+									{t(`tech.languages.${item}.desc`)}
 								</p>
 							</div>
 						))}
