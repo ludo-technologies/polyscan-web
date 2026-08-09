@@ -335,8 +335,6 @@ export default function Home() {
 					<div className="flex flex-wrap gap-3">
 						<a
 							href={LINKS.pyscnBot}
-							target="_blank"
-							rel="noopener noreferrer"
 							className="inline-flex rounded-md border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
 						>
 							Install Pyscn Bot →
