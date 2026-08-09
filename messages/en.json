@@ -1,0 +1,297 @@
+{
+	"checkout": {
+		"success": {
+			"backToHome": "Back to Home",
+			"description": "Your subscription is now active. Complete the setup below to start using all Pro features.",
+			"step1": {
+				"button": "Install Pyscn Bot",
+				"description": "Grant Pyscn Bot access to your repositories.",
+				"title": "Install GitHub App"
+			},
+			"step2": {
+				"badge": "Optional",
+				"description": "Add .github/pyscn-bot.yml to customize behavior.",
+				"title": "Configure Settings"
+			},
+			"step3": {
+				"description": "Create a pull request and Pyscn Bot will automatically review.",
+				"title": "Start Reviewing"
+			},
+			"subtitle": "Thank you for subscribing to Pyscn Bot Pro.",
+			"support": "Need help? Contact us at",
+			"title": "Payment Successful!"
+		}
+	},
+	"contact": {
+		"description": "Have a question? We'd love to hear from you. Feel free to write in any language.",
+		"email": "Email",
+		"error": {
+			"title": "Error"
+		},
+		"message": "Message",
+		"name": "Name",
+		"submit": "Send Message",
+		"success": {
+			"message": "Thank you for your message. We will get back to you soon.",
+			"title": "Message Sent!"
+		},
+		"title": "Contact Us"
+	},
+	"cta": {
+		"button": "Install GitHub App",
+		"description": "Weekly audits are free for all repositories. Install in just a few clicks.",
+		"title": "Improve your Python code quality today"
+	},
+	"diff": {
+		"pyscnBot": {
+			"1": "<strong>Static analysis tool pyscn</strong> quantitatively evaluates code quality",
+			"2": "Detects hard-to-read functions, unused code, and complex dependencies",
+			"3": "Finds copy-pasted code and flags maintainability issues",
+			"4": "Weekly audits scan your <strong>entire codebase</strong>",
+			"5": "<strong>Language-specialized AI</strong> delivers high-precision reviews",
+			"_": "Pyscn Bot"
+		},
+		"subtitle": "Pyscn Bot isn't just an LLM wrapper. It leverages a powerful static analysis engine to provide deeper insights.",
+		"title": "What makes Pyscn Bot different",
+		"traditional": {
+			"1": "Surface-level comments based only on diffs",
+			"2": "Can't measure code quality metrics",
+			"3": "Can't see the overall architecture",
+			"4": "Fragmented reviews per PR",
+			"5": "Generic AI with no language expertise",
+			"_": "Traditional Code Review Bots"
+		}
+	},
+	"features": {
+		"audit": {
+			"description": "Scans your entire repository once a week. Identifies architecture-level issues and creates a report as a GitHub Issue.",
+			"title": "Weekly Code Audit"
+		},
+		"config": {
+			"comment": {
+				"audit": "Audit interval (default: weekly)",
+				"language": "Report language (default: en)",
+				"target": "Target directories (default: all)"
+			},
+			"description": "Customize Pyscn Bot behavior with a simple YAML file. No complex setup required.",
+			"option1": "Report language: en, ja, zh, ko, es, fr, de, pt",
+			"option2": "Target directories to analyze",
+			"option3": "Audit interval: daily (Pro), weekly, monthly",
+			"title": "Simple YAML Configuration"
+		},
+		"pr": {
+			"description": "Automatic code review on every pull request. Analyzes changed Python files with pyscn, and Claude AI generates improvement suggestions.",
+			"title": "PR Code Review"
+		},
+		"title": "Three Powerful Features"
+	},
+	"footer": {
+		"company": "Company",
+		"copyright": "© 2025 Ludo Technologies. All rights reserved.",
+		"github": "GitHub",
+		"privacy": "Privacy Policy",
+		"terms": "Terms of Service"
+	},
+	"hero": {
+		"badge": "Available on GitHub",
+		"description": "An AI agent that proactively monitors your Python codebase. Uses the static analysis tool <strong>pyscn</strong> to detect quality issues and report them before they become critical.",
+		"freeNote": "Pyscn Bot is currently in beta. Weekly code audits are free for all repositories.",
+		"title": "Python-Specialized",
+		"titleEnd": "AI",
+		"titleHighlight": "Code Audit"
+	},
+	"how": {
+		"clones": {
+			"desc": "Finds duplicate code and promotes DRY principle",
+			"title": "Code Clones"
+		},
+		"complexity": {
+			"desc": "Detects overly complex functions and recommends splitting",
+			"title": "Cyclomatic Complexity"
+		},
+		"coupling": {
+			"desc": "Visualizes dependencies between modules",
+			"title": "Coupling Analysis"
+		},
+		"deadcode": {
+			"desc": "Identifies unused functions and variables",
+			"title": "Dead Code"
+		},
+		"subtitle": "The AST-based static analysis tool pyscn quantitatively detects code quality issues.",
+		"title": "What pyscn detects"
+	},
+	"legal": {
+		"backToHome": "Back to Home",
+		"lastUpdated": "Last updated"
+	},
+	"nav": {
+		"contact": "Contact",
+		"features": "Features",
+		"howItWorks": "How it works",
+		"mypage": "My Account",
+		"pricing": "Pricing"
+	},
+	"pricing": {
+		"free": {
+			"_": "Free",
+			"cta": "Get Started Free",
+			"feature1": "Up to 2 repositories",
+			"feature2": "Weekly code audit",
+			"feature3": "Basic analysis model"
+		},
+		"pro": {
+			"_": "Pro",
+			"cta": {
+				"_": "Cancel anytime",
+				"button": "Start 14-Day Free Trial"
+			},
+			"feature1": "Up to 5 repositories",
+			"feature2": "Everything in Free",
+			"feature3": "PR code review on every pull request",
+			"feature4": "Advanced analysis model",
+			"price": "$10",
+			"unit": "/month"
+		},
+		"subtitle": "Start free, upgrade when you need more",
+		"title": "Simple Pricing"
+	},
+	"tech": {
+		"agent": {
+			"flow": {
+				"result": {
+					"desc": "validate_and_process() has complexity 18 and duplicates code in admin.py. Extract shared logic to utils/validation.py.",
+					"title": "Review comment generated"
+				},
+				"step1": {
+					"result": "utils.py has a function with complexity 18",
+					"thought": "Let me check the complexity first",
+					"tool": "pyscn complexity ./src"
+				},
+				"step2": {
+					"result": "validate_and_process() is 80 lines long",
+					"thought": "Complexity is high. Let me read the code",
+					"tool": "read_file(\"src/utils.py\")"
+				},
+				"step3": {
+					"result": "Same code exists in admin.py (87% match)",
+					"thought": "This looks like duplicated logic. Let me check",
+					"tool": "pyscn clones ./src"
+				},
+				"step4": {
+					"thought": "Found the issues. Time to write suggestions"
+				},
+				"title": "Example: Analyzing a complex function"
+			},
+			"logic": {
+				"p1": "The AI agent doesn't stop at one analysis. It looks at results, thinks about what else might be wrong, and keeps investigating.",
+				"p2": "Just like a human code reviewer, it reads code and digs deeper when something looks off.",
+				"title": "Why this approach?"
+			},
+			"p1": "Unlike simple LLM wrappers, Pyscn Bot's AI agent <strong>thinks before acting</strong>. It examines results, decides what to investigate next, and calls the right tool—just like a human reviewer.",
+			"subtitle": "Deciding which tool to use next based on results",
+			"title": "How the AI Agent Analyzes Code",
+			"tools": {
+				"architecture": {
+					"desc": "Visualizes module dependencies and detects circular imports",
+					"name": "Architecture"
+				},
+				"clones": {
+					"desc": "Detects copy-pasted code blocks",
+					"name": "Code Clones"
+				},
+				"complexity": {
+					"desc": "Measures cyclomatic complexity of functions",
+					"name": "Complexity"
+				},
+				"coupling": {
+					"desc": "Analyzes dependencies between modules",
+					"name": "Coupling"
+				},
+				"deadcode": {
+					"desc": "Finds unused functions, variables, imports",
+					"name": "Dead Code"
+				},
+				"title": "pyscn Analysis Tools"
+			}
+		},
+		"backToHome": "Back to Pyscn Bot",
+		"cta": {
+			"button": "Install Free",
+			"p1": "Install Pyscn Bot and create a PR. See the difference in your first review.",
+			"title": "Try It on Your Repository"
+		},
+		"example": {
+			"body": "<code>validate_and_process()</code> has cyclomatic complexity of <strong>18</strong> (threshold: 15). Complex functions are harder to test and more prone to bugs.",
+			"heading": "High Complexity Function",
+			"label": "Pyscn Bot comment on your PR",
+			"suggestion": "Split into <code>validate_schema()</code>, <code>validate_constraints()</code>, and <code>process_validated()</code>.",
+			"title": "Example Reviews"
+		},
+		"example2": {
+			"body": "Lines 45-62 in <code>user.py</code> and lines 23-40 in <code>admin.py</code> contain nearly identical code (<strong>87% match</strong>).",
+			"heading": "Same code in two places",
+			"suggestion": "Move the shared logic to <code>utils/validation.py</code>. You won't have to fix the same bug twice."
+		},
+		"features": {
+			"audit": {
+				"badge": "Weekly to Daily",
+				"desc": "Scans your entire repository weekly. Identifies complexity hotspots, dead code, duplications, and architectural issues. Creates a GitHub Issue with health score and prioritized recommendations.",
+				"title": "Code Audit"
+			},
+			"review": {
+				"badge": "On Changes",
+				"desc": "Automatically reviews pull requests. Catches problems in new code before they're merged. Complements the weekly audit with real-time feedback.",
+				"title": "PR Code Review"
+			}
+		},
+		"problem": {
+			"p1": "AI tools like Copilot and Claude are generating more code than ever. Developers are shipping faster, but <strong>who's watching the codebase?</strong>",
+			"p2": "Technical debt accumulates silently. Complex functions, dead code, and duplicated logic slip through PR reviews and pile up over time.",
+			"p3": "You need a system that <strong>autonomously maintains</strong> your code. Not just reviewing PRs, but continuously monitoring your entire codebase.",
+			"title": "Code Quality in the AI Coding Era"
+		},
+		"python": {
+			"item1": {
+				"desc": "Mutable default arguments, circular imports, unused instance variables",
+				"title": "Python-specific issues"
+			},
+			"item2": {
+				"desc": "AST-based parsing tracks variable scope and function calls precisely",
+				"title": "Accurate analysis"
+			},
+			"item3": {
+				"desc": "\"Complexity 18\" instead of \"looks complex\". Numbers you can act on",
+				"title": "Concrete metrics"
+			},
+			"p1": "Pyscn Bot uses <strong>pyscn</strong>, a static analysis tool designed specifically for Python. It parses the AST to understand your code deeply—not just pattern matching.",
+			"title": "Built for Python"
+		},
+		"security": {
+			"item1": {
+				"desc": "Your code is sent to Anthropic's Claude API for analysis. Anthropic does not use API data to train models.",
+				"title": "Sent to Claude API"
+			},
+			"item2": {
+				"desc": "We don't store your code. Once the review is generated and posted to GitHub, the code is discarded.",
+				"title": "Not Stored"
+			},
+			"item3": {
+				"desc": "Pyscn Bot only requests permissions it needs: read code, write PR comments, create issues for audit reports.",
+				"title": "GitHub Permissions"
+			},
+			"link": "Read our full Privacy Policy",
+			"p1": "We understand security concerns. Here's exactly what happens to your code:",
+			"title": "Your Code is Safe"
+		},
+		"solution": {
+			"p1": "Pyscn Bot doesn't wait for pull requests. It <strong>proactively scans your entire codebase</strong> on a schedule, finds architectural issues, and reports them before they become critical.",
+			"title": "Pyscn Bot: Autonomous Code Maintenance"
+		},
+		"subtitle": "Static analysis meets AI agent. Accurate reviews you can trust.",
+		"title": "How Pyscn Bot Works"
+	},
+	"trial": {
+		"badge": "14-Day Free Trial",
+		"hero": "Install Free"
+	}
+}

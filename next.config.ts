@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const securityHeaders = [
 	{ key: "X-Content-Type-Options", value: "nosniff" },
@@ -24,6 +25,16 @@ const nextConfig: NextConfig = {
 	async headers() {
 		return [{ source: "/(.*)", headers: securityHeaders }];
 	},
+	async rewrites() {
+		return [
+			{
+				source: "/pyscn-bot/api/:path*",
+				destination: `${process.env.PYSCN_BOT_API_ORIGIN ?? "https://pyscn-bot.fly.dev"}/pyscn-bot/api/:path*`,
+			},
+		];
+	},
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl(nextConfig);
