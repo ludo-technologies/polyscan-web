@@ -1,0 +1,297 @@
+{
+	"checkout": {
+		"success": {
+			"backToHome": "ホームに戻る",
+			"description": "サブスクリプションが有効になりました。以下のセットアップを完了して、すべてのPro機能をご利用ください。",
+			"step1": {
+				"button": "Pyscn Botをインストール",
+				"description": "Pyscn Botにリポジトリへのアクセスを許可してください。",
+				"title": "GitHub Appをインストール"
+			},
+			"step2": {
+				"badge": "オプション",
+				"description": ".github/pyscn-bot.yml を追加して動作をカスタマイズ。",
+				"title": "設定をカスタマイズ"
+			},
+			"step3": {
+				"description": "プルリクエストを作成すると、Pyscn Botが自動でレビューします。",
+				"title": "レビュー開始"
+			},
+			"subtitle": "Pyscn Bot Pro をご購入いただきありがとうございます。",
+			"support": "サポートが必要な場合はこちらへ",
+			"title": "お支払い完了！"
+		}
+	},
+	"contact": {
+		"description": "ご質問がありましたらお気軽にお問い合わせください。言語は問いません。",
+		"email": "メールアドレス",
+		"error": {
+			"title": "エラー"
+		},
+		"message": "メッセージ",
+		"name": "お名前",
+		"submit": "送信する",
+		"success": {
+			"message": "お問い合わせありがとうございます。折り返しご連絡いたします。",
+			"title": "送信完了"
+		},
+		"title": "お問い合わせ"
+	},
+	"cta": {
+		"button": "GitHub Appをインストール",
+		"description": "週次監査はすべてのリポジトリで無料。インストールは数クリックで完了。",
+		"title": "今すぐPythonコードの品質を向上"
+	},
+	"diff": {
+		"pyscnBot": {
+			"1": "<strong>静的解析ツールpyscn</strong>でコード品質を定量的に評価",
+			"2": "読みにくい関数、放置されたコード、複雑な依存を検出",
+			"3": "コピペされたコードを発見し、保守性の問題を指摘",
+			"4": "週次監査で<strong>コードベース全体</strong>をスキャン",
+			"5": "<strong>言語に特化したAI</strong>によって高精度のレビューを実現",
+			"_": "Pyscn Bot"
+		},
+		"subtitle": "Pyscn Botは単なるLLMラッパーではありません。強力な静的解析エンジンを活用し、より深い洞察を提供します。",
+		"title": "従来のコードレビューBotとの違い",
+		"traditional": {
+			"1": "差分のみを見て表面的なコメント",
+			"2": "コード品質メトリクスを把握できない",
+			"3": "アーキテクチャ全体を見渡せない",
+			"4": "PRごとの断片的なレビュー",
+			"5": "汎用AIで言語の専門知識がない",
+			"_": "従来のコードレビューBot"
+		}
+	},
+	"features": {
+		"audit": {
+			"description": "週に1回、リポジトリ全体をスキャン。アーキテクチャレベルの問題点を特定し、GitHub Issueとしてレポートを作成します。",
+			"title": "週次コード監査"
+		},
+		"config": {
+			"comment": {
+				"audit": "監査間隔 (デフォルト: weekly)",
+				"language": "レポート言語 (デフォルト: en)",
+				"target": "対象ディレクトリ (デフォルト: 全体)"
+			},
+			"description": "シンプルなYAMLファイルでPyscn Botの動作をカスタマイズ。複雑なセットアップは不要です。",
+			"option1": "レポート言語: en, ja, zh, ko, es, fr, de, pt",
+			"option2": "解析対象ディレクトリ",
+			"option3": "監査間隔: daily (Pro), weekly, monthly",
+			"title": "シンプルなYAML設定"
+		},
+		"pr": {
+			"description": "プルリクエストごとに自動でコードレビュー。変更されたPythonファイルをpyscnで解析し、Claude AIが改善提案を生成します。",
+			"title": "PRコードレビュー"
+		},
+		"title": "3つの強力な機能"
+	},
+	"footer": {
+		"company": "運営会社",
+		"copyright": "© 2025 Ludo Technologies. All rights reserved.",
+		"github": "GitHub",
+		"privacy": "プライバシーポリシー",
+		"terms": "利用規約"
+	},
+	"hero": {
+		"badge": "GitHubで公開中",
+		"description": "Pythonコードベースを能動的に監視するAIエージェント。静的解析ツール<strong>pyscn</strong>で品質の問題を検出し、深刻化する前に報告します。",
+		"freeNote": "Pyscn Bot は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
+		"title": "Python特化",
+		"titleEnd": "AI",
+		"titleHighlight": "コード監査"
+	},
+	"how": {
+		"clones": {
+			"desc": "重複コードを発見し、DRY原則を促進",
+			"title": "コードクローン"
+		},
+		"complexity": {
+			"desc": "複雑すぎる関数を検出し、分割を推奨",
+			"title": "循環的複雑度"
+		},
+		"coupling": {
+			"desc": "モジュール間の依存関係を可視化",
+			"title": "結合度分析"
+		},
+		"deadcode": {
+			"desc": "使われていない関数や変数を特定",
+			"title": "デッドコード"
+		},
+		"subtitle": "ASTベースの静的解析ツールpyscnが、コードの品質問題を定量的に検出します。",
+		"title": "pyscnが見つける問題"
+	},
+	"legal": {
+		"backToHome": "ホームに戻る",
+		"lastUpdated": "最終更新日"
+	},
+	"nav": {
+		"contact": "お問い合わせ",
+		"features": "機能",
+		"howItWorks": "仕組み",
+		"mypage": "マイページ",
+		"pricing": "料金"
+	},
+	"pricing": {
+		"free": {
+			"_": "Free",
+			"cta": "無料で始める",
+			"feature1": "リポジトリ2つまで",
+			"feature2": "週次コード監査",
+			"feature3": "基本分析モデル"
+		},
+		"pro": {
+			"_": "Pro",
+			"cta": {
+				"_": "いつでもキャンセル可能",
+				"button": "14日間無料で試す"
+			},
+			"feature1": "リポジトリ5つまで",
+			"feature2": "Freeの全機能",
+			"feature3": "すべてのPRでコードレビュー",
+			"feature4": "高精度分析モデル",
+			"price": "$10",
+			"unit": "/月"
+		},
+		"subtitle": "無料で始めて、必要に応じてアップグレード",
+		"title": "シンプルな料金体系"
+	},
+	"tech": {
+		"agent": {
+			"flow": {
+				"result": {
+					"desc": "validate_and_process()は複雑度18で、admin.pyにも同じ処理があります。共通部分をutils/validation.pyに移動しましょう。",
+					"title": "レビューコメントを生成"
+				},
+				"step1": {
+					"result": "utils.pyに複雑度18の関数がある",
+					"thought": "まずは複雑度をチェックしよう",
+					"tool": "pyscn complexity ./src"
+				},
+				"step2": {
+					"result": "validate_and_process()という関数が80行ある",
+					"thought": "複雑度が高い。コードを読んでみよう",
+					"tool": "read_file(\"src/utils.py\")"
+				},
+				"step3": {
+					"result": "admin.pyにも同じコードがある（87%一致）",
+					"thought": "似たような処理がありそう。重複をチェック",
+					"tool": "pyscn clones ./src"
+				},
+				"step4": {
+					"thought": "問題が分かった。提案をまとめよう"
+				},
+				"title": "例：複雑な関数を分析する"
+			},
+			"logic": {
+				"p1": "AIエージェントは1回の分析で終わりません。結果を見て「次に何を調べるべきか」を考え、必要なツールを呼び出します。",
+				"p2": "人間のレビュアーと同じように、コードを読みながら問題を深掘りしていきます。",
+				"title": "なぜこのやり方？"
+			},
+			"p1": "単純なLLMラッパーとは異なり、Pyscn BotのAIエージェントは<strong>考えてから行動</strong>します。結果を見て、次に何を調べるべきか判断し、適切なツールを呼び出します。人間のレビュアーと同じです。",
+			"subtitle": "結果を見ながら、次に使うツールを判断",
+			"title": "AIエージェントがコードを分析する流れ",
+			"tools": {
+				"architecture": {
+					"desc": "モジュールの依存関係を可視化し、循環インポートを検出",
+					"name": "アーキテクチャ"
+				},
+				"clones": {
+					"desc": "コピペされたコードを発見",
+					"name": "コードクローン"
+				},
+				"complexity": {
+					"desc": "関数の循環的複雑度を計測",
+					"name": "複雑度"
+				},
+				"coupling": {
+					"desc": "モジュール間の依存関係を分析",
+					"name": "結合度"
+				},
+				"deadcode": {
+					"desc": "使われていない関数、変数、importを検出",
+					"name": "デッドコード"
+				},
+				"title": "pyscnの分析ツール"
+			}
+		},
+		"backToHome": "Pyscn Bot に戻る",
+		"cta": {
+			"button": "無料でインストール",
+			"p1": "Pyscn BotをインストールしてPRを作成。最初のレビューで違いを実感してください。",
+			"title": "あなたのリポジトリで試してください"
+		},
+		"example": {
+			"body": "<code>validate_and_process()</code>の循環的複雑度は<strong>18</strong>です（閾値: 15）。複雑な関数はテストが困難で、バグが発生しやすくなります。",
+			"heading": "高複雑度の関数",
+			"label": "PRに投稿されるPyscn Botのコメント",
+			"suggestion": "<code>validate_schema()</code>、<code>validate_constraints()</code>、<code>process_validated()</code>に分割してください。",
+			"title": "レビュー例"
+		},
+		"example2": {
+			"body": "<code>user.py</code>の45-62行目と、<code>admin.py</code>の23-40行目に、ほぼ同じコードがあります（<strong>87%一致</strong>）。",
+			"heading": "同じコードが2箇所に",
+			"suggestion": "共通の処理を<code>utils/validation.py</code>に移動してください。同じバグを2箇所で直す必要がなくなります。"
+		},
+		"features": {
+			"audit": {
+				"badge": "週次〜日次",
+				"desc": "リポジトリ全体を毎週スキャン。複雑度のホットスポット、デッドコード、重複、アーキテクチャの問題を特定。ヘルススコアと優先度付きの改善提案をGitHub Issueとして作成。",
+				"title": "コード監査"
+			},
+			"review": {
+				"badge": "変更時",
+				"desc": "プルリクエストを自動でレビュー。新しいコードの問題をマージ前にキャッチ。週次監査をリアルタイムのフィードバックで補完。",
+				"title": "PRコードレビュー"
+			}
+		},
+		"problem": {
+			"p1": "CopilotやClaudeなどのAIツールが、かつてないほど大量のコードを生成しています。開発は加速していますが、<strong>コードベースを誰が見守っていますか？</strong>",
+			"p2": "技術的負債は静かに蓄積します。複雑な関数、デッドコード、重複ロジックがPRレビューをすり抜け、少しずつ積み重なっていきます。",
+			"p3": "PRをレビューするだけでなく、コードベース全体を継続的に監視する。そんな<strong>自律的にメンテナンスする仕組み</strong>が求められています。",
+			"title": "AIコーディング時代のコード品質"
+		},
+		"python": {
+			"item1": {
+				"desc": "変更されるデフォルト引数、循環インポート、未使用のインスタンス変数",
+				"title": "Python固有の問題"
+			},
+			"item2": {
+				"desc": "ASTベースの解析で変数スコープと関数呼び出しを正確に追跡",
+				"title": "正確な解析"
+			},
+			"item3": {
+				"desc": "「複雑そう」ではなく「複雑度18」。行動につながる数字",
+				"title": "具体的な数値"
+			},
+			"p1": "Pyscn BotはPython専用に設計された静的解析ツール<strong>pyscn</strong>を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。",
+			"title": "Python専用設計"
+		},
+		"security": {
+			"item1": {
+				"desc": "コードはAnthropicのClaude APIに送信されて解析されます。Anthropicは API データをモデルの学習に使用しません。",
+				"title": "Claude APIに送信"
+			},
+			"item2": {
+				"desc": "私たちはコードを保存しません。レビューが生成されGitHubに投稿されたら、コードは破棄されます。",
+				"title": "保存しません"
+			},
+			"item3": {
+				"desc": "Pyscn Botは必要な権限のみ要求します：コードの読み取り、PRコメントの書き込み、監査レポート用のIssue作成。",
+				"title": "GitHub権限"
+			},
+			"link": "プライバシーポリシー全文を読む",
+			"p1": "セキュリティへの懸念は理解しています。コードがどう扱われるか、正確にお伝えします：",
+			"title": "コードは安全です"
+		},
+		"solution": {
+			"p1": "Pyscn Botはプルリクエストを待ちません。スケジュールに従って<strong>コードベース全体を能動的にスキャン</strong>し、アーキテクチャの問題を発見し、深刻化する前に報告します。",
+			"title": "Pyscn Bot：自律的コードメンテナンス"
+		},
+		"subtitle": "静的解析とAIエージェントによる、信頼できる正確なレビュー",
+		"title": "Pyscn Bot の仕組み"
+	},
+	"trial": {
+		"badge": "14日間無料",
+		"hero": "無料でインストール"
+	}
+}
