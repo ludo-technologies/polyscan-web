@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import BotWordmark from "./BotWordmark";
 import Logo from "./icons/Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -25,7 +26,7 @@ export default function Navigation({ isLoggedIn }: NavigationProps) {
 			<div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 				<Link href="/pyscn-bot" className="flex items-center gap-1 group">
 					<Logo className="w-12 h-12 group-hover:scale-105 transition-transform" />
-					<span className="font-bold text-xl text-gray-900">Pyscn Bot</span>
+					<BotWordmark className="text-xl" />
 				</Link>
 				<div className="flex items-center gap-4 lg:gap-6">
 					<a

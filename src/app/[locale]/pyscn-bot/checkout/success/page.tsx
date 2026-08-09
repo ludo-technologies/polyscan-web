@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import BotWordmark from "@/components/pyscn-bot/BotWordmark";
 import Logo from "@/components/pyscn-bot/icons/Logo";
 import LanguageSwitcher from "@/components/pyscn-bot/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
@@ -19,7 +20,7 @@ export async function generateMetadata({
 		"/pyscn-bot/checkout/success",
 	);
 	return {
-		title: `${t("checkout.success.title")} | Pyscn Bot`,
+		title: `${t("checkout.success.title")} | polyscan Bot`,
 		description: t("checkout.success.subtitle"),
 		alternates: { canonical, languages },
 		robots: { index: false, follow: false },
@@ -35,7 +36,7 @@ export default async function CheckoutSuccessPage() {
 				<div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 					<Link href="/pyscn-bot" className="flex items-center gap-2">
 						<Logo className="w-8 h-8" />
-						<span className="font-bold text-xl text-gray-900">Pyscn Bot</span>
+						<BotWordmark className="text-xl" />
 					</Link>
 					<LanguageSwitcher />
 				</div>
@@ -204,10 +205,10 @@ export default async function CheckoutSuccessPage() {
 					<p className="text-sm text-gray-500">
 						{t("checkout.success.support")}{" "}
 						<a
-							href="mailto:pyscn@ludo-tech.org"
+							href="mailto:contact@ludo-tech.org"
 							className="text-bot-primary-600 hover:underline"
 						>
-							pyscn@ludo-tech.org
+							contact@ludo-tech.org
 						</a>
 					</p>
 				</div>
