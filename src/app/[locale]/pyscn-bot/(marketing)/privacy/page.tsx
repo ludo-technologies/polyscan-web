@@ -17,8 +17,8 @@ export async function generateMetadata({
 		"/pyscn-bot/privacy",
 	);
 	return {
-		title: `${t("footer.privacy")} - Pyscn Bot`,
-		description: "Privacy Policy for Pyscn Bot",
+		title: `${t("footer.privacy")} - polyscan Bot`,
+		description: "Privacy Policy for polyscan Bot",
 		alternates: { canonical, languages },
 	};
 }
@@ -28,7 +28,7 @@ function PrivacyJa() {
 		<div>
 			<h2>1. はじめに</h2>
 			<p>
-				Pyscn Bot（以下「本サービス」）は、Ludo
+				polyscan Bot（以下「本サービス」）は、Ludo
 				Technologies（以下「当社」）が提供するGitHub
 				App形式のコードレビューサービスです。本プライバシーポリシーは、本サービスを通じて収集する情報とその取り扱いについて説明します。
 			</p>
@@ -42,7 +42,7 @@ function PrivacyJa() {
 				</li>
 				<li>
 					<strong>コード情報</strong>:
-					プルリクエストで変更されたPythonファイルの内容（レビュー目的のみ）
+					プルリクエストで変更されたソースファイルの内容（レビュー目的のみ）
 				</li>
 				<li>
 					<strong>GitHubアカウント情報</strong>:
@@ -185,7 +185,7 @@ function PrivacyZh() {
 		<div>
 			<h2>1. 简介</h2>
 			<p>
-				Pyscn Bot（以下简称"本服务"）是由 Ludo
+				polyscan Bot（以下简称"本服务"）是由 Ludo
 				Technologies（以下简称"我们"）提供的 GitHub App
 				形式的代码审查服务。本隐私政策说明我们通过本服务收集的信息及其处理方式。
 			</p>
@@ -197,8 +197,7 @@ function PrivacyZh() {
 					<strong>仓库信息</strong>：已安装的仓库名称、所有者信息
 				</li>
 				<li>
-					<strong>代码信息</strong>：拉取请求中更改的 Python
-					文件内容（仅用于审查目的）
+					<strong>代码信息</strong>：拉取请求中更改的源代码文件内容（仅用于审查目的）
 				</li>
 				<li>
 					<strong>GitHub 账户信息</strong>：用户
@@ -337,7 +336,7 @@ function PrivacyEn() {
 		<div>
 			<h2>1. Introduction</h2>
 			<p>
-				Pyscn Bot (the &quot;Service&quot;) is a GitHub App code review service
+				polyscan Bot (the &quot;Service&quot;) is a GitHub App code review service
 				provided by Ludo Technologies (&quot;we&quot;, &quot;us&quot;, or
 				&quot;our&quot;). This Privacy Policy explains what information we
 				collect through the Service and how we handle it.
@@ -351,7 +350,7 @@ function PrivacyEn() {
 					of installed repositories
 				</li>
 				<li>
-					<strong>Code Information</strong>: Contents of Python files changed in
+					<strong>Code Information</strong>: Contents of source files changed in
 					pull requests (for review purposes only)
 				</li>
 				<li>
