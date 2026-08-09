@@ -197,7 +197,8 @@ function PrivacyZh() {
 					<strong>仓库信息</strong>：已安装的仓库名称、所有者信息
 				</li>
 				<li>
-					<strong>代码信息</strong>：拉取请求中更改的源代码文件内容（仅用于审查目的）
+					<strong>代码信息</strong>
+					：拉取请求中更改的源代码文件内容（仅用于审查目的）
 				</li>
 				<li>
 					<strong>GitHub 账户信息</strong>：用户
@@ -336,9 +337,9 @@ function PrivacyEn() {
 		<div>
 			<h2>1. Introduction</h2>
 			<p>
-				polyscan Bot (the &quot;Service&quot;) is a GitHub App code review service
-				provided by Ludo Technologies (&quot;we&quot;, &quot;us&quot;, or
-				&quot;our&quot;). This Privacy Policy explains what information we
+				polyscan Bot (the &quot;Service&quot;) is a GitHub App code review
+				service provided by Ludo Technologies (&quot;we&quot;, &quot;us&quot;,
+				or &quot;our&quot;). This Privacy Policy explains what information we
 				collect through the Service and how we handle it.
 			</p>
 
