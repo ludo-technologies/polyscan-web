@@ -4,8 +4,8 @@
 			"backToHome": "返回首页",
 			"description": "您的订阅已激活。完成以下设置以开始使用所有 Pro 功能。",
 			"step1": {
-				"button": "安装 Pyscn Bot",
-				"description": "授权 Pyscn Bot 访问您的仓库。",
+				"button": "安装 polyscan Bot",
+				"description": "授权 polyscan Bot 访问您的仓库。",
 				"title": "安装 GitHub App"
 			},
 			"step2": {
@@ -14,10 +14,10 @@
 				"title": "配置设置"
 			},
 			"step3": {
-				"description": "创建 Pull Request，Pyscn Bot 将自动审查。",
+				"description": "创建 Pull Request，polyscan Bot 将自动审查。",
 				"title": "开始审查"
 			},
-			"subtitle": "感谢您订阅 Pyscn Bot Pro。",
+			"subtitle": "感谢您订阅 polyscan Bot Pro。",
 			"support": "需要帮助？请联系",
 			"title": "支付成功！"
 		}
@@ -40,18 +40,18 @@
 	"cta": {
 		"button": "安装 GitHub App",
 		"description": "所有仓库可免费使用每周审计。只需几次点击即可安装。",
-		"title": "立即提升 Python 代码质量"
+		"title": "立即提升代码质量"
 	},
 	"diff": {
 		"pyscnBot": {
-			"1": "<strong>静态分析工具 pyscn</strong> 定量评估代码质量",
+			"1": "<strong>专用静态分析引擎</strong>定量评估代码质量",
 			"2": "检测难以阅读的函数、未使用的代码、复杂的依赖关系",
 			"3": "发现复制粘贴的代码，标记可维护性问题",
 			"4": "每周审计扫描<strong>整个代码库</strong>",
 			"5": "<strong>语言专用 AI</strong> 实现高精度审查",
-			"_": "Pyscn Bot"
+			"_": "polyscan Bot"
 		},
-		"subtitle": "Pyscn Bot 不仅仅是 LLM 包装器。它利用强大的静态分析引擎提供更深入的洞察。",
+		"subtitle": "polyscan Bot 不仅仅是 LLM 包装器。它利用强大的静态分析引擎提供更深入的洞察。",
 		"title": "与传统代码审查机器人的区别",
 		"traditional": {
 			"1": "仅查看差异，提供表面评论",
@@ -73,14 +73,14 @@
 				"language": "报告语言 (默认: en)",
 				"target": "目标目录 (默认: 全部)"
 			},
-			"description": "使用简单的 YAML 文件自定义 Pyscn Bot 行为。无需复杂设置。",
+			"description": "使用简单的 YAML 文件自定义 polyscan Bot 行为。无需复杂设置。",
 			"option1": "报告语言: en, ja, zh, ko, es, fr, de, pt",
 			"option2": "分析目标目录",
 			"option3": "审计间隔: daily (Pro), weekly, monthly",
 			"title": "简单的 YAML 配置"
 		},
 		"pr": {
-			"description": "每个拉取请求自动代码审查。使用 pyscn 分析更改的 Python 文件，Claude AI 生成改进建议。",
+			"description": "每个拉取请求自动代码审查。使用 pyscn（Python）和 jscan（JavaScript/TypeScript）分析更改的源代码文件，Claude AI 生成改进建议。",
 			"title": "PR 代码审查"
 		},
 		"title": "三大强力功能"
@@ -94,9 +94,9 @@
 	},
 	"hero": {
 		"badge": "已在 GitHub 上架",
-		"description": "主动监控Python代码库的AI代理。使用静态分析工具<strong>pyscn</strong>检测质量问题，在问题变严重之前报告。",
-		"freeNote": "Pyscn Bot 目前处于测试阶段。所有仓库可免费使用每周代码审计。",
-		"title": "Python专用",
+		"description": "主动监控代码库的AI代理。使用专用静态分析工具——Python 用 <strong>pyscn</strong>，JavaScript/TypeScript 用 <strong>jscan</strong>——检测质量问题，在问题变严重之前报告。",
+		"freeNote": "polyscan Bot 目前处于测试阶段。所有仓库可免费使用每周代码审计。",
+		"title": "多语言支持",
 		"titleEnd": "AI",
 		"titleHighlight": "代码审计"
 	},
@@ -117,8 +117,8 @@
 			"desc": "识别未使用的函数和变量",
 			"title": "死代码"
 		},
-		"subtitle": "基于 AST 的静态分析工具 pyscn 定量检测代码质量问题。",
-		"title": "pyscn 检测的问题"
+		"subtitle": "基于 AST 的静态分析工具 pyscn 和 jscan 定量检测代码质量问题。",
+		"title": "分析器检测的问题"
 	},
 	"legal": {
 		"backToHome": "返回首页",
@@ -187,7 +187,7 @@
 				"p2": "就像人类代码审查者一样，它阅读代码，在发现问题时深入挖掘。",
 				"title": "为什么这样做？"
 			},
-			"p1": "与简单的LLM包装器不同，Pyscn Bot的AI代理会<strong>先思考再行动</strong>。它查看结果，判断接下来要调查什么，然后调用合适的工具。就像人类审查者一样。",
+			"p1": "与简单的LLM包装器不同，polyscan Bot的AI代理会<strong>先思考再行动</strong>。它查看结果，判断接下来要调查什么，然后调用合适的工具。就像人类审查者一样。",
 			"subtitle": "根据结果判断下一步使用哪个工具",
 			"title": "AI代理分析代码的流程",
 			"tools": {
@@ -211,19 +211,19 @@
 					"desc": "发现未使用的函数、变量、导入",
 					"name": "死代码"
 				},
-				"title": "pyscn分析工具"
+				"title": "静态分析工具"
 			}
 		},
-		"backToHome": "返回 Pyscn Bot",
+		"backToHome": "返回 polyscan Bot",
 		"cta": {
 			"button": "免费安装",
-			"p1": "安装 Pyscn Bot 并创建 PR。在第一次审查中体验不同。",
+			"p1": "安装 polyscan Bot 并创建 PR。在第一次审查中体验不同。",
 			"title": "在你的仓库试试"
 		},
 		"example": {
 			"body": "<code>validate_and_process()</code> 的圈复杂度为 <strong>18</strong>（阈值：15）。复杂的函数更难测试，更容易出 bug。",
 			"heading": "高复杂度函数",
-			"label": "Pyscn Bot 在你的 PR 上的评论",
+			"label": "polyscan Bot 在你的 PR 上的评论",
 			"suggestion": "拆分为 <code>validate_schema()</code>、<code>validate_constraints()</code> 和 <code>process_validated()</code>。",
 			"title": "审查示例"
 		},
@@ -244,16 +244,10 @@
 				"title": "PR代码审查"
 			}
 		},
-		"problem": {
-			"p1": "Copilot和Claude等AI工具正在生成比以往更多的代码。开发速度在加快，但<strong>谁在守护你的代码库？</strong>",
-			"p2": "技术债务在悄悄积累。复杂函数、死代码、重复逻辑在PR审查中漏掉，随着时间慢慢堆积。",
-			"p3": "你需要一个<strong>自主维护</strong>代码的系统。不只是审查PR，而是持续监控整个代码库。",
-			"title": "AI编程时代的代码质量"
-		},
-		"python": {
+		"languages": {
 			"item1": {
-				"desc": "可变默认参数、循环导入、未使用的实例变量",
-				"title": "Python特有问题"
+				"desc": "Python 的可变默认参数和循环导入；TypeScript 的不安全 any 和未使用的导出",
+				"title": "语言特有问题"
 			},
 			"item2": {
 				"desc": "基于AST的解析精准追踪变量作用域和函数调用",
@@ -263,8 +257,14 @@
 				"desc": "不是「看起来复杂」，而是「复杂度18」。可以行动的数字",
 				"title": "具体数字"
 			},
-			"p1": "Pyscn Bot使用专为Python设计的静态分析工具<strong>pyscn</strong>。它解析AST来深入理解你的代码——不只是模式匹配。",
-			"title": "为Python而生"
+			"p1": "polyscan Bot 为每种语言使用专用静态分析引擎——Python 用 <strong>pyscn</strong>，JavaScript/TypeScript 用 <strong>jscan</strong>。它们解析AST来深入理解你的代码——不只是模式匹配。C++、Go 和 Rust 支持已在计划中。",
+			"title": "为每种语言打造的专用分析器"
+		},
+		"problem": {
+			"p1": "Copilot和Claude等AI工具正在生成比以往更多的代码。开发速度在加快，但<strong>谁在守护你的代码库？</strong>",
+			"p2": "技术债务在悄悄积累。复杂函数、死代码、重复逻辑在PR审查中漏掉，随着时间慢慢堆积。",
+			"p3": "你需要一个<strong>自主维护</strong>代码的系统。不只是审查PR，而是持续监控整个代码库。",
+			"title": "AI编程时代的代码质量"
 		},
 		"security": {
 			"item1": {
@@ -276,7 +276,7 @@
 				"title": "不会存储"
 			},
 			"item3": {
-				"desc": "Pyscn Bot 只请求必要的权限：读取代码、写入 PR 评论、为审计报告创建 Issue。",
+				"desc": "polyscan Bot 只请求必要的权限：读取代码、写入 PR 评论、为审计报告创建 Issue。",
 				"title": "GitHub 权限"
 			},
 			"link": "阅读完整隐私政策",
@@ -284,11 +284,11 @@
 			"title": "你的代码是安全的"
 		},
 		"solution": {
-			"p1": "Pyscn Bot不会等待Pull Request。它按计划<strong>主动扫描整个代码库</strong>，发现架构问题，在问题变严重之前报告。",
-			"title": "Pyscn Bot：自主代码维护"
+			"p1": "polyscan Bot不会等待Pull Request。它按计划<strong>主动扫描整个代码库</strong>，发现架构问题，在问题变严重之前报告。",
+			"title": "polyscan Bot：自主代码维护"
 		},
 		"subtitle": "静态分析与AI代理相结合，提供值得信赖的精准审查",
-		"title": "Pyscn Bot 工作原理"
+		"title": "polyscan Bot 工作原理"
 	},
 	"trial": {
 		"badge": "14天免费试用",

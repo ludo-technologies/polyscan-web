@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import BotWordmark from "./BotWordmark";
 import Logo from "./icons/Logo";
 
 export default function BotFooter() {
@@ -11,7 +12,7 @@ export default function BotFooter() {
 				<div className="flex flex-col md:flex-row items-center justify-between gap-6">
 					<div className="flex items-center gap-2">
 						<Logo className="w-10 h-10 text-gray-500" />
-						<span className="font-semibold text-gray-300">Pyscn Bot</span>
+						<BotWordmark variant="dark" />
 					</div>
 					<div className="flex flex-wrap items-center justify-center gap-6 text-sm">
 						<a

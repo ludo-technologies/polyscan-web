@@ -17,8 +17,8 @@ export async function generateMetadata({
 		"/pyscn-bot/terms",
 	);
 	return {
-		title: `${t("footer.terms")} - Pyscn Bot`,
-		description: "Terms of Service for Pyscn Bot",
+		title: `${t("footer.terms")} - polyscan Bot`,
+		description: "Terms of Service for polyscan Bot",
 		alternates: { canonical, languages },
 	};
 }
@@ -28,7 +28,7 @@ function TermsJa() {
 		<div>
 			<h2>1. サービスの概要</h2>
 			<p>
-				Pyscn Bot（以下「本サービス」）は、Ludo
+				polyscan Bot（以下「本サービス」）は、Ludo
 				Technologies（以下「当社」）が提供するGitHub
 				App形式のAIコードレビューサービスです。本サービスをご利用になる前に、本利用規約をよくお読みください。
 			</p>
@@ -187,7 +187,7 @@ function TermsZh() {
 		<div>
 			<h2>1. 服务概述</h2>
 			<p>
-				Pyscn Bot（以下简称"本服务"）是由 Ludo
+				polyscan Bot（以下简称"本服务"）是由 Ludo
 				Technologies（以下简称"我们"）提供的 GitHub App 形式的 AI
 				代码审查服务。使用本服务前，请仔细阅读本服务条款。
 			</p>
@@ -337,7 +337,7 @@ function TermsEn() {
 		<div>
 			<h2>1. Service Overview</h2>
 			<p>
-				Pyscn Bot (the &quot;Service&quot;) is a GitHub App AI code review
+				polyscan Bot (the &quot;Service&quot;) is a GitHub App AI code review
 				service provided by Ludo Technologies (&quot;we&quot;, &quot;us&quot;,
 				or &quot;our&quot;). Please read these Terms of Service carefully before
 				using the Service.

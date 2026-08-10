@@ -4,8 +4,8 @@
 			"backToHome": "ホームに戻る",
 			"description": "サブスクリプションが有効になりました。以下のセットアップを完了して、すべてのPro機能をご利用ください。",
 			"step1": {
-				"button": "Pyscn Botをインストール",
-				"description": "Pyscn Botにリポジトリへのアクセスを許可してください。",
+				"button": "polyscan Botをインストール",
+				"description": "polyscan Botにリポジトリへのアクセスを許可してください。",
 				"title": "GitHub Appをインストール"
 			},
 			"step2": {
@@ -14,10 +14,10 @@
 				"title": "設定をカスタマイズ"
 			},
 			"step3": {
-				"description": "プルリクエストを作成すると、Pyscn Botが自動でレビューします。",
+				"description": "プルリクエストを作成すると、polyscan Botが自動でレビューします。",
 				"title": "レビュー開始"
 			},
-			"subtitle": "Pyscn Bot Pro をご購入いただきありがとうございます。",
+			"subtitle": "polyscan Bot Pro をご購入いただきありがとうございます。",
 			"support": "サポートが必要な場合はこちらへ",
 			"title": "お支払い完了！"
 		}
@@ -40,18 +40,18 @@
 	"cta": {
 		"button": "GitHub Appをインストール",
 		"description": "週次監査はすべてのリポジトリで無料。インストールは数クリックで完了。",
-		"title": "今すぐPythonコードの品質を向上"
+		"title": "今すぐコードの品質を向上"
 	},
 	"diff": {
 		"pyscnBot": {
-			"1": "<strong>静的解析ツールpyscn</strong>でコード品質を定量的に評価",
+			"1": "<strong>専用の静的解析エンジン</strong>でコード品質を定量的に評価",
 			"2": "読みにくい関数、放置されたコード、複雑な依存を検出",
 			"3": "コピペされたコードを発見し、保守性の問題を指摘",
 			"4": "週次監査で<strong>コードベース全体</strong>をスキャン",
 			"5": "<strong>言語に特化したAI</strong>によって高精度のレビューを実現",
-			"_": "Pyscn Bot"
+			"_": "polyscan Bot"
 		},
-		"subtitle": "Pyscn Botは単なるLLMラッパーではありません。強力な静的解析エンジンを活用し、より深い洞察を提供します。",
+		"subtitle": "polyscan Botは単なるLLMラッパーではありません。強力な静的解析エンジンを活用し、より深い洞察を提供します。",
 		"title": "従来のコードレビューBotとの違い",
 		"traditional": {
 			"1": "差分のみを見て表面的なコメント",
@@ -73,14 +73,14 @@
 				"language": "レポート言語 (デフォルト: en)",
 				"target": "対象ディレクトリ (デフォルト: 全体)"
 			},
-			"description": "シンプルなYAMLファイルでPyscn Botの動作をカスタマイズ。複雑なセットアップは不要です。",
+			"description": "シンプルなYAMLファイルでpolyscan Botの動作をカスタマイズ。複雑なセットアップは不要です。",
 			"option1": "レポート言語: en, ja, zh, ko, es, fr, de, pt",
 			"option2": "解析対象ディレクトリ",
 			"option3": "監査間隔: daily (Pro), weekly, monthly",
 			"title": "シンプルなYAML設定"
 		},
 		"pr": {
-			"description": "プルリクエストごとに自動でコードレビュー。変更されたPythonファイルをpyscnで解析し、Claude AIが改善提案を生成します。",
+			"description": "プルリクエストごとに自動でコードレビュー。変更されたソースファイルをpyscn（Python）とjscan（JavaScript/TypeScript）で解析し、Claude AIが改善提案を生成します。",
 			"title": "PRコードレビュー"
 		},
 		"title": "3つの強力な機能"
@@ -94,9 +94,9 @@
 	},
 	"hero": {
 		"badge": "GitHubで公開中",
-		"description": "Pythonコードベースを能動的に監視するAIエージェント。静的解析ツール<strong>pyscn</strong>で品質の問題を検出し、深刻化する前に報告します。",
-		"freeNote": "Pyscn Bot は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
-		"title": "Python特化",
+		"description": "コードベースを能動的に監視するAIエージェント。専用の静的解析ツール — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — で品質の問題を検出し、深刻化する前に報告します。",
+		"freeNote": "polyscan Bot は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
+		"title": "多言語対応",
 		"titleEnd": "AI",
 		"titleHighlight": "コード監査"
 	},
@@ -117,8 +117,8 @@
 			"desc": "使われていない関数や変数を特定",
 			"title": "デッドコード"
 		},
-		"subtitle": "ASTベースの静的解析ツールpyscnが、コードの品質問題を定量的に検出します。",
-		"title": "pyscnが見つける問題"
+		"subtitle": "ASTベースの静的解析ツールpyscnとjscanが、コードの品質問題を定量的に検出します。",
+		"title": "アナライザーが見つける問題"
 	},
 	"legal": {
 		"backToHome": "ホームに戻る",
@@ -187,7 +187,7 @@
 				"p2": "人間のレビュアーと同じように、コードを読みながら問題を深掘りしていきます。",
 				"title": "なぜこのやり方？"
 			},
-			"p1": "単純なLLMラッパーとは異なり、Pyscn BotのAIエージェントは<strong>考えてから行動</strong>します。結果を見て、次に何を調べるべきか判断し、適切なツールを呼び出します。人間のレビュアーと同じです。",
+			"p1": "単純なLLMラッパーとは異なり、polyscan BotのAIエージェントは<strong>考えてから行動</strong>します。結果を見て、次に何を調べるべきか判断し、適切なツールを呼び出します。人間のレビュアーと同じです。",
 			"subtitle": "結果を見ながら、次に使うツールを判断",
 			"title": "AIエージェントがコードを分析する流れ",
 			"tools": {
@@ -211,19 +211,19 @@
 					"desc": "使われていない関数、変数、importを検出",
 					"name": "デッドコード"
 				},
-				"title": "pyscnの分析ツール"
+				"title": "静的解析ツール"
 			}
 		},
-		"backToHome": "Pyscn Bot に戻る",
+		"backToHome": "polyscan Bot に戻る",
 		"cta": {
 			"button": "無料でインストール",
-			"p1": "Pyscn BotをインストールしてPRを作成。最初のレビューで違いを実感してください。",
+			"p1": "polyscan BotをインストールしてPRを作成。最初のレビューで違いを実感してください。",
 			"title": "あなたのリポジトリで試してください"
 		},
 		"example": {
 			"body": "<code>validate_and_process()</code>の循環的複雑度は<strong>18</strong>です（閾値: 15）。複雑な関数はテストが困難で、バグが発生しやすくなります。",
 			"heading": "高複雑度の関数",
-			"label": "PRに投稿されるPyscn Botのコメント",
+			"label": "PRに投稿されるpolyscan Botのコメント",
 			"suggestion": "<code>validate_schema()</code>、<code>validate_constraints()</code>、<code>process_validated()</code>に分割してください。",
 			"title": "レビュー例"
 		},
@@ -244,16 +244,10 @@
 				"title": "PRコードレビュー"
 			}
 		},
-		"problem": {
-			"p1": "CopilotやClaudeなどのAIツールが、かつてないほど大量のコードを生成しています。開発は加速していますが、<strong>コードベースを誰が見守っていますか？</strong>",
-			"p2": "技術的負債は静かに蓄積します。複雑な関数、デッドコード、重複ロジックがPRレビューをすり抜け、少しずつ積み重なっていきます。",
-			"p3": "PRをレビューするだけでなく、コードベース全体を継続的に監視する。そんな<strong>自律的にメンテナンスする仕組み</strong>が求められています。",
-			"title": "AIコーディング時代のコード品質"
-		},
-		"python": {
+		"languages": {
 			"item1": {
-				"desc": "変更されるデフォルト引数、循環インポート、未使用のインスタンス変数",
-				"title": "Python固有の問題"
+				"desc": "Pythonの変更されるデフォルト引数や循環インポート、TypeScriptの危険なanyや未使用エクスポート",
+				"title": "言語固有の問題"
 			},
 			"item2": {
 				"desc": "ASTベースの解析で変数スコープと関数呼び出しを正確に追跡",
@@ -263,8 +257,14 @@
 				"desc": "「複雑そう」ではなく「複雑度18」。行動につながる数字",
 				"title": "具体的な数値"
 			},
-			"p1": "Pyscn BotはPython専用に設計された静的解析ツール<strong>pyscn</strong>を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。",
-			"title": "Python専用設計"
+			"p1": "polyscan Botは言語ごとの専用静的解析エンジン — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。C++、Go、Rustにも対応予定です。",
+			"title": "言語ごとの専用アナライザー"
+		},
+		"problem": {
+			"p1": "CopilotやClaudeなどのAIツールが、かつてないほど大量のコードを生成しています。開発は加速していますが、<strong>コードベースを誰が見守っていますか？</strong>",
+			"p2": "技術的負債は静かに蓄積します。複雑な関数、デッドコード、重複ロジックがPRレビューをすり抜け、少しずつ積み重なっていきます。",
+			"p3": "PRをレビューするだけでなく、コードベース全体を継続的に監視する。そんな<strong>自律的にメンテナンスする仕組み</strong>が求められています。",
+			"title": "AIコーディング時代のコード品質"
 		},
 		"security": {
 			"item1": {
@@ -276,7 +276,7 @@
 				"title": "保存しません"
 			},
 			"item3": {
-				"desc": "Pyscn Botは必要な権限のみ要求します：コードの読み取り、PRコメントの書き込み、監査レポート用のIssue作成。",
+				"desc": "polyscan Botは必要な権限のみ要求します：コードの読み取り、PRコメントの書き込み、監査レポート用のIssue作成。",
 				"title": "GitHub権限"
 			},
 			"link": "プライバシーポリシー全文を読む",
@@ -284,11 +284,11 @@
 			"title": "コードは安全です"
 		},
 		"solution": {
-			"p1": "Pyscn Botはプルリクエストを待ちません。スケジュールに従って<strong>コードベース全体を能動的にスキャン</strong>し、アーキテクチャの問題を発見し、深刻化する前に報告します。",
-			"title": "Pyscn Bot：自律的コードメンテナンス"
+			"p1": "polyscan Botはプルリクエストを待ちません。スケジュールに従って<strong>コードベース全体を能動的にスキャン</strong>し、アーキテクチャの問題を発見し、深刻化する前に報告します。",
+			"title": "polyscan Bot：自律的コードメンテナンス"
 		},
 		"subtitle": "静的解析とAIエージェントによる、信頼できる正確なレビュー",
-		"title": "Pyscn Bot の仕組み"
+		"title": "polyscan Bot の仕組み"
 	},
 	"trial": {
 		"badge": "14日間無料",

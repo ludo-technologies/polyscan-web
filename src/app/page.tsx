@@ -40,7 +40,7 @@ const analyzers = [
 	{
 		name: "pyscn",
 		language: "Python",
-		body: "The original analyzer. Ships a CLI, an MCP server, and Agent Skills, and powers pyscn-bot.",
+		body: "The original analyzer. Ships a CLI, an MCP server, and Agent Skills, and powers polyscan Bot.",
 		command: "uvx pyscn@latest analyze .",
 		links: [
 			{ label: "GitHub", href: LINKS.pyscn },
@@ -323,21 +323,21 @@ export default function Home() {
 						id="bot-title"
 						className="mb-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl"
 					>
-						Pyscn Bot — code review that reads the architecture
+						polyscan Bot — code review that reads the architecture
 					</h2>
 					<p className="mb-6 max-w-3xl text-[var(--text-secondary)]">
-						A GitHub App that reviews every pull request with pyscn in hand and
-						files a weekly audit of the whole repository. Because it reviews
-						with a static analyzer rather than the diff alone, it catches the
-						structural problems a line-by-line reviewer never sees. Weekly
-						audits are free for every repository.
+						A GitHub App that reviews every pull request with pyscn and jscan in
+						hand and files a weekly audit of the whole repository. Because it
+						reviews with a static analyzer rather than the diff alone, it
+						catches the structural problems a line-by-line reviewer never sees.
+						Weekly audits are free for every repository.
 					</p>
 					<div className="flex flex-wrap gap-3">
 						<a
 							href={LINKS.pyscnBot}
 							className="inline-flex rounded-md border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
 						>
-							Install Pyscn Bot →
+							Install polyscan Bot →
 						</a>
 						<a
 							href={LINKS.pyscnBotRepo}
