@@ -1,0 +1,295 @@
+---
+title: "Review Is the Bottleneck Now"
+description: "Coding agents made writing a patch cheap and left reading one exactly as expensive as before. The half of code review that guards the shape of the codebase used to be done mostly before review, by the author. Agents don't do it, and reviewers no longer have the time. Here is what I think has to happen to it."
+date: "2026-08-19"
+tags: ["ai-agents", "code-review", "code-quality", "static-analysis"]
+lang: "en"
+draft: false
+---
+
+*[日本語版はこちら](/blog/review-is-the-bottleneck-ja)*
+
+Not long ago I approved a pull request that added a fourth copy of a
+function I already had three of. I know because I later wrote
+[a whole post](/blog/what-your-coding-agent-cant-see) about the function. That
+post was about the agent that wrote it, and why it couldn't have known the
+other three existed. This one is about the reviewer who approved it, which was
+me, and why I think that particular failure is on its way to becoming the
+normal outcome of code review rather than an embarrassing exception.
+
+The short version: for as long as I have been doing this, writing a patch was
+the slow part and reading it was the fast part. Agents flipped that. A change
+that would have taken me an afternoon now takes a few minutes of someone
+else's compute, and it shows up with passing tests and a well-written
+description. Reading it properly, though, costs what it always cost. When one
+stage of a pipeline gets ten times cheaper and the next stage doesn't move,
+the next stage is where the queue forms. Review is that stage now, and I don't
+think most teams have noticed, because a review queue that's overwhelmed
+doesn't look blocked. It looks approved.
+
+## What review was doing before agents
+
+It helps to be specific about what a reviewer actually contributes, because
+"code review" covers two jobs that happen to have shared one reader.
+
+The first job is deciding whether the change is correct. Does it do what the
+issue asked, does it break anything. Most of that job left human hands a long
+time ago. In a codebase with a decent test suite, a reviewer confirms that the
+tests exist and that they test the right thing; tracing the logic by hand is
+the exception. The compiler, the type checker, and the formatter each took a
+slice too. Nobody leaves the comment "this could be `None`" on a project with
+`mypy` in pre-commit, because by the time a human sees the diff, that comment
+has already been made and acted on.
+
+The second job is deciding what the change does to the codebase it lands in.
+The comments look like this:
+
+> We already have `parse_iso_date` in `utils/dates.py`, can you use that?
+
+> This function is getting long. Could the validation move out?
+
+> Why does `domain/` import from `api/` here?
+
+> Is `_legacy_discount` still called from anywhere?
+
+Nobody automated that job, and I think the reason is that for most of the
+history of software it didn't need automating. The person writing the patch
+had usually been in the codebase for months. They remembered the other
+`parse_iso_date`. They wrote the guard clause up top because they'd been
+burned by that function before. Most of the second job was done by the author,
+while writing, and review picked up the residue.
+
+Notice something about every one of those comments: each is a fact about the
+whole repository, not about the diff. "We already have one" requires knowing
+what exists. "Getting long" requires knowing how long it was before. "Imports
+from `api/`" requires knowing which layer `domain/` is supposed to be. The
+diff by itself can't tell you any of it.
+
+## Why agents make the second job bigger
+
+An agent doesn't do the second job while writing, and I want to be careful
+about why, because it isn't a matter of the agent being careless. It works
+from a slice of the repository, whatever fits in context, and "there is
+already one of these three modules away" is a fact about the whole. It can't
+act on an instruction like "don't duplicate existing logic" without having
+already read the thing it's being asked not to duplicate. So the calls that
+the author used to make while writing simply don't get made, and the whole of
+the second job arrives at review intact.
+
+This isn't hypothetical. When we
+[scored SWE-bench patches from 14 models against the human commit that closed the same issue](/blog/messier-than-the-human),
+thirteen of the fourteen raised some function's complexity or left dead code
+behind more often than the person had. None did better. All of those patches
+were correct in the sense that matters to a leaderboard: they resolved the
+issue and the tests passed. They were also, a little more often than a
+person's patch, worse for the codebase they landed in. And the only thing
+between them and `main` was a reader who now has more of them to read than
+ever.
+
+There's a third factor that gets less attention. On a small team, or for
+anyone working alone with an agent, the author and the reviewer have collapsed
+into the same person. Before, there were two humans in the loop: one who had
+the context to avoid the fourth copy, and one who might catch it if the first
+didn't. Now there is a person prompting, an agent writing, and the same
+person reviewing what comes back. The second pair of eyes that used to catch
+the residue is often just gone.
+
+## Three ways to respond
+
+The first response is to keep reading everything, carefully. This is the
+honest default and it fails quietly, because you become the rate limiter on
+your own agents. That's fine for a while. Then it's the fortieth pull request
+of the week and "review" has become: read the description, glance at the test
+file, check that CI is green, notice the diff is short, approve. I've done
+this. Everyone who has worked with agents for more than a month has done this.
+It feels like review, and it catches almost nothing in the second category,
+because those problems don't show up in a short diff. A fourth copy of a
+helper looks like a perfectly reasonable helper. Nine lines of new `if`
+branches look like nine reasonable lines.
+
+The second response is to have another model do the review. This is genuinely
+useful for the first job. A second model reading the diff will catch the
+off-by-one or the unhandled empty list that the first model missed, and it
+will do so tirelessly. But it's reading the diff, and the diff is the same
+slice of the repository the author saw. A diff reviewer can't see the other
+three copies either. Giving it the whole repository doesn't fix that, because
+"the whole repository" doesn't fit, and you're back to retrieval, which is the
+same problem the author had. There's also a quieter issue: the reviewer model
+and the author model share a taste. The fourteen models in that benchmark are
+the same fourteen you'd choose from to do the reviewing, and none of them left
+less behind than the person did. Asking one whether the patch is tidy gets you
+back the sensibility that produced the patch.
+
+The third response is to split the job. Give the second half, the part that's
+a fact about the whole codebase, to something that can measure the whole
+codebase, and spend the human on the part only a human can judge. This is the
+one I think works, and it's less obvious than it sounds, because "measure it"
+tends to get heard as "add a linter", and a linter is exactly the wrong tool
+for this.
+
+## A nine-line patch, measured
+
+Here's a small example of the kind of change I mean. Before:
+
+```python
+def apply_discount(order, code):
+    if code is None:
+        return order.total
+    if code.expired:
+        raise ValueError("expired")
+    if code.kind == "percent":
+        return order.total * (1 - code.value / 100)
+    if code.kind == "fixed":
+        return max(order.total - code.value, 0)
+    raise ValueError(f"unknown kind {code.kind}")
+```
+
+An agent is asked to add a cap on percentage discounts and a new
+free-shipping code type. Here's the diff it opens:
+
+```diff
+     if code.kind == "percent":
++        if code.max_off is not None and order.total * code.value / 100 > code.max_off:
++            return order.total - code.max_off
+         return order.total * (1 - code.value / 100)
+     if code.kind == "fixed":
+         return max(order.total - code.value, 0)
++    if code.kind == "shipping":
++        if order.shipping and not order.shipping.free:
++            return order.total - order.shipping.cost
++        return order.total
+     raise ValueError(f"unknown kind {code.kind}")
+```
+
+Every line is right. The tests pass, including the two new ones. `ruff` has
+nothing to say. A human reviewer sees a short diff that does what the ticket
+asked, and approves it, and would be right to on the first job. I would have
+approved it.
+
+Run pyscn on the file before and after, and the function's cyclomatic
+complexity goes from 7 to 10, which crosses pyscn's boundary from low to
+medium risk. That is the whole finding, and it's small. But notice what it is:
+it's the "this function is getting long, could the validation move out?"
+comment, made by a program, with a number attached, before a person had to
+notice it. It is not saying the patch is wrong. It's saying the function
+crossed a line, and that the *next* patch to `apply_discount` will start from
+10, not 7. Four or five of these in a row, each individually approved, is how
+you get the function nobody wants to touch.
+
+A linter can't produce that comment. A linter reads one file and says whether
+that file is fine, which is the same local signal the agent already had and
+the reason the mess got through. What replaced the human's second job has to
+measure the thing the human was protecting, and that turns out to be a fairly
+short list: the complexity of the functions the patch touched, whether it
+added unreachable code, whether it introduced a structural clone of something
+that already exists, what it did to coupling between modules. And there are a
+few things it has to get right before it can stand in for a person.
+
+It has to report a delta, not a state. A ten-year-old repository has two
+hundred functions over any threshold you'd pick, and a red X on every pull
+request because of them is a red X nobody reads. The question review was
+answering was "did *this change* make it worse", which is a before-and-after
+comparison on the files the patch touched. When we ran exactly that comparison
+at benchmark scale, the human's patch tripped it on 24% of instances. That's
+worth sitting with. It means a gate that blocks on any regression at all would
+block a quarter of human pull requests too. So the sensible policy is
+probably: annotate on any regression, block only when a function crosses a
+risk band or the patch adds dead code, and let a person decide the rest. The
+number's job is to make the comment, not to make the decision.
+
+It has to be honest about what it can see. Some metrics are properties of one
+function in one file, complexity and reachability among them, and they stay
+exact when you analyze only the files a patch touched. Others, coupling and
+clone detection, undercount when they see part of a repository, because the
+clone or the dependency might be in a file the patch didn't touch. A gate that
+uses the first kind on the diff and the second kind on the whole tree, and
+says which is which, is one you can trust. One that quietly runs clone
+detection on three files and reports "no duplication" is worse than nothing.
+
+And it has to be boring. Deterministic, sub-second, the same answer every run.
+Not because a model couldn't estimate any of this, but because a gate that
+argues with you is one more thing to review, and reducing the amount of
+review was the point.
+
+## What's left for the person
+
+None of this makes review smaller. It changes what the reviewer is looking at.
+
+Once "did this raise complexity, add dead code, or duplicate something" is
+answered before a human opens the pull request, what the human is left with is
+the list of questions no measurement has an opinion on. Is this the right
+change at all? Is `apply_discount` the right place for shipping logic, or
+should shipping have its own thing? Does the new abstraction match how the
+business actually talks about discounts, or is it a shape the agent found
+convenient? Will the name `max_off` mean the same thing to whoever reads it in
+a year? Those were always the questions worth a senior engineer's twenty
+minutes. It's just that until recently their attention reached those questions
+only after being spent on the mechanical ones first, and now there's no
+attention to spare.
+
+So the claim isn't "review less." It's closer to: the human is now the
+scarcest thing in the loop, so stop spending them on the part a program can
+check.
+
+## "That's just CI"
+
+It is, if a person is the one who reads the result. Then it's still the
+person's time.
+
+What actually moves the bottleneck is who consumes the measurement. If the
+agent that opened the pull request gets the same before-and-after numbers and
+fixes the regression *before* opening it, no reviewer capacity was spent at
+all; the human never sees the version that went from 7 to 10. That's the
+version of this that changes the economics: the structural check runs inside
+the agent's own loop first, and in CI second, as the backstop for when it
+didn't.
+
+Getting there is mostly plumbing. The analysis has to run in well under a
+second on the files that changed, so the agent will actually run it mid-task
+rather than treating it as a nightly job. It has to emit something a program
+can read, not a wall of text. And it has to be callable as a tool, so the
+agent can invoke it without a human wiring it in. That's the shape
+[pyscn](https://github.com/ludo-technologies/pyscn) and
+[jscan](https://github.com/ludo-technologies/polyscan/tree/main/jscan) took,
+and it's why they ship as MCP servers and agent skills rather than only as a
+CLI. There's still a job for a model on the review side, but it's to explain
+what the measurement means for this codebase, not to be the sense that
+produces it.
+
+## Where this argument is thin
+
+Structural metrics catch structural problems. They have nothing to say about
+whether the abstraction is right, whether the name is honest, or whether the
+change should exist. That's why the human half stays, and it's the more
+important half.
+
+They can also be gamed. Splitting one complexity-18 function into three
+complexity-6 functions that call each other in a line lowers every number and
+improves nothing. A gate on deltas is less prone to that than a gate on
+absolute thresholds, but it isn't immune, and if the agent learns to satisfy
+the metric rather than the intent, that becomes a review problem again, and a
+harder one, because the numbers now look fine.
+
+And what we've actually measured is narrower than what I've argued. The
+benchmark numbers are Python only, two metrics only, and compare what models
+left behind against what one person left behind on the same bug. That
+supports "agents make the second half of review's job larger." It doesn't show
+that any particular gate would have caught it, or what a reviewer's time looks
+like with and without one. That's the thing I'd want data on next, and if
+you've measured it, I'd like to see it.
+
+## Where this stands
+
+pyscn (Python) and jscan (JavaScript/TypeScript) are MIT-licensed and part of
+[polyscan](https://github.com/ludo-technologies/polyscan). Both run as a CLI
+(`pyscn check --max-complexity 15 .`), as an MCP server, and as agent skills,
+so the same measurement can sit inside the agent's loop and in CI.
+[polyscan Bot](/pyscn-bot) runs them on pull requests and posts what changed;
+it's in beta.
+
+The bottleneck moved, and I don't expect it to move back. Agents will keep
+getting faster at producing patches and people won't get faster at reading
+them. What can change is what the reader is asked to look at.
+
+Issues and ideas:
+[github.com/ludo-technologies/polyscan](https://github.com/ludo-technologies/polyscan).
