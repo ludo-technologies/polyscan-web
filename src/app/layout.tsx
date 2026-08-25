@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -72,9 +70,7 @@ export default function RootLayout({
 				</>
 			)}
 			<body className={`${jakarta.variable} ${jetbrains.variable} antialiased`}>
-				<Header />
 				{children}
-				<Footer />
 			</body>
 		</html>
 	);
