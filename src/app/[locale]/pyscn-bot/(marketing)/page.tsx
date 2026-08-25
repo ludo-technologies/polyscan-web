@@ -47,8 +47,7 @@ export default async function PyscnBotLandingPage() {
 						<br className="md:hidden" />
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-bot-primary-500 to-bot-primary-700">
 							{t("hero.titleHighlight")}
-						</span>{" "}
-						{t("hero.titleEnd")}
+						</span>
 					</h1>
 
 					<p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
