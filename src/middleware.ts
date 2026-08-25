@@ -8,11 +8,13 @@ export const config = {
 	// /privacy, /terms, etc.) must never pass through next-intl's middleware.
 	// /pyscn-bot/api/* is excluded because it's rewritten to the Go backend
 	// (see next.config.ts); letting next-intl touch it would locale-prefix
-	// the proxied path and break the rewrite.
+	// the proxied path and break the rewrite. Paths containing a dot are
+	// excluded so static assets under public/pyscn-bot/ aren't locale-rewritten
+	// to /en/... and 404.
 	matcher: [
 		"/pyscn-bot",
-		"/pyscn-bot/((?!api/).*)",
+		"/pyscn-bot/((?!api/|.*\\..*).*)",
 		"/(ja|zh)/pyscn-bot",
-		"/(ja|zh)/pyscn-bot/((?!api/).*)",
+		"/(ja|zh)/pyscn-bot/((?!api/|.*\\..*).*)",
 	],
 };
