@@ -10,7 +10,7 @@
 			},
 			"step2": {
 				"badge": "可选",
-				"description": "添加 .github/pyscn-bot.yml 自定义行为。",
+				"description": "添加 .github/polyscan.yml 自定义行为。",
 				"title": "配置设置"
 			},
 			"step3": {

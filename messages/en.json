@@ -10,7 +10,7 @@
 			},
 			"step2": {
 				"badge": "Optional",
-				"description": "Add .github/pyscn-bot.yml to customize behavior.",
+				"description": "Add .github/polyscan.yml to customize behavior.",
 				"title": "Configure Settings"
 			},
 			"step3": {
