@@ -7,7 +7,7 @@ export default function BotFooter() {
 	const t = useTranslations();
 
 	return (
-		<footer className="py-12 bg-gray-900 text-gray-400">
+		<footer className="py-12 bg-[var(--bg-ink)] font-mono text-sm text-gray-400">
 			<div className="max-w-6xl mx-auto px-6">
 				<div className="flex flex-col md:flex-row items-center justify-between gap-6">
 					<div className="flex items-center gap-2">

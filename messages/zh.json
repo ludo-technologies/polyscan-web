@@ -93,12 +93,10 @@
 		"terms": "服务条款"
 	},
 	"hero": {
-		"badge": "已在 GitHub 上架",
-		"description": "主动监控代码库的AI代理。使用专用静态分析工具——Python 用 <strong>pyscn</strong>，JavaScript/TypeScript 用 <strong>jscan</strong>——检测质量问题，在问题变严重之前报告。",
+		"description": "安装到 GitHub 仓库后，它<strong>每周为整个代码库打分</strong>，并将结果以 GitHub Issue 的形式报告。过于复杂的函数、不断蔓延的复制粘贴、没人使用的代码——该修什么，用数字告诉你。",
 		"freeNote": "polyscan Bot 目前处于测试阶段。所有仓库可免费使用每周代码审计。",
-		"title": "多语言支持",
-		"titleEnd": "AI",
-		"titleHighlight": "代码审计"
+		"title": "你的代码库，",
+		"titleHighlight": "正在悄悄劣化。"
 	},
 	"how": {
 		"clones": {

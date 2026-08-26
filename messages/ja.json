@@ -93,12 +93,10 @@
 		"terms": "利用規約"
 	},
 	"hero": {
-		"badge": "GitHubで公開中",
-		"description": "コードベースを能動的に監視するAIエージェント。専用の静的解析ツール — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — で品質の問題を検出し、深刻化する前に報告します。",
+		"description": "GitHubにインストールすると、<strong>毎週リポジトリ全体を採点</strong>し、結果をGitHub Issueで報告します。複雑になりすぎた関数、増え続けるコピペ、使われていないコード — 直すべき場所が数値で分かります。",
 		"freeNote": "polyscan Bot は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
-		"title": "多言語対応",
-		"titleEnd": "AI",
-		"titleHighlight": "コード監査"
+		"title": "そのコード、",
+		"titleHighlight": "静かに劣化しています。"
 	},
 	"how": {
 		"clones": {

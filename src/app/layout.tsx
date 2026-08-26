@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -11,9 +9,10 @@ const GA_MEASUREMENT_ID = /^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID_RAW)
 	? GA_MEASUREMENT_ID_RAW
 	: "";
 
-const jakarta = Plus_Jakarta_Sans({
-	variable: "--font-jakarta",
+const archivo = Archivo({
+	variable: "--font-archivo",
 	subsets: ["latin"],
+	axes: ["wdth"],
 });
 
 const jetbrains = JetBrains_Mono({
@@ -71,10 +70,8 @@ export default function RootLayout({
 					</Script>
 				</>
 			)}
-			<body className={`${jakarta.variable} ${jetbrains.variable} antialiased`}>
-				<Header />
+			<body className={`${archivo.variable} ${jetbrains.variable} antialiased`}>
 				{children}
-				<Footer />
 			</body>
 		</html>
 	);

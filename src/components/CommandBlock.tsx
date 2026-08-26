@@ -24,11 +24,11 @@ export default function CommandBlock({ command, label }: Props) {
 	return (
 		<div>
 			{label && (
-				<p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-[var(--brand-blue)]">
+				<p className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
 					{label}
 				</p>
 			)}
-			<div className="flex items-start gap-2 rounded-md border border-[var(--border-light)] bg-[var(--bg-ink)] px-4 py-3">
+			<div className="flex items-start gap-2 border border-[var(--bg-ink)] bg-[var(--bg-ink)] px-4 py-3">
 				{/* Wrap rather than scroll: a command clipped mid-word reads as broken
 				    even though the copy button still yields the whole string. */}
 				<code className="flex-1 break-words font-mono text-sm leading-6 text-white">

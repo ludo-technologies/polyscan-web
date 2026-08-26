@@ -93,12 +93,10 @@
 		"terms": "Terms of Service"
 	},
 	"hero": {
-		"badge": "Available on GitHub",
-		"description": "An AI agent that proactively monitors your codebase. Uses dedicated static analysis tools — <strong>pyscn</strong> for Python and <strong>jscan</strong> for JavaScript/TypeScript — to detect quality issues and report them before they become critical.",
+		"description": "Install it on your GitHub repository and it <strong>scores the whole codebase every week</strong>, filing the results as a GitHub Issue. Functions that grew too complex, copy-paste that keeps spreading, code nobody uses — you see exactly what to fix, in numbers.",
 		"freeNote": "polyscan Bot is currently in beta. Weekly code audits are free for all repositories.",
-		"title": "Multi-Language",
-		"titleEnd": "AI",
-		"titleHighlight": "Code Audit"
+		"title": "Your codebase is ",
+		"titleHighlight": "quietly decaying."
 	},
 	"how": {
 		"clones": {

@@ -25,14 +25,15 @@ const legalLinks = [
 
 export default function Footer() {
 	return (
-		<footer className="border-t border-[var(--border-subtle)] bg-white">
+		<footer className="border-t border-[var(--border-light)] bg-[var(--bg-card)]">
+			<div className="ruler-ticks" aria-hidden="true" />
 			<div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
 				<div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-					<Link href="/" className="inline-flex items-baseline">
-						<span className="text-xl font-black tracking-tight text-[var(--text-primary)]">
+					<Link href="/" className="type-display inline-flex items-baseline">
+						<span className="text-xl font-bold text-[var(--text-primary)]">
 							poly
 						</span>
-						<span className="text-xl font-black tracking-tight text-[var(--brand-blue)]">
+						<span className="text-xl font-bold text-[var(--brand-blue)]">
 							scan
 						</span>
 					</Link>
@@ -44,7 +45,7 @@ export default function Footer() {
 
 				<div className="mb-10 grid grid-cols-2 gap-8 text-sm md:grid-cols-4">
 					<div>
-						<h4 className="mb-4 font-semibold text-[var(--text-primary)]">
+						<h4 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
 							Product
 						</h4>
 						<ul className="space-y-2">
@@ -62,7 +63,7 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="mb-4 font-semibold text-[var(--text-primary)]">
+						<h4 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
 							Resources
 						</h4>
 						<ul className="space-y-2">
@@ -82,7 +83,7 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="mb-4 font-semibold text-[var(--text-primary)]">
+						<h4 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
 							Contact
 						</h4>
 						<ul className="space-y-2 text-[var(--text-secondary)]">
@@ -99,7 +100,7 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="mb-4 font-semibold text-[var(--text-primary)]">
+						<h4 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
 							Legal
 						</h4>
 						<ul className="space-y-2">
