@@ -93,8 +93,7 @@
 		"terms": "利用規約"
 	},
 	"hero": {
-		"badge": "GitHubで公開中",
-		"description": "polyscan Bot が毎週コードベースを点検し、技術的負債がたまる前に報告します。根拠はLLMの感想ではなく、専用の静的解析ツール — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — による定量的な計測です。",
+		"description": "GitHubにインストールすると、<strong>毎週リポジトリ全体を採点</strong>し、結果をGitHub Issueで報告します。複雑になりすぎた関数、増え続けるコピペ、使われていないコード — 直すべき場所が数値で分かります。",
 		"freeNote": "polyscan Bot は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
 		"title": "そのコード、",
 		"titleHighlight": "静かに劣化しています。"

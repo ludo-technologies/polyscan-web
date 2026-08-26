@@ -93,8 +93,7 @@
 		"terms": "服务条款"
 	},
 	"hero": {
-		"badge": "已在 GitHub 上架",
-		"description": "polyscan Bot 每周巡检你的代码库，在技术债堆积之前发出报告。依据不是 LLM 的主观感受，而是专用静态分析工具 —— Python 用 <strong>pyscn</strong>、JavaScript/TypeScript 用 <strong>jscan</strong> —— 的量化测量。",
+		"description": "安装到 GitHub 仓库后，它<strong>每周为整个代码库打分</strong>，并将结果以 GitHub Issue 的形式报告。过于复杂的函数、不断蔓延的复制粘贴、没人使用的代码——该修什么，用数字告诉你。",
 		"freeNote": "polyscan Bot 目前处于测试阶段。所有仓库可免费使用每周代码审计。",
 		"title": "你的代码库，",
 		"titleHighlight": "正在悄悄劣化。"

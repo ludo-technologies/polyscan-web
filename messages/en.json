@@ -93,8 +93,7 @@
 		"terms": "Terms of Service"
 	},
 	"hero": {
-		"badge": "Available on GitHub",
-		"description": "polyscan Bot audits your codebase every week and reports technical debt before it piles up. Its findings are grounded not in LLM opinions but in quantitative measurements from dedicated static analyzers — <strong>pyscn</strong> for Python, <strong>jscan</strong> for JavaScript/TypeScript.",
+		"description": "Install it on your GitHub repository and it <strong>scores the whole codebase every week</strong>, filing the results as a GitHub Issue. Functions that grew too complex, copy-paste that keeps spreading, code nobody uses — you see exactly what to fix, in numbers.",
 		"freeNote": "polyscan Bot is currently in beta. Weekly code audits are free for all repositories.",
 		"title": "Your codebase is ",
 		"titleHighlight": "quietly decaying."

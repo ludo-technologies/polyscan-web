@@ -22,34 +22,34 @@ export default function Navigation({ isLoggedIn }: NavigationProps) {
 		: "/pyscn-bot/api/auth?plan=free";
 
 	return (
-		<nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
-			<div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+		<nav className="fixed top-0 w-full bg-[var(--bg-body)]/90 backdrop-blur border-b border-[var(--border-light)] z-50">
+			<div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
 				<Link href="/pyscn-bot" className="flex items-center gap-1 group">
-					<Logo className="w-12 h-12 group-hover:scale-105 transition-transform" />
+					<Logo className="w-10 h-10" />
 					<BotWordmark className="text-xl" />
 				</Link>
 				<div className="flex items-center gap-4 lg:gap-6">
 					<a
 						href={featuresHref}
-						className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block text-sm"
+						className="text-[var(--text-secondary)] hover:text-[var(--brand-blue)] transition-colors hidden md:block font-mono text-xs uppercase tracking-[0.15em]"
 					>
 						{t("nav.features")}
 					</a>
 					<Link
 						href="/pyscn-bot/how-it-works"
-						className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block text-sm"
+						className="text-[var(--text-secondary)] hover:text-[var(--brand-blue)] transition-colors hidden md:block font-mono text-xs uppercase tracking-[0.15em]"
 					>
 						{t("nav.howItWorks")}
 					</Link>
 					<a
 						href={pricingHref}
-						className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block text-sm"
+						className="text-[var(--text-secondary)] hover:text-[var(--brand-blue)] transition-colors hidden md:block font-mono text-xs uppercase tracking-[0.15em]"
 					>
 						{t("nav.pricing")}
 					</a>
 					<Link
 						href="/pyscn-bot/contact"
-						className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block text-sm"
+						className="text-[var(--text-secondary)] hover:text-[var(--brand-blue)] transition-colors hidden md:block font-mono text-xs uppercase tracking-[0.15em]"
 					>
 						{t("nav.contact")}
 					</Link>
@@ -57,7 +57,7 @@ export default function Navigation({ isLoggedIn }: NavigationProps) {
 					{isLoggedIn ? (
 						<Link
 							href="/pyscn-bot/account"
-							className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-bot-primary-500 to-bot-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-bot-primary-600 hover:to-bot-primary-700 transition-all shadow-md shadow-bot-primary-500/25"
+							className="hidden sm:flex items-center gap-1.5 border border-[var(--brand-blue)] bg-[var(--brand-blue)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--brand-blue-hover)] transition-colors"
 						>
 							<svg
 								className="w-4 h-4"
@@ -78,7 +78,7 @@ export default function Navigation({ isLoggedIn }: NavigationProps) {
 					) : (
 						<a
 							href={mypageHref}
-							className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-bot-primary-500 to-bot-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-bot-primary-600 hover:to-bot-primary-700 transition-all shadow-md shadow-bot-primary-500/25"
+							className="hidden sm:flex items-center gap-1.5 border border-[var(--brand-blue)] bg-[var(--brand-blue)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--brand-blue-hover)] transition-colors"
 						>
 							<svg
 								className="w-4 h-4"
