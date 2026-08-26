@@ -48,9 +48,6 @@ function SectionRule() {
 export default async function PyscnBotLandingPage() {
 	const t = await getTranslations();
 	const isLoggedIn = await isPyscnBotLoggedIn();
-	const ctaHref = isLoggedIn
-		? "/pyscn-bot/account"
-		: "/pyscn-bot/api/auth?plan=free";
 
 	return (
 		<>
@@ -371,12 +368,21 @@ export default async function PyscnBotLandingPage() {
 									</li>
 								))}
 							</ul>
-							<Link
-								href={ctaHref}
-								className="block border border-[var(--border-light)] bg-[var(--bg-card)] px-6 py-3 text-center font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)]"
-							>
-								{isLoggedIn ? t("nav.mypage") : t("pricing.free.cta")}
-							</Link>
+							{isLoggedIn ? (
+								<Link
+									href="/pyscn-bot/account"
+									className="block border border-[var(--border-light)] bg-[var(--bg-card)] px-6 py-3 text-center font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)]"
+								>
+									{t("nav.mypage")}
+								</Link>
+							) : (
+								<a
+									href="/pyscn-bot/api/auth?plan=free"
+									className="block border border-[var(--border-light)] bg-[var(--bg-card)] px-6 py-3 text-center font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)]"
+								>
+									{t("pricing.free.cta")}
+								</a>
+							)}
 						</div>
 
 						{/* Pro */}
@@ -451,12 +457,21 @@ export default async function PyscnBotLandingPage() {
 						<p className="mb-8 max-w-2xl text-[var(--text-secondary)]">
 							{t("cta.description")}
 						</p>
-						<Link
-							href={ctaHref}
-							className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
-						>
-							{isLoggedIn ? t("nav.mypage") : `${t("cta.button")} →`}
-						</Link>
+						{isLoggedIn ? (
+							<Link
+								href="/pyscn-bot/account"
+								className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
+							>
+								{t("nav.mypage")}
+							</Link>
+						) : (
+							<a
+								href="/pyscn-bot/api/auth?plan=free"
+								className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
+							>
+								{t("cta.button")} →
+							</a>
+						)}
 					</div>
 				</div>
 			</section>
