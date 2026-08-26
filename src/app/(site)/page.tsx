@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CommandBlock from "@/components/CommandBlock";
+import Readout from "@/components/Readout";
 import { LINKS } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -10,27 +11,27 @@ export const metadata: Metadata = {
 
 const checks = [
 	{
-		icon: "🧹",
+		id: "DEAD",
 		title: "Dead code",
 		body: "Unreachable code you can safely delete, found by walking the control flow graph rather than guessing.",
 	},
 	{
-		icon: "📋",
+		id: "DUP",
 		title: "Duplicate code",
 		body: "Copy-pasted and structurally similar code worth merging — Type 1-4 clone detection via tree edit distance.",
 	},
 	{
-		icon: "🌀",
+		id: "CC",
 		title: "Complexity",
 		body: "Functions that are hard to read and hard to test, ranked by cyclomatic complexity so you know where to start.",
 	},
 	{
-		icon: "🏗️",
+		id: "DEP",
 		title: "Dependencies",
 		body: "Circular imports and unstable module dependencies, plus the module communities your codebase actually forms.",
 	},
 	{
-		icon: "🧩",
+		id: "CBO",
 		title: "Class design",
 		body: "Classes that do too much or depend on too much, measured with CBO coupling and LCOM cohesion.",
 	},
@@ -118,9 +119,41 @@ const SOFTWARE_JSON_LD = JSON.stringify({
 	offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 });
 
+function SectionHead({
+	id,
+	eyebrow,
+	title,
+	lede,
+}: {
+	id: string;
+	eyebrow: string;
+	title: string;
+	lede?: string;
+}) {
+	return (
+		<>
+			<div className="border-t border-[var(--border-light)]">
+				<div className="ruler-ticks" aria-hidden="true" />
+			</div>
+			<p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
+				{eyebrow}
+			</p>
+			<h2
+				id={id}
+				className="type-display mt-3 mb-3 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl"
+			>
+				{title}
+			</h2>
+			{lede && (
+				<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">{lede}</p>
+			)}
+		</>
+	);
+}
+
 export default function Home() {
 	return (
-		<main className="relative flex min-h-screen flex-col items-center overflow-hidden">
+		<main className="relative flex min-h-screen flex-col items-center">
 			<script
 				type="application/ld+json"
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: structured data
@@ -134,63 +167,61 @@ export default function Home() {
 
 			<section
 				id="top"
-				className="relative z-10 w-full max-w-6xl px-4 pt-12 pb-8 sm:px-6 sm:pt-20 sm:pb-14"
+				className="relative z-10 w-full max-w-6xl px-4 pt-14 pb-16 sm:px-6 sm:pt-24 sm:pb-20"
 			>
-				<div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 ease-out">
-					<p className="mb-4 inline-flex rounded-md border border-[var(--brand-blue-light)] bg-[var(--brand-blue-light)] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--brand-blue)]">
-						Open source · Go + tree-sitter
-					</p>
-					<h1 className="mb-4 text-5xl font-black tracking-tight text-[var(--text-primary)] sm:mb-6 sm:text-7xl lg:text-8xl">
-						<span>poly</span>
-						<span className="text-[var(--brand-blue)]">scan</span>
-					</h1>
-					<p className="mb-4 max-w-2xl text-lg font-semibold leading-relaxed text-[var(--text-primary)] sm:text-2xl">
-						Code quality analyzers for AI agents.
-					</p>
-					<p className="mb-8 max-w-2xl leading-relaxed text-[var(--text-secondary)]">
-						Building with Claude, Cursor, or Codex? Your agent writes code
-						faster than anyone can review it. polyscan runs structural analysis
-						over the whole codebase — one command scores it and shows what to
-						fix first.
-					</p>
+				<div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+					<div>
+						<h1 className="type-display mb-5 text-5xl font-bold text-[var(--text-primary)] sm:text-6xl lg:text-7xl">
+							Code quality,
+							<br />
+							<span className="text-[var(--brand-blue)]">measured.</span>
+						</h1>
+						<p className="mb-4 max-w-2xl text-lg font-semibold leading-relaxed text-[var(--text-primary)] sm:text-xl">
+							Structural analyzers for the age of AI-written code.
+						</p>
+						<p className="mb-8 max-w-2xl leading-relaxed text-[var(--text-secondary)]">
+							Building with Claude, Cursor, or Codex? Your agent writes code
+							faster than anyone can review it. polyscan runs structural
+							analysis over the whole codebase — one command scores it and shows
+							what to fix first.
+						</p>
 
-					<div className="grid max-w-3xl gap-4 sm:grid-cols-2">
-						<CommandBlock label="Python" command="uvx pyscn@latest analyze ." />
-						<CommandBlock
-							label="JavaScript / TypeScript"
-							command="npx jscan analyze src/"
-						/>
+						<div className="grid max-w-3xl gap-4">
+							<CommandBlock
+								label="Python"
+								command="uvx pyscn@latest analyze ."
+							/>
+							<CommandBlock
+								label="JavaScript / TypeScript"
+								command="npx jscan analyze src/"
+							/>
+						</div>
+						<p className="mt-3 font-mono text-xs text-[var(--text-muted)]">
+							No installation, no sign-up, no code leaves your machine.
+						</p>
 					</div>
-					<p className="mt-3 text-sm text-[var(--text-muted)]">
-						No installation, no sign-up, no code leaves your machine.
-					</p>
+
+					<Readout />
 				</div>
 			</section>
 
 			<div className="relative z-10 w-full max-w-6xl px-4 pb-20 sm:px-6">
 				<section
 					aria-labelledby="what-you-get-title"
-					className="scroll-mt-24 border-t border-[var(--border-subtle)] pt-16"
+					className="scroll-mt-24"
 					id="what-you-get"
 				>
-					<h2
+					<SectionHead
 						id="what-you-get-title"
-						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
-					>
-						What you get
-					</h2>
-					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						Every analyzer scores your codebase from 0-100 with an A-F grade and
-						generates an HTML report, looking at your code from five angles.
-					</p>
-					<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						eyebrow="Readings"
+						title="What you get"
+						lede="Every analyzer scores your codebase from 0-100 with an A-F grade and generates an HTML report, looking at your code from five angles."
+					/>
+					<div className="grid gap-px border border-[var(--border-light)] bg-[var(--border-light)] sm:grid-cols-2 lg:grid-cols-3">
 						{checks.map((c) => (
-							<article
-								key={c.title}
-								className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm"
-							>
-								<div className="mb-2 text-2xl" aria-hidden="true">
-									{c.icon}
+							<article key={c.title} className="bg-[var(--bg-card)] p-5">
+								<div className="mb-3 inline-flex border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide text-[var(--text-label)]">
+									{c.id}
 								</div>
 								<h3 className="mb-1 text-lg font-semibold text-[var(--text-primary)]">
 									{c.title}
@@ -200,6 +231,10 @@ export default function Home() {
 								</p>
 							</article>
 						))}
+						<div
+							aria-hidden="true"
+							className="blank-plate hidden bg-[var(--bg-card)] sm:block"
+						/>
 					</div>
 				</section>
 
@@ -208,38 +243,33 @@ export default function Home() {
 					className="mt-20 scroll-mt-24"
 					id="analyzers"
 				>
-					<h2
+					<SectionHead
 						id="analyzers-title"
-						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
-					>
-						One engine, one analyzer per language
-					</h2>
-					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						The analysis algorithms live in a shared, language-agnostic Go
-						module. Each analyzer only implements parsing and classification, so
-						Python and TypeScript are graded by the same rules.
-					</p>
+						eyebrow="Instruments"
+						title="One engine, one analyzer per language"
+						lede="The analysis algorithms live in a shared, language-agnostic Go module. Each analyzer only implements parsing and classification, so Python and TypeScript are graded by the same rules."
+					/>
 					<div className="grid gap-4 lg:grid-cols-3">
 						{analyzers.map((a) => (
 							<article
 								key={a.name}
-								className="flex flex-col rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm"
+								className="flex flex-col border border-[var(--border-light)] bg-[var(--bg-card)] p-5"
 							>
-								<div className="mb-1 flex items-baseline gap-2">
-									<h3 className="text-xl font-bold text-[var(--text-primary)]">
+								<div className="mb-1 flex items-baseline justify-between gap-2">
+									<h3 className="font-mono text-xl font-bold text-[var(--text-primary)]">
 										{a.name}
 									</h3>
-									<span className="text-xs font-medium text-[var(--text-muted)]">
+									<span className="font-mono text-[11px] uppercase tracking-wide text-[var(--text-muted)]">
 										{a.language}
 									</span>
 								</div>
 								<p className="mb-4 flex-1 text-sm leading-relaxed text-[var(--text-light)]">
 									{a.body}
 								</p>
-								<div className="mb-4 overflow-x-auto rounded border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-3 py-2 font-mono text-xs text-[var(--text-primary)]">
+								<div className="mb-4 overflow-x-auto border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-3 py-2 font-mono text-xs text-[var(--text-primary)]">
 									{a.command}
 								</div>
-								<ul className="flex flex-wrap gap-3 text-sm">
+								<ul className="flex flex-wrap gap-3 font-mono text-sm">
 									{a.links.map((l) => (
 										<li key={l.href}>
 											<a
@@ -256,7 +286,7 @@ export default function Home() {
 							</article>
 						))}
 					</div>
-					<p className="mt-6 text-sm text-[var(--text-muted)]">
+					<p className="mt-6 font-mono text-xs text-[var(--text-muted)]">
 						C++, Go, and Rust analyzers are planned.
 					</p>
 				</section>
@@ -266,18 +296,12 @@ export default function Home() {
 					className="mt-20 scroll-mt-24"
 					id="agents"
 				>
-					<h2
+					<SectionHead
 						id="agents-title"
-						className="mb-3 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
-					>
-						Built for coding agents
-					</h2>
-					<p className="mb-10 max-w-3xl text-[var(--text-secondary)]">
-						The analyzers ship Agent Skills that teach an AI agent when and how
-						to run each analysis — health checks, refactoring, architecture
-						review, and CI-friendly reports. They work with Claude Code, Cursor,
-						Codex, Gemini CLI, and others.
-					</p>
+						eyebrow="Agent skills"
+						title="Built for coding agents"
+						lede="The analyzers ship Agent Skills that teach an AI agent when and how to run each analysis — health checks, refactoring, architecture review, and CI-friendly reports. They work with Claude Code, Cursor, Codex, Gemini CLI, and others."
+					/>
 					<div className="grid gap-6 lg:grid-cols-2">
 						<div className="space-y-4">
 							<CommandBlock
@@ -293,15 +317,15 @@ export default function Home() {
 								command="claude plugin marketplace add ludo-technologies/polyscan"
 							/>
 						</div>
-						<div className="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm">
-							<h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">
+						<div className="border border-[var(--border-light)] bg-[var(--bg-card)] p-5">
+							<h3 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
 								Then just ask
 							</h3>
 							<ul className="space-y-3">
 								{agentSteps.map((s) => (
 									<li
 										key={s}
-										className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-4 py-3 text-sm text-[var(--text-light)]"
+										className="border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-4 py-3 text-sm text-[var(--text-light)]"
 									>
 										&ldquo;{s}&rdquo;
 									</li>
@@ -313,15 +337,15 @@ export default function Home() {
 
 				<section
 					aria-labelledby="bot-title"
-					className="mt-20 scroll-mt-24 rounded-lg border border-[var(--brand-blue)] bg-[var(--brand-blue-light)]/40 p-6 sm:p-8"
+					className="mt-20 scroll-mt-24 border border-[var(--border-light)] border-t-2 border-t-[var(--brand-blue)] bg-[var(--bg-card)] p-6 sm:p-8"
 					id="bot"
 				>
-					<p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand-blue)]">
-						Also from polyscan
+					<p className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--brand-blue)]">
+						Continuous monitoring
 					</p>
 					<h2
 						id="bot-title"
-						className="mb-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+						className="type-display mb-3 text-2xl font-bold text-[var(--text-primary)] sm:text-3xl"
 					>
 						polyscan Bot — code review that reads the architecture
 					</h2>
@@ -335,7 +359,7 @@ export default function Home() {
 					<div className="flex flex-wrap gap-3">
 						<a
 							href={LINKS.pyscnBot}
-							className="inline-flex rounded-md border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
+							className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
 						>
 							Install polyscan Bot →
 						</a>
@@ -343,7 +367,7 @@ export default function Home() {
 							href={LINKS.pyscnBotRepo}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex rounded-md border border-[var(--brand-blue)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-blue)] transition-colors hover:bg-white/60"
+							className="inline-flex border border-[var(--brand-blue)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-blue)] transition-colors hover:bg-[var(--brand-blue-light)]/40"
 						>
 							Source on GitHub
 						</a>
@@ -355,23 +379,24 @@ export default function Home() {
 					className="mt-20 scroll-mt-24"
 					id="faq"
 				>
-					<h2
+					<SectionHead
 						id="faq-title"
-						className="mb-10 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl"
-					>
-						Frequently asked questions
-					</h2>
-					<div className="space-y-3">
+						eyebrow="FAQ"
+						title="Frequently asked questions"
+					/>
+					<div className="border border-[var(--border-light)] bg-[var(--bg-card)]">
 						{faqs.map(({ q, a }) => (
 							<details
 								key={q}
-								className="group rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-5 shadow-sm open:bg-[var(--bg-subtle-hover)]"
+								className="group border-b border-[var(--border-subtle)] p-5 last:border-b-0 open:bg-[var(--bg-subtle)]"
 							>
 								<summary className="cursor-pointer list-none text-base font-semibold text-[var(--text-primary)]">
-									<span className="mr-2 text-[var(--brand-blue)]">Q.</span>
+									<span className="mr-3 font-mono text-sm text-[var(--brand-blue)]">
+										Q
+									</span>
 									{q}
 								</summary>
-								<p className="mt-3 text-sm leading-relaxed text-[var(--text-light)]">
+								<p className="mt-3 pl-6 text-sm leading-relaxed text-[var(--text-light)]">
 									{a}
 								</p>
 							</details>
@@ -379,17 +404,24 @@ export default function Home() {
 					</div>
 				</section>
 
-				<section className="mt-24 rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-8 text-center shadow-sm">
-					<h2 className="mb-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
-						Score your codebase in one command
-					</h2>
-					<p className="mx-auto mb-6 max-w-xl text-[var(--text-secondary)]">
-						Run it on the repository you are working in right now — it takes
-						seconds and installs nothing.
-					</p>
-					<div className="mx-auto grid max-w-2xl gap-3 text-left sm:grid-cols-2">
-						<CommandBlock command="uvx pyscn@latest analyze ." />
-						<CommandBlock command="npx jscan analyze src/" />
+				<section className="mt-24 border border-[var(--border-light)] bg-[var(--bg-card)] p-8">
+					<div className="border-b border-[var(--border-subtle)] pb-4">
+						<p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
+							Run it now
+						</p>
+					</div>
+					<div className="pt-6">
+						<h2 className="type-display mb-3 text-2xl font-bold text-[var(--text-primary)] sm:text-3xl">
+							Score your codebase in one command
+						</h2>
+						<p className="mb-6 max-w-xl text-[var(--text-secondary)]">
+							Run it on the repository you are working in right now — it takes
+							seconds and installs nothing.
+						</p>
+						<div className="grid max-w-2xl gap-3 sm:grid-cols-2">
+							<CommandBlock command="uvx pyscn@latest analyze ." />
+							<CommandBlock command="npx jscan analyze src/" />
+						</div>
 					</div>
 				</section>
 			</div>

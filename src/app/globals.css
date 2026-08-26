@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-	--font-sans: var(--font-jakarta);
+	--font-sans: var(--font-archivo);
 	--font-mono: var(--font-jetbrains);
 }
 
@@ -34,12 +34,15 @@
 }
 
 :root {
+	/* Instrument palette: graph paper, ink, one needle color, two readings. */
+
 	/* Backgrounds */
-	--bg-body: #f6f8fb;
+	--bg-body: #fafbfc;
 	--bg-card: #ffffff;
-	--bg-subtle: #eef4fb;
-	--bg-subtle-hover: #e3edf8;
+	--bg-subtle: #f2f5f8;
+	--bg-subtle-hover: #eaeef3;
 	--bg-ink: #0b1220;
+	--grid-line: #edf1f5;
 
 	/* Brand */
 	--brand-blue: #0f62fe;
@@ -48,34 +51,76 @@
 	--brand-blue-active: #08398f;
 	--brand-green: #0f766e;
 
+	/* Readings */
+	--reading-over: #d64533;
+	--reading-ok: #0e7a5f;
+
 	/* Text */
-	--text-primary: #101828;
-	--text-secondary: #475467;
-	--text-muted: #667085;
-	--text-label: #344054;
+	--text-primary: #0c1220;
+	--text-secondary: #4e5a68;
+	--text-muted: #7a8694;
+	--text-label: #37414d;
 	--text-dimmed: #98a2b3;
-	--text-subtle: #667085;
-	--text-light: #344054;
+	--text-subtle: #7a8694;
+	--text-light: #37414d;
 
 	/* Borders */
-	--border-subtle: #e4e7ec;
-	--border-light: #d0d5dd;
+	--border-subtle: #e5e9ee;
+	--border-light: #c9d1db;
 
 	/* Semantic */
 	--color-error: #b42318;
 }
 
 body {
-	background: linear-gradient(
-		180deg,
-		#ffffff 0%,
-		var(--bg-body) 42%,
-		#ffffff 100%
-	);
+	background-color: var(--bg-body);
+	background-image:
+		linear-gradient(var(--grid-line) 1px, transparent 1px),
+		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+	background-size: 32px 32px;
 	color: var(--text-primary);
 	font-family: var(--font-sans), sans-serif;
 	overflow-x: hidden;
 	position: relative;
+}
+
+/* Display type: slightly extended grotesque, silkscreen-tight. */
+.type-display {
+	font-stretch: 115%;
+	letter-spacing: -0.02em;
+}
+
+/* Ruler graduations under a section rule. */
+.ruler-ticks {
+	height: 6px;
+	background-image: repeating-linear-gradient(
+		90deg,
+		var(--border-light) 0,
+		var(--border-light) 1px,
+		transparent 1px,
+		transparent 24px
+	);
+}
+
+/* Readout gauge fill: animates once on load. */
+.gauge-fill {
+	transform-origin: left center;
+	animation: gauge-fill 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes gauge-fill {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gauge-fill {
+		animation: none;
+	}
 }
 
 /* Article body: bind the typography plugin to the site's design tokens so posts
@@ -128,4 +173,36 @@ body {
 .post-body :where(code):not(pre code)::before,
 .post-body :where(code):not(pre code)::after {
 	content: none;
+}
+
+/* Unused panel plate: diagonal hatching for intentionally blank grid cells. */
+.blank-plate {
+	background-image: repeating-linear-gradient(
+		-45deg,
+		transparent 0,
+		transparent 6px,
+		var(--border-subtle) 6px,
+		var(--border-subtle) 7px
+	);
+}
+
+/* Vertical gauge fill for bar charts (weekly trend). */
+.gauge-fill-y {
+	transform-origin: center bottom;
+	animation: gauge-fill-y 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes gauge-fill-y {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		transform: scaleY(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gauge-fill-y {
+		animation: none;
+	}
 }
