@@ -244,7 +244,7 @@ export default async function PyscnBotLandingPage() {
 							</div>
 							<div className="bg-[var(--bg-ink)] p-6 sm:p-8">
 								<p className="mb-4 font-mono text-xs text-white/50">
-									.github/pyscn-bot.yml
+									.github/polyscan.yml
 								</p>
 								<pre className="overflow-x-auto font-mono text-sm leading-relaxed text-gray-300">
 									<code>

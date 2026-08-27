@@ -6,7 +6,7 @@ import LanguageSwitcher from "@/components/pyscn-bot/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
 import { pyscnBotAlternates } from "@/lib/pyscn-bot-metadata";
 
-const GITHUB_APP_INSTALL_URL = "https://github.com/apps/pyscn-bot";
+const GITHUB_APP_INSTALL_URL = "https://github.com/apps/polyscan";
 
 export async function generateMetadata({
 	params,
@@ -121,7 +121,7 @@ export default async function CheckoutSuccessPage() {
 											<div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
 											<div className="w-2.5 h-2.5 rounded-full bg-green-500" />
 											<span className="text-gray-400 text-xs ml-2">
-												.github/pyscn-bot.yml
+												.github/polyscan.yml
 											</span>
 										</div>
 										<pre className="text-gray-300 leading-relaxed text-xs">

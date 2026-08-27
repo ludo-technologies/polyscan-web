@@ -13,7 +13,7 @@ const richCodeStrong = {
 	),
 };
 
-const GITHUB_APP_INSTALL_URL = "https://github.com/apps/pyscn-bot";
+const GITHUB_APP_INSTALL_URL = "https://github.com/apps/polyscan";
 
 export async function generateMetadata({
 	params,
