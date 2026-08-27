@@ -41,7 +41,7 @@ const analyzers = [
 	{
 		name: "pyscn",
 		language: "Python",
-		body: "The original analyzer. Ships a CLI, an MCP server, and Agent Skills, and powers polyscan Bot.",
+		body: "The original analyzer. Ships a CLI, an MCP server, and Agent Skills, and powers Polyscan.",
 		command: "uvx pyscn@latest analyze .",
 		links: [
 			{ label: "GitHub", href: LINKS.pyscn },
@@ -76,12 +76,12 @@ const agentSteps = [
 
 const faqs = [
 	{
-		q: "What does polyscan actually measure?",
+		q: "What does Polyscan actually measure?",
 		a: "Structure, not style. Dead code, duplicate code, cyclomatic complexity, module dependency cycles, and class coupling and cohesion — the things that make a codebase expensive to change. It is not a linter or a formatter, and it complements rather than replaces them.",
 	},
 	{
 		q: "Why does this matter for AI-generated code?",
-		a: "Coding agents produce working code quickly, but they tend to duplicate logic and grow functions rather than refactor. Those problems compound silently. polyscan gives you and your agent a measurement to work against, so cleanup becomes a concrete task instead of a vague feeling.",
+		a: "Coding agents produce working code quickly, but they tend to duplicate logic and grow functions rather than refactor. Those problems compound silently. Polyscan gives you and your agent a measurement to work against, so cleanup becomes a concrete task instead of a vague feeling.",
 	},
 	{
 		q: "Do I need to install anything?",
@@ -181,7 +181,7 @@ export default function Home() {
 						</p>
 						<p className="mb-8 max-w-2xl leading-relaxed text-[var(--text-secondary)]">
 							Building with Claude, Cursor, or Codex? Your agent writes code
-							faster than anyone can review it. polyscan runs structural
+							faster than anyone can review it. Polyscan runs structural
 							analysis over the whole codebase — one command scores it and shows
 							what to fix first.
 						</p>
@@ -347,7 +347,7 @@ export default function Home() {
 						id="bot-title"
 						className="type-display mb-3 text-2xl font-bold text-[var(--text-primary)] sm:text-3xl"
 					>
-						polyscan Bot — code review that reads the architecture
+						Polyscan — code review that reads the architecture
 					</h2>
 					<p className="mb-6 max-w-3xl text-[var(--text-secondary)]">
 						A GitHub App that reviews every pull request with pyscn and jscan in
@@ -361,7 +361,7 @@ export default function Home() {
 							href={LINKS.pyscnBot}
 							className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
 						>
-							Install polyscan Bot →
+							Install Polyscan →
 						</a>
 						<a
 							href={LINKS.pyscnBotRepo}

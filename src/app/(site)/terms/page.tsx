@@ -5,7 +5,7 @@ import { LINKS } from "@/lib/links";
 export const metadata: Metadata = {
 	title: "Terms of Service — polyscan",
 	description:
-		"Terms for using the polyscan website. The analyzers themselves are open source and governed by the MIT License in their repositories.",
+		"Terms for using the Polyscan website. The analyzers themselves are open source and governed by the MIT License in their repositories.",
 	alternates: { canonical: "/terms" },
 };
 
@@ -42,7 +42,7 @@ export default function TermsPage() {
 						2. What the Site is
 					</h2>
 					<p>
-						The Site is an informational website about polyscan and its
+						The Site is an informational website about Polyscan and its
 						analyzers. It documents what the software does, how to install it,
 						and how to use it with AI coding agents. It does not process your
 						code: the analyzers run locally on your own machine or CI runner.
@@ -54,7 +54,7 @@ export default function TermsPage() {
 						3. The software is licensed separately
 					</h2>
 					<p>
-						These Terms cover the Site only. The polyscan analyzers, the shared
+						These Terms cover the Site only. The Polyscan analyzers, the shared
 						core module, and the Agent Skills are open source and are licensed
 						under the MIT License found in their respective repositories. Your
 						rights to use, modify, and redistribute that software come from

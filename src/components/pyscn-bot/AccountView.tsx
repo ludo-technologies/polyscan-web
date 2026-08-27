@@ -75,7 +75,7 @@ export default function AccountView() {
 					href="/pyscn-bot"
 					className="text-cyan-400 hover:text-cyan-300 mb-8 inline-block"
 				>
-					&larr; Back to polyscan Bot
+					&larr; Back to Polyscan
 				</a>
 
 				<h1 className="text-3xl font-bold mb-8">{t("nav.mypage")}</h1>

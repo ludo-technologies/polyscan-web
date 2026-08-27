@@ -6,7 +6,7 @@
 	--font-mono: var(--font-jetbrains);
 }
 
-/* polyscan Bot section (/pyscn-bot) tokens. Prefixed with "bot-" so they
+/* Polyscan section (/pyscn-bot) tokens. Prefixed with "bot-" so they
    don't collide with the polyscan tokens above — the rest of the site never
    uses these. Primary follows --brand-blue, accent follows --brand-green. */
 @theme {

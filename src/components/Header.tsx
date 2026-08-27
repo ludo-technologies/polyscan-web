@@ -14,7 +14,7 @@ export default function Header() {
 			<div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
 				<Link href="/" className="type-display inline-flex items-baseline">
 					<span className="text-lg font-bold text-[var(--text-primary)]">
-						poly
+						Poly
 					</span>
 					<span className="text-lg font-bold text-[var(--brand-blue)]">
 						scan

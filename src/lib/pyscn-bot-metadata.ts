@@ -9,7 +9,7 @@ function localizedPath(locale: string, path: string): string {
 /**
  * Builds `alternates.canonical` (self-referencing, per current locale) and
  * `alternates.languages` (hreflang, one entry per supported locale plus
- * x-default) for a polyscan Bot page. `path` is the unprefixed pathname, e.g.
+ * x-default) for a Polyscan page. `path` is the unprefixed pathname, e.g.
  * "/pyscn-bot" or "/pyscn-bot/how-it-works".
  */
 export function pyscnBotAlternates(locale: string, path: string) {
