@@ -13,7 +13,7 @@ const richCodeStrong = {
 	),
 };
 
-const GITHUB_APP_INSTALL_URL = "https://github.com/apps/polyscan";
+const GITHUB_APP_INSTALL_URL = "https://github.com/apps/polyscan-app";
 
 export async function generateMetadata({
 	params,

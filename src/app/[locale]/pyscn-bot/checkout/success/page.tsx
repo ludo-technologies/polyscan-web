@@ -6,7 +6,7 @@ import LanguageSwitcher from "@/components/pyscn-bot/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
 import { pyscnBotAlternates } from "@/lib/pyscn-bot-metadata";
 
-const GITHUB_APP_INSTALL_URL = "https://github.com/apps/polyscan";
+const GITHUB_APP_INSTALL_URL = "https://github.com/apps/polyscan-app";
 
 export async function generateMetadata({
 	params,
