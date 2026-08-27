@@ -20,7 +20,7 @@ export async function generateMetadata({
 		"/pyscn-bot/checkout/success",
 	);
 	return {
-		title: `${t("checkout.success.title")} | polyscan Bot`,
+		title: `${t("checkout.success.title")} | Polyscan`,
 		description: t("checkout.success.subtitle"),
 		alternates: { canonical, languages },
 		robots: { index: false, follow: false },

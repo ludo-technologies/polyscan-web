@@ -17,8 +17,8 @@ export async function generateMetadata({
 		"/pyscn-bot/privacy",
 	);
 	return {
-		title: `${t("footer.privacy")} - polyscan Bot`,
-		description: "Privacy Policy for polyscan Bot",
+		title: `${t("footer.privacy")} - Polyscan`,
+		description: "Privacy Policy for Polyscan",
 		alternates: { canonical, languages },
 	};
 }
@@ -28,7 +28,7 @@ function PrivacyJa() {
 		<div>
 			<h2>1. はじめに</h2>
 			<p>
-				polyscan Bot（以下「本サービス」）は、Ludo
+				Polyscan（以下「本サービス」）は、Ludo
 				Technologies（以下「当社」）が提供するGitHub
 				App形式のコードレビューサービスです。本プライバシーポリシーは、本サービスを通じて収集する情報とその取り扱いについて説明します。
 			</p>
@@ -185,7 +185,7 @@ function PrivacyZh() {
 		<div>
 			<h2>1. 简介</h2>
 			<p>
-				polyscan Bot（以下简称"本服务"）是由 Ludo
+				Polyscan（以下简称"本服务"）是由 Ludo
 				Technologies（以下简称"我们"）提供的 GitHub App
 				形式的代码审查服务。本隐私政策说明我们通过本服务收集的信息及其处理方式。
 			</p>
@@ -337,9 +337,9 @@ function PrivacyEn() {
 		<div>
 			<h2>1. Introduction</h2>
 			<p>
-				polyscan Bot (the &quot;Service&quot;) is a GitHub App code review
-				service provided by Ludo Technologies (&quot;we&quot;, &quot;us&quot;,
-				or &quot;our&quot;). This Privacy Policy explains what information we
+				Polyscan (the &quot;Service&quot;) is a GitHub App code review service
+				provided by Ludo Technologies (&quot;we&quot;, &quot;us&quot;, or
+				&quot;our&quot;). This Privacy Policy explains what information we
 				collect through the Service and how we handle it.
 			</p>
 

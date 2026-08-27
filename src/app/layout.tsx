@@ -22,7 +22,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
 	metadataBase: new URL(getSiteUrl()),
-	title: "polyscan — Code quality analyzers for AI agents",
+	title: "Polyscan — Code quality analyzers for AI agents",
 	description:
 		"Open source code quality analyzers for Python and JavaScript/TypeScript. One command scores your codebase and shows what to fix first: dead code, duplicate code, complexity, dependency cycles, and class coupling.",
 	keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 		"AI coding agent tools",
 	],
 	openGraph: {
-		title: "polyscan — Code quality analyzers for AI agents",
+		title: "Polyscan — Code quality analyzers for AI agents",
 		description:
 			"One command scores your whole codebase and shows what to fix first. pyscn for Python, jscan for JavaScript/TypeScript — open source, built with Go and tree-sitter.",
 		type: "website",

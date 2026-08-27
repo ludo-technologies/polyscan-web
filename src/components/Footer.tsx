@@ -5,15 +5,15 @@ const productLinks = [
 	{ label: "What you get", href: "/#what-you-get" },
 	{ label: "Analyzers", href: "/#analyzers" },
 	{ label: "AI agents", href: "/#agents" },
-	{ label: "polyscan Bot", href: "/#bot" },
+	{ label: "Polyscan", href: "/#bot" },
 	{ label: "Blog", href: "/blog" },
 	{ label: "FAQ", href: "/#faq" },
 ];
 
 const resourceLinks = [
 	{ label: "Documentation", href: LINKS.docs },
-	{ label: "polyscan Bot", href: LINKS.pyscnBot },
-	{ label: "polyscan on GitHub", href: LINKS.monorepo },
+	{ label: "Polyscan", href: LINKS.pyscnBot },
+	{ label: "Polyscan on GitHub", href: LINKS.monorepo },
 	{ label: "pyscn on GitHub", href: LINKS.pyscn },
 	{ label: "Ludo Technologies", href: LINKS.org },
 ];

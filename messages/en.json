@@ -4,8 +4,8 @@
 			"backToHome": "Back to Home",
 			"description": "Your subscription is now active. Complete the setup below to start using all Pro features.",
 			"step1": {
-				"button": "Install polyscan Bot",
-				"description": "Grant polyscan Bot access to your repositories.",
+				"button": "Install Polyscan",
+				"description": "Grant Polyscan access to your repositories.",
 				"title": "Install GitHub App"
 			},
 			"step2": {
@@ -14,10 +14,10 @@
 				"title": "Configure Settings"
 			},
 			"step3": {
-				"description": "Create a pull request and polyscan Bot will automatically review.",
+				"description": "Create a pull request and Polyscan will automatically review.",
 				"title": "Start Reviewing"
 			},
-			"subtitle": "Thank you for subscribing to polyscan Bot Pro.",
+			"subtitle": "Thank you for subscribing to Polyscan Pro.",
 			"support": "Need help? Contact us at",
 			"title": "Payment Successful!"
 		}
@@ -49,10 +49,10 @@
 			"3": "Finds copy-pasted code and flags maintainability issues",
 			"4": "Weekly audits scan your <strong>entire codebase</strong>",
 			"5": "<strong>Language-specialized AI</strong> delivers high-precision reviews",
-			"_": "polyscan Bot"
+			"_": "Polyscan"
 		},
-		"subtitle": "polyscan Bot isn't just an LLM wrapper. It leverages powerful static analysis engines to provide deeper insights.",
-		"title": "What makes polyscan Bot different",
+		"subtitle": "Polyscan isn't just an LLM wrapper. It leverages powerful static analysis engines to provide deeper insights.",
+		"title": "What makes Polyscan different",
 		"traditional": {
 			"1": "Surface-level comments based only on diffs",
 			"2": "Can't measure code quality metrics",
@@ -73,7 +73,7 @@
 				"language": "Report language (default: en)",
 				"target": "Target directories (default: all)"
 			},
-			"description": "Customize polyscan Bot behavior with a simple YAML file. No complex setup required.",
+			"description": "Customize Polyscan behavior with a simple YAML file. No complex setup required.",
 			"option1": "Report language: en, ja, zh, ko, es, fr, de, pt",
 			"option2": "Target directories to analyze",
 			"option3": "Audit interval: daily (Pro), weekly, monthly",
@@ -94,7 +94,7 @@
 	},
 	"hero": {
 		"description": "Install it on your GitHub repository and it <strong>scores the whole codebase every week</strong>, filing the results as a GitHub Issue. Functions that grew too complex, copy-paste that keeps spreading, code nobody uses — you see exactly what to fix, in numbers.",
-		"freeNote": "polyscan Bot is currently in beta. Weekly code audits are free for all repositories.",
+		"freeNote": "Polyscan is currently in beta. Weekly code audits are free for all repositories.",
 		"title": "Your codebase is ",
 		"titleHighlight": "quietly decaying."
 	},
@@ -185,7 +185,7 @@
 				"p2": "Just like a human code reviewer, it reads code and digs deeper when something looks off.",
 				"title": "Why this approach?"
 			},
-			"p1": "Unlike simple LLM wrappers, polyscan Bot's AI agent <strong>thinks before acting</strong>. It examines results, decides what to investigate next, and calls the right tool—just like a human reviewer.",
+			"p1": "Unlike simple LLM wrappers, Polyscan's AI agent <strong>thinks before acting</strong>. It examines results, decides what to investigate next, and calls the right tool—just like a human reviewer.",
 			"subtitle": "Deciding which tool to use next based on results",
 			"title": "How the AI Agent Analyzes Code",
 			"tools": {
@@ -212,16 +212,16 @@
 				"title": "Static Analysis Tools"
 			}
 		},
-		"backToHome": "Back to polyscan Bot",
+		"backToHome": "Back to Polyscan",
 		"cta": {
 			"button": "Install Free",
-			"p1": "Install polyscan Bot and create a PR. See the difference in your first review.",
+			"p1": "Install Polyscan and create a PR. See the difference in your first review.",
 			"title": "Try It on Your Repository"
 		},
 		"example": {
 			"body": "<code>validate_and_process()</code> has cyclomatic complexity of <strong>18</strong> (threshold: 15). Complex functions are harder to test and more prone to bugs.",
 			"heading": "High Complexity Function",
-			"label": "polyscan Bot comment on your PR",
+			"label": "Polyscan comment on your PR",
 			"suggestion": "Split into <code>validate_schema()</code>, <code>validate_constraints()</code>, and <code>process_validated()</code>.",
 			"title": "Example Reviews"
 		},
@@ -255,7 +255,7 @@
 				"desc": "\"Complexity 18\" instead of \"looks complex\". Numbers you can act on",
 				"title": "Concrete metrics"
 			},
-			"p1": "polyscan Bot uses dedicated static analysis engines — <strong>pyscn</strong> for Python and <strong>jscan</strong> for JavaScript/TypeScript. They parse the AST to understand your code deeply—not just pattern matching. C++, Go, and Rust support are planned.",
+			"p1": "Polyscan uses dedicated static analysis engines — <strong>pyscn</strong> for Python and <strong>jscan</strong> for JavaScript/TypeScript. They parse the AST to understand your code deeply—not just pattern matching. C++, Go, and Rust support are planned.",
 			"title": "Built on dedicated analyzers per language"
 		},
 		"problem": {
@@ -274,7 +274,7 @@
 				"title": "Not Stored"
 			},
 			"item3": {
-				"desc": "polyscan Bot only requests permissions it needs: read code, write PR comments, create issues for audit reports.",
+				"desc": "Polyscan only requests permissions it needs: read code, write PR comments, create issues for audit reports.",
 				"title": "GitHub Permissions"
 			},
 			"link": "Read our full Privacy Policy",
@@ -282,11 +282,11 @@
 			"title": "Your Code is Safe"
 		},
 		"solution": {
-			"p1": "polyscan Bot doesn't wait for pull requests. It <strong>proactively scans your entire codebase</strong> on a schedule, finds architectural issues, and reports them before they become critical.",
-			"title": "polyscan Bot: Autonomous Code Maintenance"
+			"p1": "Polyscan doesn't wait for pull requests. It <strong>proactively scans your entire codebase</strong> on a schedule, finds architectural issues, and reports them before they become critical.",
+			"title": "Polyscan: Autonomous Code Maintenance"
 		},
 		"subtitle": "Static analysis meets AI agent. Accurate reviews you can trust.",
-		"title": "How polyscan Bot Works"
+		"title": "How Polyscan Works"
 	},
 	"trial": {
 		"badge": "14-Day Free Trial",

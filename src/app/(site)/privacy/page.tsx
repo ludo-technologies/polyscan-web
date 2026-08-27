@@ -5,7 +5,7 @@ import { LINKS } from "@/lib/links";
 export const metadata: Metadata = {
 	title: "Privacy Policy — polyscan",
 	description:
-		"How the polyscan website handles visitor information. The site is informational only: it has no accounts, and the analyzers themselves run entirely on your own machine.",
+		"How the Polyscan website handles visitor information. The site is informational only: it has no accounts, and the analyzers themselves run entirely on your own machine.",
 	alternates: { canonical: "/privacy" },
 };
 
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
 						This policy covers this website (&quot;the Site&quot;), operated by
 						Ludo Technologies Inc. (&quot;we&quot;, &quot;us&quot;), a company
 						headquartered in Kanagawa, Japan. The Site is informational: it
-						documents the polyscan open source analyzers and related projects.
+						documents the Polyscan open source analyzers and related projects.
 					</p>
 					<p className="mt-3">
 						There are no accounts and nothing to sign up for. The analyzers

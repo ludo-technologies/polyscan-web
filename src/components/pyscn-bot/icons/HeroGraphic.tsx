@@ -63,7 +63,7 @@ export default function HeroGraphic({ className }: { className?: string }) {
 				/>
 			</g>
 
-			{/* Center: polyscan Bot Processing */}
+			{/* Center: Polyscan Processing */}
 			<g transform="translate(350, 150)">
 				<path
 					d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z"

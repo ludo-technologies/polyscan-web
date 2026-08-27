@@ -5,7 +5,7 @@
 export const LINKS = {
 	monorepo: "https://github.com/ludo-technologies/polyscan",
 	pyscn: "https://github.com/ludo-technologies/pyscn",
-	/** polyscan Bot's landing page, hosted in this app since the ludo-landing migration. */
+	/** Polyscan's landing page, hosted in this app since the ludo-landing migration. */
 	pyscnBot: "/pyscn-bot",
 	pyscnBotRepo: "https://github.com/ludo-technologies/pyscn-bot",
 	jscan: "https://github.com/ludo-technologies/polyscan/tree/main/jscan",

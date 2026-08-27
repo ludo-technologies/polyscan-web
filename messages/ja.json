@@ -4,8 +4,8 @@
 			"backToHome": "ホームに戻る",
 			"description": "サブスクリプションが有効になりました。以下のセットアップを完了して、すべてのPro機能をご利用ください。",
 			"step1": {
-				"button": "polyscan Botをインストール",
-				"description": "polyscan Botにリポジトリへのアクセスを許可してください。",
+				"button": "Polyscanをインストール",
+				"description": "Polyscanにリポジトリへのアクセスを許可してください。",
 				"title": "GitHub Appをインストール"
 			},
 			"step2": {
@@ -14,10 +14,10 @@
 				"title": "設定をカスタマイズ"
 			},
 			"step3": {
-				"description": "プルリクエストを作成すると、polyscan Botが自動でレビューします。",
+				"description": "プルリクエストを作成すると、Polyscanが自動でレビューします。",
 				"title": "レビュー開始"
 			},
-			"subtitle": "polyscan Bot Pro をご購入いただきありがとうございます。",
+			"subtitle": "Polyscan Pro をご購入いただきありがとうございます。",
 			"support": "サポートが必要な場合はこちらへ",
 			"title": "お支払い完了！"
 		}
@@ -49,9 +49,9 @@
 			"3": "コピペされたコードを発見し、保守性の問題を指摘",
 			"4": "週次監査で<strong>コードベース全体</strong>をスキャン",
 			"5": "<strong>言語に特化したAI</strong>によって高精度のレビューを実現",
-			"_": "polyscan Bot"
+			"_": "Polyscan"
 		},
-		"subtitle": "polyscan Botは単なるLLMラッパーではありません。強力な静的解析エンジンを活用し、より深い洞察を提供します。",
+		"subtitle": "Polyscanは単なるLLMラッパーではありません。強力な静的解析エンジンを活用し、より深い洞察を提供します。",
 		"title": "従来のコードレビューBotとの違い",
 		"traditional": {
 			"1": "差分のみを見て表面的なコメント",
@@ -73,7 +73,7 @@
 				"language": "レポート言語 (デフォルト: en)",
 				"target": "対象ディレクトリ (デフォルト: 全体)"
 			},
-			"description": "シンプルなYAMLファイルでpolyscan Botの動作をカスタマイズ。複雑なセットアップは不要です。",
+			"description": "シンプルなYAMLファイルでPolyscanの動作をカスタマイズ。複雑なセットアップは不要です。",
 			"option1": "レポート言語: en, ja, zh, ko, es, fr, de, pt",
 			"option2": "解析対象ディレクトリ",
 			"option3": "監査間隔: daily (Pro), weekly, monthly",
@@ -94,7 +94,7 @@
 	},
 	"hero": {
 		"description": "GitHubにインストールすると、<strong>毎週リポジトリ全体を採点</strong>し、結果をGitHub Issueで報告します。複雑になりすぎた関数、増え続けるコピペ、使われていないコード — 直すべき場所が数値で分かります。",
-		"freeNote": "polyscan Bot は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
+		"freeNote": "Polyscan は現在ベータ版です。すべてのリポジトリで週次コード監査が無料でご利用いただけます。",
 		"title": "そのコード、",
 		"titleHighlight": "静かに劣化しています。"
 	},
@@ -185,7 +185,7 @@
 				"p2": "人間のレビュアーと同じように、コードを読みながら問題を深掘りしていきます。",
 				"title": "なぜこのやり方？"
 			},
-			"p1": "単純なLLMラッパーとは異なり、polyscan BotのAIエージェントは<strong>考えてから行動</strong>します。結果を見て、次に何を調べるべきか判断し、適切なツールを呼び出します。人間のレビュアーと同じです。",
+			"p1": "単純なLLMラッパーとは異なり、PolyscanのAIエージェントは<strong>考えてから行動</strong>します。結果を見て、次に何を調べるべきか判断し、適切なツールを呼び出します。人間のレビュアーと同じです。",
 			"subtitle": "結果を見ながら、次に使うツールを判断",
 			"title": "AIエージェントがコードを分析する流れ",
 			"tools": {
@@ -212,16 +212,16 @@
 				"title": "静的解析ツール"
 			}
 		},
-		"backToHome": "polyscan Bot に戻る",
+		"backToHome": "Polyscan に戻る",
 		"cta": {
 			"button": "無料でインストール",
-			"p1": "polyscan BotをインストールしてPRを作成。最初のレビューで違いを実感してください。",
+			"p1": "PolyscanをインストールしてPRを作成。最初のレビューで違いを実感してください。",
 			"title": "あなたのリポジトリで試してください"
 		},
 		"example": {
 			"body": "<code>validate_and_process()</code>の循環的複雑度は<strong>18</strong>です（閾値: 15）。複雑な関数はテストが困難で、バグが発生しやすくなります。",
 			"heading": "高複雑度の関数",
-			"label": "PRに投稿されるpolyscan Botのコメント",
+			"label": "PRに投稿されるPolyscanのコメント",
 			"suggestion": "<code>validate_schema()</code>、<code>validate_constraints()</code>、<code>process_validated()</code>に分割してください。",
 			"title": "レビュー例"
 		},
@@ -255,7 +255,7 @@
 				"desc": "「複雑そう」ではなく「複雑度18」。行動につながる数字",
 				"title": "具体的な数値"
 			},
-			"p1": "polyscan Botは言語ごとの専用静的解析エンジン — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。C++、Go、Rustにも対応予定です。",
+			"p1": "Polyscanは言語ごとの専用静的解析エンジン — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。C++、Go、Rustにも対応予定です。",
 			"title": "言語ごとの専用アナライザー"
 		},
 		"problem": {
@@ -274,7 +274,7 @@
 				"title": "保存しません"
 			},
 			"item3": {
-				"desc": "polyscan Botは必要な権限のみ要求します：コードの読み取り、PRコメントの書き込み、監査レポート用のIssue作成。",
+				"desc": "Polyscanは必要な権限のみ要求します：コードの読み取り、PRコメントの書き込み、監査レポート用のIssue作成。",
 				"title": "GitHub権限"
 			},
 			"link": "プライバシーポリシー全文を読む",
@@ -282,11 +282,11 @@
 			"title": "コードは安全です"
 		},
 		"solution": {
-			"p1": "polyscan Botはプルリクエストを待ちません。スケジュールに従って<strong>コードベース全体を能動的にスキャン</strong>し、アーキテクチャの問題を発見し、深刻化する前に報告します。",
-			"title": "polyscan Bot：自律的コードメンテナンス"
+			"p1": "Polyscanはプルリクエストを待ちません。スケジュールに従って<strong>コードベース全体を能動的にスキャン</strong>し、アーキテクチャの問題を発見し、深刻化する前に報告します。",
+			"title": "Polyscan：自律的コードメンテナンス"
 		},
 		"subtitle": "静的解析とAIエージェントによる、信頼できる正確なレビュー",
-		"title": "polyscan Bot の仕組み"
+		"title": "Polyscan の仕組み"
 	},
 	"trial": {
 		"badge": "14日間無料",

@@ -27,7 +27,7 @@ export async function generateMetadata({
 		"/pyscn-bot/how-it-works",
 	);
 	return {
-		title: `${t("tech.title")} - polyscan Bot`,
+		title: `${t("tech.title")} - Polyscan`,
 		description: t("tech.subtitle"),
 		alternates: { canonical, languages },
 	};
