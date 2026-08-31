@@ -20,8 +20,7 @@ The software it documents lives elsewhere:
 |---|---|
 | polyscan monorepo (`core`, `jscan`) | [ludo-technologies/polyscan](https://github.com/ludo-technologies/polyscan) |
 | pyscn (Python analyzer) | [ludo-technologies/pyscn](https://github.com/ludo-technologies/pyscn) |
-| pyscn-bot (GitHub App) | [ludo-technologies/pyscn-bot](https://github.com/ludo-technologies/pyscn-bot) |
-| Pyscn Bot landing + checkout ([pyscn.ludo-tech.org](https://pyscn.ludo-tech.org)) | [ludo-technologies/ludo-landing](https://github.com/ludo-technologies/ludo-landing) |
+| Polyscan App (GitHub App backend) | [ludo-technologies/polyscan-app](https://github.com/ludo-technologies/polyscan-app) |
 
 Reference documentation is published separately from `pyscn/website` (MkDocs) and served at [docs.codescan.dev](https://docs.codescan.dev/).
 
