@@ -1,10 +1,12 @@
 <div align="center">
 
-# [codescan.dev](https://codescan.dev)
+# Polyscan App
 
-### The website for [polyscan](https://github.com/ludo-technologies/polyscan)
+### Automated code audits and PR reviews for GitHub, grounded in static analysis
 
-Landing page, documentation entry point, and blog for the polyscan code quality analyzers.
+Polyscan scores your whole codebase every week and reviews every pull request, powered by the open-source analyzers [pyscn](https://github.com/ludo-technologies/pyscn) and [jscan](https://github.com/ludo-technologies/polyscan).
+
+**[Install the App →](https://github.com/apps/polyscan-app)** • **[Website](https://codescan.dev/pyscn-bot)** • **[Report an issue](../../issues)**
 
 </div>
 
@@ -12,17 +14,28 @@ Landing page, documentation entry point, and blog for the polyscan code quality 
 
 ## What this repository is
 
-This is the marketing and content site served at **[codescan.dev](https://codescan.dev)**. It is a static Next.js app — no database, no accounts, no API.
+The official home of **Polyscan App**: the [issue tracker](../../issues) for bug reports and feature requests about the App, and the source of the site served at [codescan.dev](https://codescan.dev) (a static Next.js app — no database, no accounts, no API).
 
-The software it documents lives elsewhere:
+The analysis engines are fully open source; the App's orchestration backend is closed:
 
 | Project | Repository |
 |---|---|
 | polyscan monorepo (`core`, `jscan`) | [ludo-technologies/polyscan](https://github.com/ludo-technologies/polyscan) |
 | pyscn (Python analyzer) | [ludo-technologies/pyscn](https://github.com/ludo-technologies/pyscn) |
-| Polyscan App (GitHub App backend) | [ludo-technologies/polyscan-app](https://github.com/ludo-technologies/polyscan-app) |
+| Polyscan App backend | `ludo-technologies/polyscan-backend` (private) |
 
-Reference documentation is published separately from `pyscn/website` (MkDocs) and served at [docs.codescan.dev](https://docs.codescan.dev/).
+## Configuring the App
+
+Add `.github/polyscan.yml` to a repository where the App is installed:
+
+```yaml
+language: en             # report language: en, ja, zh, ko, es, fr, de, pt
+target_directories:      # directories to analyze (default: all)
+  - src/
+audit_interval: weekly   # daily (Pro), weekly, or monthly
+```
+
+Reference documentation for the analyzers is published separately from `pyscn/website` (MkDocs) and served at [docs.codescan.dev](https://docs.codescan.dev/).
 
 > This repository previously hosted codescan.dev, a hosted security scanner built on Semgrep, Gitleaks, and Trivy. That product was retired; its frontend and Go scan engine remain in the git history up to the `feat/polyscan-site` branch point.
 
@@ -52,7 +65,7 @@ All optional — see [`.env.example`](.env.example).
 
 ## Deployment
 
-Deployed on Vercel from `main`.
+Deployed to Vercel manually: `bunx vercel --prod` from the repo root (there is no Git-integration auto-deploy).
 
 ## Contributing
 
