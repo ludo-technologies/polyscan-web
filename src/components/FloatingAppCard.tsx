@@ -38,7 +38,10 @@ export default function FloatingAppCard() {
 						GitHub App
 					</p>
 					<p className="type-display text-sm font-bold text-[var(--text-primary)] sm:text-lg">
-						Audit your repository for free
+						Audit your repository
+					</p>
+					<p className="mt-1 text-xs text-[var(--text-secondary)] sm:text-sm">
+						Get a free audit every week.
 					</p>
 				</div>
 				<a
