@@ -1,6 +1,6 @@
 <div align="center">
 
-# Polyscan App
+<img src="public/brand/logo-readme.svg" alt="Polyscan App" height="48">
 
 ### Automated code audits and PR reviews for GitHub, grounded in static analysis
 
