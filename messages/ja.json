@@ -266,8 +266,8 @@
 		},
 		"security": {
 			"item1": {
-				"desc": "コードはAnthropicのClaude APIに送信されて解析されます。Anthropicは API データをモデルの学習に使用しません。",
-				"title": "Claude APIに送信"
+				"desc": "コードは当社のオンプレミス環境で動作するローカルLLMによって解析され、外部の生成AI APIには送信されません。",
+				"title": "オンプレミス環境で解析"
 			},
 			"item2": {
 				"desc": "私たちはコードを保存しません。レビューが生成されGitHubに投稿されたら、コードは破棄されます。",

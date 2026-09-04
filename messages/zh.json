@@ -266,8 +266,8 @@
 		},
 		"security": {
 			"item1": {
-				"desc": "你的代码被发送到 Anthropic 的 Claude API 进行分析。Anthropic 不会使用 API 数据训练模型。",
-				"title": "发送至 Claude API"
+				"desc": "你的代码由运行在我们的本地部署环境中的本地大语言模型进行分析，不会发送到外部生成式 AI API。",
+				"title": "在本地部署环境中处理"
 			},
 			"item2": {
 				"desc": "我们不存储你的代码。审查生成并发布到 GitHub 后，代码就会被丢弃。",

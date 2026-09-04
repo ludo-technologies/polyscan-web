@@ -266,8 +266,8 @@
 		},
 		"security": {
 			"item1": {
-				"desc": "Your code is sent to Anthropic's Claude API for analysis. Anthropic does not use API data to train models.",
-				"title": "Sent to Claude API"
+				"desc": "Your code is analyzed by a local LLM running in our on-premises environment. It is not sent to external generative AI APIs.",
+				"title": "Processed on premises"
 			},
 			"item2": {
 				"desc": "We don't store your code. Once the review is generated and posted to GitHub, the code is discarded.",
