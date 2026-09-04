@@ -80,7 +80,7 @@
 			"title": "Simple YAML Configuration"
 		},
 		"pr": {
-			"description": "Automatic code review on every pull request. Analyzes changed source files with pyscn (Python) and jscan (JavaScript/TypeScript), and Claude AI generates improvement suggestions.",
+			"description": "Automatic code review on every pull request. Analyzes changed source files with pyscn (Python) and polyscan (JavaScript/TypeScript, Go, Rust, C++), and Claude AI generates improvement suggestions.",
 			"title": "PR Code Review"
 		},
 		"title": "Three Powerful Features"
@@ -115,7 +115,7 @@
 			"desc": "Identifies unused functions and variables",
 			"title": "Dead Code"
 		},
-		"subtitle": "The AST-based analyzers pyscn and jscan quantitatively detect code quality issues.",
+		"subtitle": "The AST-based analyzers pyscn and polyscan quantitatively detect code quality issues.",
 		"title": "What the analyzers detect"
 	},
 	"legal": {
@@ -255,7 +255,7 @@
 				"desc": "\"Complexity 18\" instead of \"looks complex\". Numbers you can act on",
 				"title": "Concrete metrics"
 			},
-			"p1": "Polyscan uses dedicated static analysis engines — <strong>pyscn</strong> for Python and <strong>jscan</strong> for JavaScript/TypeScript. They parse the AST to understand your code deeply—not just pattern matching. C++, Go, and Rust support are planned.",
+			"p1": "Polyscan uses dedicated static analysis engines — <strong>pyscn</strong> for Python and <strong>polyscan</strong> for JavaScript/TypeScript, Go, Rust, and C++. They parse the AST to understand your code deeply—not just pattern matching. Complexity and duplicate code cover every language; dead code, dependency, and class design analysis are available for Python and JavaScript/TypeScript today.",
 			"title": "Built on dedicated analyzers per language"
 		},
 		"problem": {

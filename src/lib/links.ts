@@ -8,10 +8,11 @@ export const LINKS = {
 	/** Polyscan's landing page, hosted in this app since the ludo-landing migration. */
 	pyscnBot: "/pyscn-bot",
 	pyscnBotRepo: "https://github.com/ludo-technologies/pyscn-bot",
-	jscan: "https://github.com/ludo-technologies/polyscan/tree/main/jscan",
+	polyscanCli:
+		"https://github.com/ludo-technologies/polyscan/tree/main/polyscan",
 	core: "https://github.com/ludo-technologies/polyscan/tree/main/core",
 	pypi: "https://pypi.org/project/pyscn/",
-	npm: "https://www.npmjs.com/package/jscan",
+	npm: "https://www.npmjs.com/package/polyscan",
 	docs: "https://docs.codescan.dev/",
 	org: "https://ludo-tech.org",
 	contactEmail: "contact@ludo-tech.org",

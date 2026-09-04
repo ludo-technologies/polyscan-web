@@ -23,7 +23,7 @@ export async function generateMetadata({
 	const t = await getTranslations({ locale });
 	const { canonical, languages } = pyscnBotAlternates(locale, "/pyscn-bot");
 	return {
-		title: "Polyscan - AI Code Review for Python & TypeScript",
+		title: "Polyscan - AI Code Review for Python, TypeScript, Go, Rust & C++",
 		description: t.markup("hero.description", { strong: (chunks) => chunks }),
 		alternates: { canonical, languages },
 	};

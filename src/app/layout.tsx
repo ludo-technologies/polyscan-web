@@ -24,11 +24,14 @@ export const metadata: Metadata = {
 	metadataBase: new URL(getSiteUrl()),
 	title: "Polyscan — Code quality analyzers for AI agents",
 	description:
-		"Open source code quality analyzers for Python and JavaScript/TypeScript. One command scores your codebase and shows what to fix first: dead code, duplicate code, complexity, dependency cycles, and class coupling.",
+		"Open source code quality analyzers for Python, JavaScript/TypeScript, Go, Rust, and C++. One command scores your codebase and shows what to fix first: dead code, duplicate code, complexity, dependency cycles, and class coupling.",
 	keywords: [
 		"code quality analyzer",
 		"Python static analysis",
 		"TypeScript code quality",
+		"Go code quality",
+		"Rust code quality",
+		"C++ code quality",
 		"duplicate code detection",
 		"cyclomatic complexity",
 		"dead code detection",
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Polyscan — Code quality analyzers for AI agents",
 		description:
-			"One command scores your whole codebase and shows what to fix first. pyscn for Python, jscan for JavaScript/TypeScript — open source, built with Go and tree-sitter.",
+			"One command scores your whole codebase and shows what to fix first. pyscn for Python, polyscan for JavaScript/TypeScript, Go, Rust, and C++ — open source, built with Go and tree-sitter.",
 		type: "website",
 	},
 };
