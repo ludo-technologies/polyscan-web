@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CommandBlock from "@/components/CommandBlock";
+import FloatingAppCard from "@/components/FloatingAppCard";
 import Readout from "@/components/Readout";
 import { LINKS } from "@/lib/links";
 
@@ -164,6 +165,7 @@ export default function Home() {
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: structured data
 				dangerouslySetInnerHTML={{ __html: FAQ_JSON_LD }}
 			/>
+			<FloatingAppCard />
 
 			<section
 				id="top"
