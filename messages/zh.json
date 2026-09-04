@@ -80,7 +80,7 @@
 			"title": "简单的 YAML 配置"
 		},
 		"pr": {
-			"description": "每个拉取请求自动代码审查。使用 pyscn（Python）和 jscan（JavaScript/TypeScript）分析更改的源代码文件，Claude AI 生成改进建议。",
+			"description": "每个拉取请求自动代码审查。使用 pyscn（Python）和 polyscan（JavaScript/TypeScript、Go、Rust、C++）分析更改的源代码文件，Claude AI 生成改进建议。",
 			"title": "PR 代码审查"
 		},
 		"title": "三大强力功能"
@@ -115,7 +115,7 @@
 			"desc": "识别未使用的函数和变量",
 			"title": "死代码"
 		},
-		"subtitle": "基于 AST 的静态分析工具 pyscn 和 jscan 定量检测代码质量问题。",
+		"subtitle": "基于 AST 的静态分析工具 pyscn 和 polyscan 定量检测代码质量问题。",
 		"title": "分析器检测的问题"
 	},
 	"legal": {
@@ -255,7 +255,7 @@
 				"desc": "不是「看起来复杂」，而是「复杂度18」。可以行动的数字",
 				"title": "具体数字"
 			},
-			"p1": "Polyscan 为每种语言使用专用静态分析引擎——Python 用 <strong>pyscn</strong>，JavaScript/TypeScript 用 <strong>jscan</strong>。它们解析AST来深入理解你的代码——不只是模式匹配。C++、Go 和 Rust 支持已在计划中。",
+			"p1": "Polyscan 为每种语言使用专用静态分析引擎——Python 用 <strong>pyscn</strong>，JavaScript/TypeScript、Go、Rust 和 C++ 用 <strong>polyscan</strong>。它们解析AST来深入理解你的代码——不只是模式匹配。复杂度和重复代码覆盖所有语言；死代码、依赖关系和类设计分析目前支持 Python 和 JavaScript/TypeScript。",
 			"title": "为每种语言打造的专用分析器"
 		},
 		"problem": {

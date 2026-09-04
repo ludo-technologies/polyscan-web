@@ -5,7 +5,7 @@ import { formatDate, getPosts } from "@/lib/posts";
 export const metadata: Metadata = {
 	title: "Blog — polyscan",
 	description:
-		"Notes on code quality, static analysis, and keeping AI-generated codebases maintainable, from the team behind pyscn and jscan.",
+		"Notes on code quality, static analysis, and keeping AI-generated codebases maintainable, from the team behind pyscn and polyscan.",
 	alternates: {
 		canonical: "/blog",
 		types: { "application/rss+xml": "/blog/feed.xml" },

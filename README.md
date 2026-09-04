@@ -4,7 +4,7 @@
 
 ### Automated code audits and PR reviews for GitHub, grounded in static analysis
 
-Polyscan scores your whole codebase every week and reviews every pull request, powered by the open-source analyzers [pyscn](https://github.com/ludo-technologies/pyscn) and [jscan](https://github.com/ludo-technologies/polyscan).
+Polyscan scores your whole codebase every week and reviews every pull request, powered by the open-source analyzers [pyscn](https://github.com/ludo-technologies/pyscn) (Python) and [polyscan](https://github.com/ludo-technologies/polyscan) (JavaScript/TypeScript, Go, Rust, C++).
 
 **[Install the App →](https://github.com/apps/polyscan-app)** • **[Website](https://codescan.dev/pyscn-bot)** • **[Report an issue](../../issues)**
 
@@ -20,7 +20,7 @@ The analysis engines are fully open source; the App's orchestration backend is c
 
 | Project | Repository |
 |---|---|
-| polyscan monorepo (`core`, `jscan`) | [ludo-technologies/polyscan](https://github.com/ludo-technologies/polyscan) |
+| polyscan monorepo (`core`, `polyscan` CLI) | [ludo-technologies/polyscan](https://github.com/ludo-technologies/polyscan) |
 | pyscn (Python analyzer) | [ludo-technologies/pyscn](https://github.com/ludo-technologies/pyscn) |
 | Polyscan App backend | `ludo-technologies/polyscan-backend` (private) |
 

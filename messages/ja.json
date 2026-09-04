@@ -80,7 +80,7 @@
 			"title": "シンプルなYAML設定"
 		},
 		"pr": {
-			"description": "プルリクエストごとに自動でコードレビュー。変更されたソースファイルをpyscn（Python）とjscan（JavaScript/TypeScript）で解析し、Claude AIが改善提案を生成します。",
+			"description": "プルリクエストごとに自動でコードレビュー。変更されたソースファイルをpyscn（Python）とpolyscan（JavaScript/TypeScript、Go、Rust、C++）で解析し、Claude AIが改善提案を生成します。",
 			"title": "PRコードレビュー"
 		},
 		"title": "3つの強力な機能"
@@ -115,7 +115,7 @@
 			"desc": "使われていない関数や変数を特定",
 			"title": "デッドコード"
 		},
-		"subtitle": "ASTベースの静的解析ツールpyscnとjscanが、コードの品質問題を定量的に検出します。",
+		"subtitle": "ASTベースの静的解析ツールpyscnとpolyscanが、コードの品質問題を定量的に検出します。",
 		"title": "アナライザーが見つける問題"
 	},
 	"legal": {
@@ -255,7 +255,7 @@
 				"desc": "「複雑そう」ではなく「複雑度18」。行動につながる数字",
 				"title": "具体的な数値"
 			},
-			"p1": "Polyscanは言語ごとの専用静的解析エンジン — Pythonは<strong>pyscn</strong>、JavaScript/TypeScriptは<strong>jscan</strong> — を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。C++、Go、Rustにも対応予定です。",
+			"p1": "Polyscanは言語ごとの専用静的解析エンジン — Pythonは<strong>pyscn</strong>、JavaScript/TypeScript・Go・Rust・C++は<strong>polyscan</strong> — を使用。ASTを解析してコードを深く理解します。単なるパターンマッチングではありません。複雑度と重複コードは全言語で検出し、デッドコード・依存関係・クラス設計の解析は現在PythonとJavaScript/TypeScriptで利用できます。",
 			"title": "言語ごとの専用アナライザー"
 		},
 		"problem": {

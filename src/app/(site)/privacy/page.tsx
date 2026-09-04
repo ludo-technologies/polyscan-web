@@ -37,9 +37,10 @@ export default function PrivacyPage() {
 					</p>
 					<p className="mt-3">
 						There are no accounts and nothing to sign up for. The analyzers
-						themselves — pyscn, jscan, and the shared core module — run entirely
-						on your own machine or CI runner. We never receive your source code,
-						your analysis results, or the names of the projects you analyze.
+						themselves — pyscn, polyscan, and the shared core module — run
+						entirely on your own machine or CI runner. We never receive your
+						source code, your analysis results, or the names of the projects you
+						analyze.
 					</p>
 				</section>
 

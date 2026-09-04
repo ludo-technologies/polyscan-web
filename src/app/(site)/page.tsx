@@ -50,19 +50,19 @@ const analyzers = [
 		],
 	},
 	{
-		name: "jscan",
-		language: "JavaScript / TypeScript",
-		body: "The same analysis for JS and TS, distributed on npm with prebuilt binaries — no toolchain to install.",
-		command: "npx jscan analyze src/",
+		name: "polyscan",
+		language: "JS / TS · Go · Rust · C++",
+		body: "One CLI for JavaScript, TypeScript, Go, Rust, and C++. Detects each file's language by extension and lands everything in one report with one health score. Distributed on npm with prebuilt binaries — no toolchain to install.",
+		command: "npx polyscan analyze .",
 		links: [
-			{ label: "GitHub", href: LINKS.jscan },
+			{ label: "GitHub", href: LINKS.polyscanCli },
 			{ label: "npm", href: LINKS.npm },
 		],
 	},
 	{
 		name: "core",
 		language: "Go module",
-		body: "The language-agnostic engine behind both: APTED tree edit distance, LSH/MinHash clone indexing, CFG analysis, coupling and cohesion metrics.",
+		body: "The language-agnostic engine behind both analyzers: APTED tree edit distance, LSH/MinHash clone indexing, CFG analysis, coupling and cohesion metrics.",
 		command: "go get github.com/ludo-technologies/polyscan/core",
 		links: [{ label: "GitHub", href: LINKS.core }],
 	},
@@ -89,7 +89,7 @@ const faqs = [
 	},
 	{
 		q: "Which languages are supported?",
-		a: "Python via pyscn and JavaScript/TypeScript via jscan today. Because the analysis lives in a language-agnostic Go core, adding a language mostly means implementing parsing and classification — C++, Go, and Rust are planned.",
+		a: "Python via pyscn, and JavaScript, TypeScript, Go, Rust, and C++ via polyscan. Complexity and duplicate code are measured for every language. Dead code, dependencies, and class design need the import graph and class model that only the Python and JavaScript/TypeScript backends build today, so those dimensions are left out of a Go, Rust, or C++ score rather than counted as clean.",
 	},
 	{
 		q: "Is it open source?",
@@ -114,7 +114,7 @@ const SOFTWARE_JSON_LD = JSON.stringify({
 	applicationCategory: "DeveloperApplication",
 	operatingSystem: "macOS, Linux, Windows",
 	description:
-		"Open source code quality analyzers for Python and JavaScript/TypeScript. Detects dead code, duplicate code, complexity, dependency cycles, and class coupling, then scores the codebase and reports what to fix first.",
+		"Open source code quality analyzers for Python, JavaScript/TypeScript, Go, Rust, and C++. Detects dead code, duplicate code, complexity, dependency cycles, and class coupling, then scores the codebase and reports what to fix first.",
 	license: "https://opensource.org/licenses/MIT",
 	offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 });
@@ -192,8 +192,8 @@ export default function Home() {
 								command="uvx pyscn@latest analyze ."
 							/>
 							<CommandBlock
-								label="JavaScript / TypeScript"
-								command="npx jscan analyze src/"
+								label="JavaScript / TypeScript / Go / Rust / C++"
+								command="npx polyscan analyze ."
 							/>
 						</div>
 						<p className="mt-3 font-mono text-xs text-[var(--text-muted)]">
@@ -247,7 +247,7 @@ export default function Home() {
 						id="analyzers-title"
 						eyebrow="Instruments"
 						title="One engine, one analyzer per language"
-						lede="The analysis algorithms live in a shared, language-agnostic Go module. Each analyzer only implements parsing and classification, so Python and TypeScript are graded by the same rules."
+						lede="The analysis algorithms live in a shared, language-agnostic Go module. Each analyzer only implements parsing and classification, so every language is graded by the same rules."
 					/>
 					<div className="grid gap-4 lg:grid-cols-3">
 						{analyzers.map((a) => (
@@ -286,8 +286,11 @@ export default function Home() {
 							</article>
 						))}
 					</div>
-					<p className="mt-6 font-mono text-xs text-[var(--text-muted)]">
-						C++, Go, and Rust analyzers are planned.
+					<p className="mt-6 max-w-3xl font-mono text-xs text-[var(--text-muted)]">
+						Complexity and duplicate code cover every language. Dead code,
+						dependencies, and class design are available for Python and
+						JavaScript/TypeScript today; a dimension a language does not have is
+						left out of its score rather than counted as clean.
 					</p>
 				</section>
 
@@ -309,7 +312,7 @@ export default function Home() {
 								command="uvx add-skills ludo-technologies/pyscn"
 							/>
 							<CommandBlock
-								label="jscan Skills"
+								label="polyscan Skills"
 								command="npx skills add ludo-technologies/polyscan"
 							/>
 							<CommandBlock
@@ -350,8 +353,8 @@ export default function Home() {
 						Polyscan — code review that reads the architecture
 					</h2>
 					<p className="mb-6 max-w-3xl text-[var(--text-secondary)]">
-						A GitHub App that reviews every pull request with pyscn and jscan in
-						hand and files a weekly audit of the whole repository. Because it
+						A GitHub App that reviews every pull request with pyscn and polyscan
+						in hand and files a weekly audit of the whole repository. Because it
 						reviews with a static analyzer rather than the diff alone, it
 						catches the structural problems a line-by-line reviewer never sees.
 						Weekly audits are free for every repository.
@@ -420,7 +423,7 @@ export default function Home() {
 						</p>
 						<div className="grid max-w-2xl gap-3 sm:grid-cols-2">
 							<CommandBlock command="uvx pyscn@latest analyze ." />
-							<CommandBlock command="npx jscan analyze src/" />
+							<CommandBlock command="npx polyscan analyze ." />
 						</div>
 					</div>
 				</section>
