@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CommandBlock from "@/components/CommandBlock";
+import FloatingAppCard from "@/components/FloatingAppCard";
 import Readout from "@/components/Readout";
 import { LINKS } from "@/lib/links";
 
@@ -164,6 +165,7 @@ export default function Home() {
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: structured data
 				dangerouslySetInnerHTML={{ __html: FAQ_JSON_LD }}
 			/>
+			<FloatingAppCard />
 
 			<section
 				id="top"
@@ -179,23 +181,12 @@ export default function Home() {
 						<p className="mb-4 max-w-2xl text-lg font-semibold leading-relaxed text-[var(--text-primary)] sm:text-xl">
 							Structural analyzers for the age of AI-written code.
 						</p>
-						<p className="mb-6 max-w-2xl leading-relaxed text-[var(--text-secondary)]">
+						<p className="mb-8 max-w-2xl leading-relaxed text-[var(--text-secondary)]">
 							Building with Claude, Cursor, or Codex? Your agent writes code
 							faster than anyone can review it. Polyscan runs structural
 							analysis over the whole codebase — one command scores it and shows
 							what to fix first.
 						</p>
-						<div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-3">
-							<a
-								href={LINKS.pyscnBot}
-								className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
-							>
-								Install the GitHub App →
-							</a>
-							<span className="text-sm text-[var(--text-muted)]">
-								Free weekly audits for every repository.
-							</span>
-						</div>
 
 						<div className="grid max-w-3xl gap-4">
 							<CommandBlock
