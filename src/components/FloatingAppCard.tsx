@@ -37,12 +37,8 @@ export default function FloatingAppCard() {
 					<p className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--brand-blue)] sm:mb-2 sm:text-[11px]">
 						GitHub App
 					</p>
-					<p className="type-display truncate text-sm font-bold text-[var(--text-primary)] sm:mb-2 sm:text-lg">
-						Automate every code review
-					</p>
-					<p className="hidden text-sm leading-relaxed text-[var(--text-secondary)] sm:block">
-						Review every pull request and audit your repositories weekly, for
-						free.
+					<p className="type-display text-sm font-bold text-[var(--text-primary)] sm:text-lg">
+						Audit your repository for free
 					</p>
 				</div>
 				<a
