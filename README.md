@@ -2,9 +2,9 @@
 
 <img src="public/brand/logo-readme.svg" alt="Polyscan App" height="48">
 
-### Automated code audits and PR reviews for GitHub, grounded in static analysis
+### Weekly codebase health monitoring for GitHub, grounded in static analysis
 
-Polyscan scores your whole codebase every week and reviews every pull request, powered by the open-source analyzers [pyscn](https://github.com/ludo-technologies/pyscn) (Python) and [polyscan](https://github.com/ludo-technologies/polyscan) (JavaScript/TypeScript, Go, Rust, C++).
+Polyscan measures your whole codebase every week, tracks structural decay, and reports what to fix first. It also catches new problems on pull requests, powered by the open-source analyzers [pyscn](https://github.com/ludo-technologies/pyscn) (Python) and [polyscan](https://github.com/ludo-technologies/polyscan) (JavaScript/TypeScript, Go, Rust, C++).
 
 **[Install the App →](https://github.com/apps/polyscan-app)** • **[Website](https://codescan.dev/pyscn-bot)** • **[Report an issue](../../issues)**
 

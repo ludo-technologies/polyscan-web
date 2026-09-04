@@ -38,17 +38,17 @@ export default function FloatingAppCard() {
 						GitHub App
 					</p>
 					<p className="type-display text-sm font-bold text-[var(--text-primary)] sm:text-lg">
-						Audit your repository
+						Track structural decay
 					</p>
 					<p className="mt-1 text-xs text-[var(--text-secondary)] sm:text-sm">
-						Get a free audit every week.
+						Measure your entire repository every week.
 					</p>
 				</div>
 				<a
 					href={LINKS.pyscnBot}
 					className="shrink-0 border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-4 py-2 text-xs font-semibold whitespace-nowrap text-white transition-colors hover:bg-[var(--brand-blue-hover)] sm:mt-4 sm:inline-flex sm:text-sm"
 				>
-					Install App &rarr;
+					Start free &rarr;
 				</a>
 			</div>
 		</aside>

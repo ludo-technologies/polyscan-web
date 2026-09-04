@@ -352,21 +352,21 @@ export default function Home() {
 						id="bot-title"
 						className="type-display mb-3 text-2xl font-bold text-[var(--text-primary)] sm:text-3xl"
 					>
-						Polyscan — code review that reads the architecture
+						Measure it once with the CLI. Track it every week with the App.
 					</h2>
 					<p className="mb-6 max-w-3xl text-[var(--text-secondary)]">
-						A GitHub App that reviews every pull request with pyscn and polyscan
-						in hand and files a weekly audit of the whole repository. Because it
-						reviews with a static analyzer rather than the diff alone, it
-						catches the structural problems a line-by-line reviewer never sees.
-						Weekly audits are free for every repository.
+						The GitHub App measures complexity, duplication, dead code, and
+						dependencies across your entire repository every week. It tracks
+						structural decay over time, reports what to fix first in a GitHub
+						Issue, and catches new problems on pull requests. Weekly measurement
+						is free for every repository.
 					</p>
 					<div className="flex flex-wrap gap-3">
 						<a
 							href={LINKS.pyscnBot}
 							className="inline-flex border border-[var(--brand-blue)] bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-blue-hover)]"
 						>
-							Install Polyscan →
+							Start weekly measurement →
 						</a>
 						<a
 							href={LINKS.pyscnBotRepo}

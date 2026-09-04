@@ -39,7 +39,7 @@ export default function Footer() {
 					</Link>
 					<span className="hidden text-[var(--border-light)] sm:block">|</span>
 					<p className="text-sm text-[var(--text-secondary)]">
-						Code quality analyzers for AI agents.
+						Structural codebase health for AI-written code.
 					</p>
 				</div>
 

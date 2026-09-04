@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { pyscnBotAlternates } from "@/lib/pyscn-bot-metadata";
 
-const LAST_UPDATED = "2026-01-05";
+const LAST_UPDATED = "2026-09-04";
 
 export async function generateMetadata({
 	params,
@@ -95,8 +95,8 @@ function TermsJa() {
 
 			<h2>9. 第三者サービス</h2>
 			<p>
-				本サービスはGitHub APIおよびAnthropic社のClaude
-				APIに依存しています。これらの第三者サービスの障害、変更、または利用停止により本サービスが影響を受ける場合がありますが、当社はこれらの第三者サービスに起因する問題について責任を負いません。
+				本サービスはGitHub
+				APIおよびStripeの決済サービスを利用しています。これらの第三者サービスの障害、変更、または利用停止により本サービスが影響を受ける場合がありますが、当社はこれらの第三者サービスに起因する問題について責任を負いません。
 			</p>
 
 			<h2>10. 免責事項</h2>
@@ -250,8 +250,8 @@ function TermsZh() {
 
 			<h2>9. 第三方服务</h2>
 			<p>
-				本服务依赖于 GitHub API 和 Anthropic 的 Claude
-				API。这些第三方服务的中断、变更或停止可能会影响本服务。我们不对因这些第三方服务引起的问题承担责任。
+				本服务使用 GitHub API 和 Stripe
+				支付服务。这些第三方服务的中断、变更或停止可能会影响本服务。我们不对因这些第三方服务引起的问题承担责任。
 			</p>
 
 			<h2>10. 免责声明</h2>
@@ -422,10 +422,10 @@ function TermsEn() {
 
 			<h2>9. Third-Party Services</h2>
 			<p>
-				The Service relies on GitHub API and Anthropic&apos;s Claude API. The
-				Service may be affected by outages, changes, or discontinuation of these
-				third-party services. We are not responsible for issues arising from
-				these third-party services.
+				The Service uses the GitHub API and Stripe&apos;s payment processing
+				services. The Service may be affected by outages, changes, or
+				discontinuation of these third-party services. We are not responsible
+				for issues arising from these third-party services.
 			</p>
 
 			<h2>10. Disclaimer</h2>

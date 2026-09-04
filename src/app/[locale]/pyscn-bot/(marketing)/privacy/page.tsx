@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { pyscnBotAlternates } from "@/lib/pyscn-bot-metadata";
 
-const LAST_UPDATED = "2026-01-05";
+const LAST_UPDATED = "2026-09-04";
 
 export async function generateMetadata({
 	params,
@@ -66,20 +66,12 @@ function PrivacyJa() {
 			</ul>
 
 			<h2>4. 第三者への情報提供</h2>
+			<p>
+				コード情報は、当社のオンプレミス環境で動作するローカルLLMによって解析され、外部の生成AI
+				APIには送信されません。
+			</p>
 			<p>当社は以下の第三者とお客様の情報を共有することがあります：</p>
 			<ul>
-				<li>
-					<strong>Anthropic社</strong>:
-					コードレビューを実行するため、コード情報をClaude APIに送信します。
-					<a
-						href="https://www.anthropic.com/privacy"
-						target="_blank"
-						rel="noopener"
-					>
-						Anthropic Privacy Policy
-					</a>
-					をご確認ください。
-				</li>
 				<li>
 					<strong>Stripe社</strong>:
 					決済処理のため、お支払い情報をStripeに送信します。
@@ -222,20 +214,12 @@ function PrivacyZh() {
 			</ul>
 
 			<h2>4. 向第三方提供信息</h2>
+			<p>
+				代码信息由运行在我们的本地部署环境中的本地大语言模型进行分析，不会发送到外部生成式
+				AI API。
+			</p>
 			<p>我们可能会与以下第三方共享您的信息：</p>
 			<ul>
-				<li>
-					<strong>Anthropic</strong>：为执行代码审查，代码信息将发送至 Claude
-					API。请参阅{" "}
-					<a
-						href="https://www.anthropic.com/privacy"
-						target="_blank"
-						rel="noopener"
-					>
-						Anthropic Privacy Policy
-					</a>
-					。
-				</li>
 				<li>
 					<strong>Stripe</strong>：为处理支付，支付信息将发送至 Stripe。请参阅{" "}
 					<a href="https://stripe.com/privacy" target="_blank" rel="noopener">
@@ -377,20 +361,12 @@ function PrivacyEn() {
 			</ul>
 
 			<h2>4. Third-Party Sharing</h2>
+			<p>
+				Code information is analyzed by a local LLM running in our on-premises
+				environment and is not sent to external generative AI APIs.
+			</p>
 			<p>We may share your information with the following third parties:</p>
 			<ul>
-				<li>
-					<strong>Anthropic</strong>: Code information is sent to Claude API to
-					perform code reviews. Please refer to the{" "}
-					<a
-						href="https://www.anthropic.com/privacy"
-						target="_blank"
-						rel="noopener"
-					>
-						Anthropic Privacy Policy
-					</a>
-					.
-				</li>
 				<li>
 					<strong>Stripe</strong>: Payment information is sent to Stripe for
 					payment processing. Please refer to the{" "}

@@ -38,34 +38,34 @@
 		"title": "联系我们"
 	},
 	"cta": {
-		"button": "安装 GitHub App",
-		"description": "所有仓库可免费使用每周审计。只需几次点击即可安装。",
-		"title": "立即提升代码质量"
+		"button": "免费开始每周测量",
+		"description": "只需安装到 GitHub。Polyscan 每周免费测量整个仓库，并通过 Issue 报告变化。",
+		"title": "从下周起，不再错过代码库的劣化"
 	},
 	"diff": {
 		"pyscnBot": {
-			"1": "<strong>专用静态分析引擎</strong>定量评估代码质量",
-			"2": "检测难以阅读的函数、未使用的代码、复杂的依赖关系",
-			"3": "发现复制粘贴的代码，标记可维护性问题",
-			"4": "每周审计扫描<strong>整个代码库</strong>",
-			"5": "<strong>语言专用 AI</strong> 实现高精度审查",
+			"1": "每周测量<strong>整个仓库</strong>",
+			"2": "量化复杂度、重复和死代码",
+			"3": "跟踪与上次扫描相比的质量变化",
+			"4": "按优先级报告需要修复的位置",
+			"5": "通过静态分析持续采用同一标准测量",
 			"_": "Polyscan"
 		},
-		"subtitle": "Polyscan 不仅仅是 LLM 包装器。它利用强大的静态分析引擎提供更深入的洞察。",
-		"title": "与传统代码审查机器人的区别",
+		"subtitle": "每个 Pull Request 可能很小，但复杂度、重复和死代码会在整个仓库中逐渐累积。",
+		"title": "仅靠 PR 审查看不到代码库的劣化",
 		"traditional": {
-			"1": "仅查看差异，提供表面评论",
-			"2": "无法衡量代码质量指标",
-			"3": "无法纵览整体架构",
-			"4": "每个 PR 的碎片化审查",
-			"5": "通用 AI，缺乏语言专业知识",
-			"_": "传统代码审查机器人"
+			"1": "只能看到发生变化的代码行",
+			"2": "会遗漏仓库各处的重复代码",
+			"3": "无法跟踪长期质量变化",
+			"4": "问题累积后才会发现",
+			"5": "每次审查的判断标准可能不同",
+			"_": "仅靠 PR 审查"
 		}
 	},
 	"features": {
 		"audit": {
-			"description": "每周扫描整个仓库一次。识别架构级问题，并创建 GitHub Issue 报告。",
-			"title": "每周代码审计"
+			"description": "每周测量整个仓库的复杂度、重复、死代码和依赖关系，并通过 GitHub Issue 报告变化与修复优先级。",
+			"title": "每周测量整个代码库"
 		},
 		"config": {
 			"comment": {
@@ -80,10 +80,10 @@
 			"title": "简单的 YAML 配置"
 		},
 		"pr": {
-			"description": "每个拉取请求自动代码审查。使用 pyscn（Python）和 polyscan（JavaScript/TypeScript、Go、Rust、C++）分析更改的源代码文件，Claude AI 生成改进建议。",
-			"title": "PR 代码审查"
+			"description": "分析发生变化的代码，在合并前指出新增的复杂度或重复，以实时反馈补充每周测量。",
+			"title": "在合并前发现新的劣化"
 		},
-		"title": "三大强力功能"
+		"title": "持续守护你的代码库"
 	},
 	"footer": {
 		"company": "运营公司",
@@ -93,7 +93,7 @@
 		"terms": "服务条款"
 	},
 	"hero": {
-		"description": "安装到 GitHub 仓库后，它<strong>每周为整个代码库打分</strong>，并将结果以 GitHub Issue 的形式报告。过于复杂的函数、不断蔓延的复制粘贴、没人使用的代码——该修什么，用数字告诉你。",
+		"description": "AI 编写代码的速度已经超过团队的审查速度。只需将 Polyscan 安装到 GitHub，它就会<strong>每周测量</strong>整个仓库的复杂度、重复和死代码，并通过数字和 GitHub Issue 告诉你悄然发生的结构劣化。",
 		"freeNote": "Polyscan 目前处于测试阶段。所有仓库可免费使用每周代码审计。",
 		"title": "你的代码库，",
 		"titleHighlight": "正在悄悄劣化。"
@@ -266,8 +266,8 @@
 		},
 		"security": {
 			"item1": {
-				"desc": "你的代码被发送到 Anthropic 的 Claude API 进行分析。Anthropic 不会使用 API 数据训练模型。",
-				"title": "发送至 Claude API"
+				"desc": "你的代码由运行在我们的本地部署环境中的本地大语言模型进行分析，不会发送到外部生成式 AI API。",
+				"title": "在本地部署环境中处理"
 			},
 			"item2": {
 				"desc": "我们不存储你的代码。审查生成并发布到 GitHub 后，代码就会被丢弃。",
