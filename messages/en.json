@@ -38,34 +38,34 @@
 		"title": "Contact Us"
 	},
 	"cta": {
-		"button": "Install GitHub App",
-		"description": "Weekly audits are free for all repositories. Install in just a few clicks.",
-		"title": "Improve your code quality today"
+		"button": "Start weekly measurement free",
+		"description": "Just install it on GitHub. Polyscan measures your entire repository every week for free and reports changes in an Issue.",
+		"title": "Don't miss another week of codebase decay"
 	},
 	"diff": {
 		"pyscnBot": {
-			"1": "<strong>Dedicated static analyzers</strong> quantitatively evaluate code quality",
-			"2": "Detects hard-to-read functions, unused code, and complex dependencies",
-			"3": "Finds copy-pasted code and flags maintainability issues",
-			"4": "Weekly audits scan your <strong>entire codebase</strong>",
-			"5": "<strong>Language-specialized AI</strong> delivers high-precision reviews",
+			"1": "Measures your <strong>entire repository</strong> every week",
+			"2": "Quantifies complexity, duplication, and dead code",
+			"3": "Tracks quality changes from the previous scan",
+			"4": "Prioritizes the places that need attention",
+			"5": "Uses static analysis for consistent measurement",
 			"_": "Polyscan"
 		},
-		"subtitle": "Polyscan isn't just an LLM wrapper. It leverages powerful static analysis engines to provide deeper insights.",
-		"title": "What makes Polyscan different",
+		"subtitle": "Each pull request may be small, but complexity, duplication, and dead code accumulate across the repository.",
+		"title": "PR review alone can't see codebase decay",
 		"traditional": {
-			"1": "Surface-level comments based only on diffs",
-			"2": "Can't measure code quality metrics",
-			"3": "Can't see the overall architecture",
-			"4": "Fragmented reviews per PR",
-			"5": "Generic AI with no language expertise",
-			"_": "Traditional Code Review Bots"
+			"1": "Sees only the lines that changed",
+			"2": "Misses duplication across the repository",
+			"3": "Can't track long-term quality changes",
+			"4": "Finds problems only after they accumulate",
+			"5": "Judgment varies from one review to the next",
+			"_": "PR review alone"
 		}
 	},
 	"features": {
 		"audit": {
-			"description": "Scans your entire repository once a week. Identifies architecture-level issues and creates a report as a GitHub Issue.",
-			"title": "Weekly Code Audit"
+			"description": "Measures complexity, duplication, dead code, and dependencies across the entire repository every week, then reports changes and priorities in a GitHub Issue.",
+			"title": "Measure the whole codebase every week"
 		},
 		"config": {
 			"comment": {
@@ -80,10 +80,10 @@
 			"title": "Simple YAML Configuration"
 		},
 		"pr": {
-			"description": "Automatic code review on every pull request. Analyzes changed source files with pyscn (Python) and polyscan (JavaScript/TypeScript, Go, Rust, C++), and Claude AI generates improvement suggestions.",
-			"title": "PR Code Review"
+			"description": "Analyzes changed code and flags new complexity or duplication before merge, complementing weekly measurement with real-time feedback.",
+			"title": "Catch new decay before merge"
 		},
-		"title": "Three Powerful Features"
+		"title": "Keep watch over your codebase"
 	},
 	"footer": {
 		"company": "Company",
@@ -93,7 +93,7 @@
 		"terms": "Terms of Service"
 	},
 	"hero": {
-		"description": "Install it on your GitHub repository and it <strong>scores the whole codebase every week</strong>, filing the results as a GitHub Issue. Functions that grew too complex, copy-paste that keeps spreading, code nobody uses — you see exactly what to fix, in numbers.",
+		"description": "AI writes code faster than teams can review it. Install Polyscan on GitHub to measure complexity, duplication, and dead code across your entire repository <strong>every week</strong>. See silent structural decay in numbers, delivered as a GitHub Issue.",
 		"freeNote": "Polyscan is currently in beta. Weekly code audits are free for all repositories.",
 		"title": "Your codebase is ",
 		"titleHighlight": "quietly decaying."

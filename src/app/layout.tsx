@@ -22,9 +22,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
 	metadataBase: new URL(getSiteUrl()),
-	title: "Polyscan — Code quality analyzers for AI agents",
+	title: "Polyscan — Structural codebase health for AI-written code",
 	description:
-		"Open source code quality analyzers for Python, JavaScript/TypeScript, Go, Rust, and C++. One command scores your codebase and shows what to fix first: dead code, duplicate code, complexity, dependency cycles, and class coupling.",
+		"Measure complexity, duplication, dead code, dependencies, and class design across your entire codebase. Run it once with the open-source CLI or track structural decay every week with the GitHub App.",
 	keywords: [
 		"code quality analyzer",
 		"Python static analysis",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
 		"AI coding agent tools",
 	],
 	openGraph: {
-		title: "Polyscan — Code quality analyzers for AI agents",
+		title: "Polyscan — Structural codebase health for AI-written code",
 		description:
-			"One command scores your whole codebase and shows what to fix first. pyscn for Python, polyscan for JavaScript/TypeScript, Go, Rust, and C++ — open source, built with Go and tree-sitter.",
+			"Measure your whole codebase once with the open-source CLI, then track structural decay every week with the GitHub App.",
 		type: "website",
 	},
 };

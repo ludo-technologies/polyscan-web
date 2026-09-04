@@ -23,7 +23,7 @@ export async function generateMetadata({
 	const t = await getTranslations({ locale });
 	const { canonical, languages } = pyscnBotAlternates(locale, "/pyscn-bot");
 	return {
-		title: "Polyscan - AI Code Review for Python, TypeScript, Go, Rust & C++",
+		title: "Polyscan - Weekly Codebase Health Monitoring for GitHub",
 		description: t.markup("hero.description", { strong: (chunks) => chunks }),
 		alternates: { canonical, languages },
 	};
@@ -162,29 +162,6 @@ export default async function PyscnBotLandingPage() {
 					</div>
 
 					<div className="space-y-8">
-						{/* PR Review */}
-						<div className="grid gap-px border border-[var(--border-light)] bg-[var(--border-light)] md:grid-cols-2">
-							<div className="bg-[var(--bg-card)] p-6 sm:p-8">
-								<p className="mb-3 inline-flex border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide text-[var(--text-label)]">
-									PR
-								</p>
-								<h3 className="mb-3 text-2xl font-bold text-[var(--text-primary)]">
-									{t("features.pr.title")}
-								</h3>
-								<p className="leading-relaxed text-[var(--text-secondary)]">
-									{t("features.pr.description")}
-								</p>
-							</div>
-							<div className="bg-[var(--bg-card)] p-4">
-								{/* biome-ignore lint/performance/noImgElement: marketing asset ported as-is, not worth next/image tuning here */}
-								<img
-									src="/pyscn-bot/pyscn-pr-demo.png"
-									alt="PR Review Demo"
-									className="w-full border border-[var(--border-subtle)]"
-								/>
-							</div>
-						</div>
-
 						{/* Weekly Audit */}
 						<div className="grid gap-px border border-[var(--border-light)] bg-[var(--border-light)] md:grid-cols-2">
 							<div className="bg-[var(--bg-card)] p-4 max-md:order-2">
@@ -211,6 +188,29 @@ export default async function PyscnBotLandingPage() {
 								<p className="leading-relaxed text-[var(--text-secondary)]">
 									{t("features.audit.description")}
 								</p>
+							</div>
+						</div>
+
+						{/* PR Review */}
+						<div className="grid gap-px border border-[var(--border-light)] bg-[var(--border-light)] md:grid-cols-2">
+							<div className="bg-[var(--bg-card)] p-6 sm:p-8">
+								<p className="mb-3 inline-flex border border-[var(--border-subtle)] bg-[var(--bg-subtle)] px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide text-[var(--text-label)]">
+									PR
+								</p>
+								<h3 className="mb-3 text-2xl font-bold text-[var(--text-primary)]">
+									{t("features.pr.title")}
+								</h3>
+								<p className="leading-relaxed text-[var(--text-secondary)]">
+									{t("features.pr.description")}
+								</p>
+							</div>
+							<div className="bg-[var(--bg-card)] p-4">
+								{/* biome-ignore lint/performance/noImgElement: marketing asset ported as-is, not worth next/image tuning here */}
+								<img
+									src="/pyscn-bot/pyscn-pr-demo.png"
+									alt="PR Review Demo"
+									className="w-full border border-[var(--border-subtle)]"
+								/>
 							</div>
 						</div>
 
